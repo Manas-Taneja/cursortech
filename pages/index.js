@@ -1,114 +1,143 @@
 import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
+import { Geist } from "next/font/google";
+import { crosshairs } from "../data/crosshairs";
+import Head from "next/head";
+import { useState, useMemo } from "react";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const geist = Geist({
   subsets: ["latin"],
 });
 
 export default function Home() {
-  return (
-    <div
-      className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              pages/index.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [selectedTags, setSelectedTags] = useState([]);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  // Get all unique tags
+  const allTags = useMemo(() => {
+    const tags = new Set();
+    crosshairs.forEach(crosshair => {
+      crosshair.tags.forEach(tag => tags.add(tag));
+    });
+    return Array.from(tags).sort();
+  }, []);
+
+  // Filter crosshairs based on selected tags
+  const filteredCrosshairs = useMemo(() => {
+    if (selectedTags.length === 0) return crosshairs;
+    return crosshairs.filter(crosshair =>
+      selectedTags.every(tag => crosshair.tags.includes(tag))
+    );
+  }, [selectedTags]);
+
+  const toggleTag = (tag) => {
+    setSelectedTags(prev =>
+      prev.includes(tag)
+        ? prev.filter(t => t !== tag)
+        : [...prev, tag]
+    );
+  };
+
+  return (
+    <>
+      <Head>
+        <title>Free Windows Cursor Crosshairs - Download Animated Cursors</title>
+        <meta name="description" content="Download free animated cursor crosshairs for Windows. Choose from a variety of styles including neon, classic, and tech-inspired designs." />
+        <meta name="keywords" content="windows cursor, crosshair, animated cursor, free cursor, custom cursor" />
+        <link rel="canonical" href="https://your-domain.com" />
+        
+        {/* Open Graph / Social Media Meta Tags */}
+        <meta property="og:title" content="Free Windows Cursor Crosshairs - Download Animated Cursors" />
+        <meta property="og:description" content="Download free animated cursor crosshairs for Windows. Choose from a variety of styles including neon, classic, and tech-inspired designs." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://your-domain.com" />
+      </Head>
+
+      <div className={`${geist.className} min-h-screen bg-white dark:bg-gray-900`}>
+        <main className="container mx-auto px-4 py-8">
+          <div className="max-w-6xl mx-auto">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+              Free Windows Cursor Crosshairs
+            </h1>
+
+            {/* Tag Filter */}
+            <div className="mb-8">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                Filter by Style
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {allTags.map((tag) => (
+                  <button
+                    key={tag}
+                    onClick={() => toggleTag(tag)}
+                    className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                      selectedTags.includes(tag)
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                    }`}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredCrosshairs.map((crosshair) => (
+                <Link
+                  key={crosshair.id}
+                  href={`/crosshair/${crosshair.slug}`}
+                  className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                >
+                  <div className="relative h-48">
+                    <Image
+                      src={crosshair.image}
+                      alt={crosshair.title}
+                      fill
+                      className="object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                  
+                  <div className="p-4">
+                    <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                      {crosshair.title}
+                    </h2>
+                    
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                      {crosshair.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {crosshair.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-xs"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {filteredCrosshairs.length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-gray-600 dark:text-gray-400">
+                  No cursors found matching the selected filters.
+                </p>
+                <button
+                  onClick={() => setSelectedTags([])}
+                  className="mt-4 text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  Clear filters
+                </button>
+              </div>
+            )}
+          </div>
+        </main>
+      </div>
+    </>
   );
 }
