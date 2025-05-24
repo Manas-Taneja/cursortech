@@ -1,6 +1,6 @@
 import { crosshairs } from '../data/crosshairs';
 
-const EXTERNAL_DATA_URL = 'https://your-domain.com'; // Replace with your actual domain
+const EXTERNAL_DATA_URL = 'https://cursortech.vercel.app';
 
 function generateSiteMap() {
   return `<?xml version="1.0" encoding="UTF-8"?>

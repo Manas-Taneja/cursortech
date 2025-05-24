@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { crosshairs } from '../../data/crosshairs';
 import { Geist } from 'next/font/google';
 import { useState, useEffect } from 'react';
+import { logDownload } from '../../utils/analytics';
+import CookieConsent from '../../components/CookieConsent';
 
 const geist = Geist({
   subsets: ['latin'],
@@ -26,17 +28,31 @@ export async function getStaticProps({ params }) {
     };
   }
 
+  // Get download count
+  let downloadCount = 0;
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const downloadsRes = await fetch(`${baseUrl}/api/downloads`);
+    const downloads = await downloadsRes.json();
+    downloadCount = downloads[crosshair.slug] || 0;
+  } catch (error) {
+    console.error('Failed to fetch download count:', error);
+    // Continue with default download count of 0
+  }
+
   return {
     props: {
       crosshair,
+      downloadCount,
     },
   };
 }
 
-export default function CrosshairDetail({ crosshair }) {
+export default function CrosshairDetail({ crosshair, downloadCount: initialDownloadCount }) {
   const router = useRouter();
   const [fileExists, setFileExists] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+  const [downloadCount, setDownloadCount] = useState(initialDownloadCount);
 
   useEffect(() => {
     // Check if the cursor file exists
@@ -51,11 +67,29 @@ export default function CrosshairDetail({ crosshair }) {
       });
   }, [crosshair.downloadUrl]);
 
+  const handleDownload = async () => {
+    try {
+      // Update download count
+      const response = await fetch('/api/downloads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug: crosshair.slug }),
+      });
+      const data = await response.json();
+      setDownloadCount(data[crosshair.slug]);
+
+      // Log to Google Analytics
+      logDownload(crosshair.slug, crosshair.title);
+    } catch (error) {
+      console.error('Failed to update download count:', error);
+    }
+  };
+
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
 
-  const canonicalUrl = `https://your-domain.com/crosshair/${crosshair.slug}`;
+  const canonicalUrl = `https://cursortech.vercel.app/crosshair/${crosshair.slug}`;
 
   return (
     <>
@@ -68,7 +102,7 @@ export default function CrosshairDetail({ crosshair }) {
         {/* Open Graph / Social Media Meta Tags */}
         <meta property="og:title" content={`${crosshair.title} - Download Free Windows Cursor`} />
         <meta property="og:description" content={crosshair.description} />
-        <meta property="og:image" content={crosshair.image} />
+        <meta property="og:image" content={`https://cursortech.vercel.app${crosshair.image}`} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
         
@@ -76,7 +110,7 @@ export default function CrosshairDetail({ crosshair }) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${crosshair.title} - Download Free Windows Cursor`} />
         <meta name="twitter:description" content={crosshair.description} />
-        <meta name="twitter:image" content={crosshair.image} />
+        <meta name="twitter:image" content={`https://cursortech.vercel.app${crosshair.image}`} />
       </Head>
 
       <div className={`${geist.className} min-h-screen bg-white dark:bg-gray-900`}>
@@ -86,10 +120,12 @@ export default function CrosshairDetail({ crosshair }) {
               <div className="relative h-64 sm:h-96">
                 <Image
                   src={crosshair.image}
-                  alt={crosshair.title}
+                  alt={`${crosshair.title} cursor preview`}
                   fill
                   className="object-contain"
                   priority
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSEkMjU1LS0yMi4qLjgyPj4+Oj5CQkJCQkJCQkJCQkJCQkJCQkJCQkL/2wBDAR4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                 />
               </div>
               
@@ -113,12 +149,19 @@ export default function CrosshairDetail({ crosshair }) {
                   ))}
                 </div>
 
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="text-sm text-gray-500 dark:text-gray-400">
+                    {downloadCount.toLocaleString()} downloads
+                  </span>
+                </div>
+
                 {isLoading ? (
                   <div className="animate-pulse h-12 bg-gray-200 dark:bg-gray-700 rounded-md"></div>
                 ) : fileExists ? (
                   <a
                     href={crosshair.downloadUrl}
                     download
+                    onClick={handleDownload}
                     className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
                   >
                     Download Cursor
@@ -134,7 +177,8 @@ export default function CrosshairDetail({ crosshair }) {
             </div>
           </div>
         </main>
+        <CookieConsent />
       </div>
     </>
   );
-} 
+}

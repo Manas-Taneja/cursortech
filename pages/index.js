@@ -3,14 +3,32 @@ import Link from "next/link";
 import { Geist } from "next/font/google";
 import { crosshairs } from "../data/crosshairs";
 import Head from "next/head";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import CookieConsent from "../components/CookieConsent";
 
 const geist = Geist({
   subsets: ["latin"],
 });
 
+function CrosshairCardSkeleton() {
+  return (
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden animate-pulse">
+      <div className="h-48 bg-gray-200 dark:bg-gray-700" />
+      <div className="p-4">
+        <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-2" />
+        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full mb-4" />
+        <div className="flex gap-2">
+          <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-16" />
+          <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-20" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const [selectedTags, setSelectedTags] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Get all unique tags
   const allTags = useMemo(() => {
@@ -29,6 +47,14 @@ export default function Home() {
     );
   }, [selectedTags]);
 
+  useEffect(() => {
+    // Simulate loading state
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   const toggleTag = (tag) => {
     setSelectedTags(prev =>
       prev.includes(tag)
@@ -43,13 +69,13 @@ export default function Home() {
         <title>Free Windows Cursor Crosshairs - Download Animated Cursors</title>
         <meta name="description" content="Download free animated cursor crosshairs for Windows. Choose from a variety of styles including neon, classic, and tech-inspired designs." />
         <meta name="keywords" content="windows cursor, crosshair, animated cursor, free cursor, custom cursor" />
-        <link rel="canonical" href="https://your-domain.com" />
+        <link rel="canonical" href="https://cursortech.vercel.app" />
         
         {/* Open Graph / Social Media Meta Tags */}
         <meta property="og:title" content="Free Windows Cursor Crosshairs - Download Animated Cursors" />
         <meta property="og:description" content="Download free animated cursor crosshairs for Windows. Choose from a variety of styles including neon, classic, and tech-inspired designs." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://your-domain.com" />
+        <meta property="og:url" content="https://cursortech.vercel.app" />
       </Head>
 
       <div className={`${geist.className} min-h-screen bg-white dark:bg-gray-900`}>
@@ -82,47 +108,57 @@ export default function Home() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredCrosshairs.map((crosshair) => (
-                <Link
-                  key={crosshair.id}
-                  href={`/crosshair/${crosshair.slug}`}
-                  className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
-                >
-                  <div className="relative h-48">
-                    <Image
-                      src={crosshair.image}
-                      alt={crosshair.title}
-                      fill
-                      className="object-contain"
-                      loading="lazy"
-                    />
-                  </div>
-                  
-                  <div className="p-4">
-                    <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                      {crosshair.title}
-                    </h2>
-                    
-                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
-                      {crosshair.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2">
-                      {crosshair.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-xs"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+              {isLoading ? (
+                <>
+                  <CrosshairCardSkeleton />
+                  <CrosshairCardSkeleton />
+                  <CrosshairCardSkeleton />
+                </>
+              ) : (
+                filteredCrosshairs.map((crosshair) => (
+                  <Link
+                    key={crosshair.id}
+                    href={`/crosshair/${crosshair.slug}`}
+                    className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                  >
+                    <div className="relative h-48">
+                      <Image
+                        src={crosshair.image}
+                        alt={`${crosshair.title} cursor preview`}
+                        fill
+                        className="object-contain"
+                        loading="lazy"
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSEkMjU1LS0yMi4qLjgyPj4+Oj5CQkJCQkJCQkJCQkJCQkJCQkJCQkL/2wBDAR4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                      />
                     </div>
-                  </div>
-                </Link>
-              ))}
+                    
+                    <div className="p-4">
+                      <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                        {crosshair.title}
+                      </h2>
+                      
+                      <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                        {crosshair.description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2">
+                        {crosshair.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-xs"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </Link>
+                ))
+              )}
             </div>
 
-            {filteredCrosshairs.length === 0 && (
+            {!isLoading && filteredCrosshairs.length === 0 && (
               <div className="text-center py-12">
                 <p className="text-gray-600 dark:text-gray-400">
                   No cursors found matching the selected filters.
@@ -137,6 +173,7 @@ export default function Home() {
             )}
           </div>
         </main>
+        <CookieConsent />
       </div>
     </>
   );
