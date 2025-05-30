@@ -1,6 +1,6 @@
 # Allow all crawlers
 User-agent: *
 Allow: /
-
+ 
 # Sitemap location
 Sitemap: https://cursortech.vercel.app/sitemap.xml 

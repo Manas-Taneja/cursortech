@@ -5,6 +5,7 @@ import { crosshairs } from "../data/crosshairs";
 import Head from "next/head";
 import { useState, useMemo, useEffect } from "react";
 import CookieConsent from "../components/CookieConsent";
+import { logDownload } from '../utils/analytics';
 
 const geist = Geist({
   subsets: ["latin"],
@@ -116,44 +117,69 @@ export default function Home() {
                 </>
               ) : (
                 filteredCrosshairs.map((crosshair) => (
-                  <Link
+                  <div
                     key={crosshair.id}
-                    href={`/crosshair/${crosshair.slug}`}
-                    className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                    className="group relative bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all"
                   >
-                    <div className="relative h-48">
-                      <Image
-                        src={crosshair.image}
-                        alt={`${crosshair.title} cursor preview`}
-                        fill
-                        className="object-contain"
-                        loading="lazy"
-                        placeholder="blur"
-                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSEkMjU1LS0yMi4qLjgyPj4+Oj5CQkJCQkJCQkJCQkJCQkJCQkJCQkL/2wBDAR4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-                      />
-                    </div>
-                    
-                    <div className="p-4">
-                      <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                        {crosshair.title}
-                      </h2>
-                      
-                      <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
-                        {crosshair.description}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2">
-                        {crosshair.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-xs"
-                          >
-                            {tag}
-                          </span>
-                        ))}
+                    <Link
+                      href={`/crosshair/${crosshair.slug}`}
+                      className="block"
+                    >
+                      <div className="relative h-48">
+        <Image
+                          src={crosshair.image}
+                          alt={`${crosshair.title} cursor preview`}
+                          fill
+                          className="object-contain"
+                          loading="lazy"
+                          placeholder="blur"
+                          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSEkMjU1LS0yMi4qLjgyPj4+Oj5CQkJCQkJCQkJCQkJCQkJCQkJCQkL/2wBDAR4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+        />
                       </div>
-                    </div>
-                  </Link>
+                      
+                      <div className="p-4">
+                        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                          {crosshair.title}
+                        </h2>
+                        
+                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                          {crosshair.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {crosshair.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-xs"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+
+                        <div className="flex gap-2">
+                          <a
+                            href={crosshair.downloadUrl}
+                            download
+                            onClick={(e) => {
+                              e.preventDefault();
+                              logDownload(crosshair.slug, crosshair.title);
+                              window.location.href = crosshair.downloadUrl;
+                            }}
+                            className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                          >
+                            Download
+          </a>
+                          <Link
+                            href={`/crosshair/${crosshair.slug}`}
+                            className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                          >
+                            Details
+                          </Link>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
                 ))
               )}
             </div>
@@ -166,15 +192,15 @@ export default function Home() {
                 <button
                   onClick={() => setSelectedTags([])}
                   className="mt-4 text-blue-600 dark:text-blue-400 hover:underline"
-                >
+          >
                   Clear filters
                 </button>
               </div>
             )}
-          </div>
-        </main>
+        </div>
+      </main>
         <CookieConsent />
-      </div>
+    </div>
     </>
   );
 }
