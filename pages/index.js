@@ -6,6 +6,7 @@ import Head from "next/head";
 import { useState, useMemo, useEffect } from "react";
 import CookieConsent from "../components/CookieConsent";
 import { logDownload } from '../utils/analytics';
+import AnimatedCursor from '../components/AnimatedCursor';
 
 const geist = Geist({
   subsets: ["latin"],
@@ -31,6 +32,7 @@ export default function Home() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [activeCursor, setActiveCursor] = useState('');
+  const [previewGif, setPreviewGif] = useState('');
 
   // Get all unique tags
   const allTags = useMemo(() => {
@@ -57,6 +59,59 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    if (activeCursor && !previewGif) {
+      document.body.style.cursor = `url(${activeCursor}), auto`;
+      const all = document.querySelectorAll('*');
+      all.forEach(el => {
+        el.style.cursor = `url(${activeCursor}), auto`;
+      });
+      // Inject style for all cursor types
+      let style = document.getElementById('custom-cursor-style');
+      if (!style) {
+        style = document.createElement('style');
+        style.id = 'custom-cursor-style';
+        document.head.appendChild(style);
+      }
+      style.innerHTML = `
+        * { cursor: url(${activeCursor}), auto !important; }
+        input, textarea, [contenteditable] { cursor: url(${activeCursor}), auto !important; }
+      `;
+    } else if (!previewGif) {
+      document.body.style.cursor = '';
+      const all = document.querySelectorAll('*');
+      all.forEach(el => {
+        el.style.cursor = '';
+      });
+      // Remove the custom style
+      const style = document.getElementById('custom-cursor-style');
+      if (style) style.remove();
+    }
+  }, [activeCursor, previewGif]);
+
+  useEffect(() => {
+    if (previewGif && activeCursor) {
+      // Hide native cursor only on body
+      document.body.style.cursor = 'none';
+      // Set .cur file for interactive elements
+      let style = document.getElementById('custom-cursor-style');
+      if (!style) {
+        style = document.createElement('style');
+        style.id = 'custom-cursor-style';
+        document.head.appendChild(style);
+      }
+      style.innerHTML = `
+        button, a, input, textarea, select, [role="button"], [tabindex]:not([tabindex="-1"]) {
+          cursor: url(${activeCursor}), auto !important;
+        }
+      `;
+    } else {
+      document.body.style.cursor = '';
+      const style = document.getElementById('custom-cursor-style');
+      if (style) style.remove();
+    }
+  }, [previewGif, activeCursor]);
+
   const toggleTag = (tag) => {
     setSelectedTags(prev =>
       prev.includes(tag)
@@ -81,13 +136,11 @@ export default function Home() {
       </Head>
 
       <div className={`${geist.className} min-h-screen bg-white dark:bg-gray-900`}>
-        <main
-          className="container mx-auto px-4 py-8"
-          style={activeCursor ? { cursor: `url(${activeCursor}), auto` } : {}}
-        >
+        <AnimatedCursor gifUrl={previewGif} />
+        <main className="container mx-auto px-4 py-8">
           <div className="max-w-6xl mx-auto">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-              Free Windows Cursor Crosshairs
+              Animated Cursors
             </h1>
 
             {/* Tag Filter */}
@@ -130,14 +183,14 @@ export default function Home() {
                       className="block"
                     >
                       <div className="relative h-48">
-                        <Image
+            <Image
                           src={crosshair.image}
                           alt={`${crosshair.title} cursor preview`}
                           fill
                           className="object-contain"
                           loading="lazy"
                           placeholder="blur"
-                          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSEkMjU1LS0yMi4qLjgyPj4+Oj5CQkJCQkJCQkJCQkJCQkJCQkJCQkL/2wBDAR4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSEkMjU1LS0yMi4qLjgyPj4+Oj5CQkJCQkJCQkJCQkJCQkJCQkJCQkL/2wBDAR4eHh4eHh4eHh4eHh4eHh7/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                         />
                       </div>
                       <div className="p-4">
@@ -152,12 +205,12 @@ export default function Home() {
                             <span
                               key={tag}
                               className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-xs"
-                            >
+          >
                               {tag}
                             </span>
                           ))}
                         </div>
-                      </div>
+        </div>
                     </Link>
                     <div className="flex gap-2 px-4 pb-4">
                       <a
@@ -182,10 +235,21 @@ export default function Home() {
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
-                          setActiveCursor(activeCursor === crosshair.cur ? '' : crosshair.cur);
+                          if (crosshair.gif && crosshair.cur) {
+                            if (previewGif === crosshair.gif) {
+                              setPreviewGif('');
+                              setActiveCursor('');
+                            } else {
+                              setPreviewGif(crosshair.gif);
+                              setActiveCursor(crosshair.cur);
+                            }
+                          } else if (crosshair.cur) {
+                            setActiveCursor(activeCursor === crosshair.cur ? '' : crosshair.cur);
+                            setPreviewGif('');
+                          }
                         }}
                         className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-purple-600 text-sm font-medium rounded-md text-purple-600 bg-white dark:bg-gray-900 hover:bg-purple-50 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
-                      >
+        >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12s3.75-7.5 9.75-7.5 9.75 7.5 9.75 7.5-3.75 7.5-9.75 7.5S2.25 12 2.25 12z" />
                           <circle cx="12" cy="12" r="3" />
@@ -205,7 +269,7 @@ export default function Home() {
                 <button
                   onClick={() => setSelectedTags([])}
                   className="mt-4 text-blue-600 dark:text-blue-400 hover:underline"
-                >
+        >
                   Clear filters
                 </button>
               </div>
@@ -213,7 +277,7 @@ export default function Home() {
           </div>
         </main>
         <CookieConsent />
-      </div>
+    </div>
     </>
   );
 }
