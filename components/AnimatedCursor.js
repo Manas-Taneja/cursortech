@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const INTERACTIVE_SELECTORS = 'button, a, input, textarea, select, [role="button"], [tabindex]:not([tabindex="-1"])';
 
-export default function AnimatedCursor({ gifUrl }) {
+export default function AnimatedCursor({ gifUrl, hotspotX = -12, hotspotY = -12 }) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
   const [hideCursor, setHideCursor] = useState(false);
@@ -45,8 +45,8 @@ export default function AnimatedCursor({ gifUrl }) {
       alt="Animated cursor"
       style={{
         position: 'fixed',
-        top: position.y,
-        left: position.x,
+        top: position.y - hotspotY,
+        left: position.x - hotspotX,
         width: '32px',
         height: '32px',
         pointerEvents: 'none',

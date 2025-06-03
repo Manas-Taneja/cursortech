@@ -5,6 +5,7 @@ export const crosshairs = [
     title: 'Capybara Cursor Pack',
     description: 'A collection of fun capybara-themed cursors. Includes pointer, help, text, and more.',
     image: '/crosshairs/preview/capybara/capybara.png',
+    gif: '/crosshairs/preview/capybara/capybara-default.cur',
     cur: '/crosshairs/preview/capybara/capybara-default.cur',
     downloadUrl: '/crosshairs/zip/capybara/capybara-pack.zip',
     category: 'Animals',

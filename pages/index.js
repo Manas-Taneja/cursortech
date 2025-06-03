@@ -112,6 +112,17 @@ export default function Home() {
     }
   }, [previewGif, activeCursor]);
 
+  useEffect(() => {
+    // Cleanup cursor state on unmount
+    return () => {
+      setActiveCursor('');
+      setPreviewGif('');
+      document.body.style.cursor = '';
+      const style = document.getElementById('custom-cursor-style');
+      if (style) style.remove();
+    };
+  }, []);
+
   const toggleTag = (tag) => {
     setSelectedTags(prev =>
       prev.includes(tag)
@@ -136,7 +147,12 @@ export default function Home() {
       </Head>
 
       <div className={`${geist.className} min-h-screen bg-white dark:bg-gray-900`}>
-        <AnimatedCursor gifUrl={previewGif} />
+        <header className="w-full border-b border-gray-200 dark:border-gray-700 py-4 text-center bg-white dark:bg-gray-900 top-0 z-30">
+          <span className="text-gray-600 dark:text-gray-400 text-sm">
+            Need help? <Link href="/install" className="text-blue-600 hover:underline">How to Install Custom Cursors</Link>
+          </span>
+        </header>
+        <AnimatedCursor gifUrl={previewGif} hotspotX={-12} hotspotY={-12} />
         <main className="container mx-auto px-4 py-8">
           <div className="max-w-6xl mx-auto">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
@@ -235,17 +251,16 @@ export default function Home() {
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
+                          // Always clear both states first
+                          setActiveCursor('');
+                          setPreviewGif('');
                           if (crosshair.gif && crosshair.cur) {
-                            if (previewGif === crosshair.gif) {
-                              setPreviewGif('');
-                              setActiveCursor('');
-                            } else {
-                              setPreviewGif(crosshair.gif);
-                              setActiveCursor(crosshair.cur);
-                            }
+                            setPreviewGif(crosshair.gif);
+                            setActiveCursor(crosshair.cur);
                           } else if (crosshair.cur) {
-                            setActiveCursor(activeCursor === crosshair.cur ? '' : crosshair.cur);
-                            setPreviewGif('');
+                            setActiveCursor(crosshair.cur);
+                          } else if (crosshair.gif) {
+                            setPreviewGif(crosshair.gif);
                           }
                         }}
                         className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-purple-600 text-sm font-medium rounded-md text-purple-600 bg-white dark:bg-gray-900 hover:bg-purple-50 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
