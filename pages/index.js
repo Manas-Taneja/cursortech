@@ -251,20 +251,26 @@ export default function Home() {
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
-                          // Always clear both states first
-                          setActiveCursor('');
-                          setPreviewGif('');
-                          if (crosshair.gif && crosshair.cur) {
-                            setPreviewGif(crosshair.gif);
-                            setActiveCursor(crosshair.cur);
-                          } else if (crosshair.cur) {
-                            setActiveCursor(crosshair.cur);
-                          } else if (crosshair.gif) {
-                            setPreviewGif(crosshair.gif);
+                          // Toggle logic: if the same cursor is clicked again, clear states
+                          if (activeCursor === crosshair.cur && previewGif === crosshair.gif) {
+                            setActiveCursor('');
+                            setPreviewGif('');
+                          } else {
+                            // Always clear both states first
+                            setActiveCursor('');
+                            setPreviewGif('');
+                            if (crosshair.gif && crosshair.cur) {
+                              setPreviewGif(crosshair.gif);
+                              setActiveCursor(crosshair.cur);
+                            } else if (crosshair.cur) {
+                              setActiveCursor(crosshair.cur);
+                            } else if (crosshair.gif) {
+                              setPreviewGif(crosshair.gif);
+                            }
                           }
                         }}
                         className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-purple-600 text-sm font-medium rounded-md text-purple-600 bg-white dark:bg-gray-900 hover:bg-purple-50 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
-        >
+                      >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12s3.75-7.5 9.75-7.5 9.75 7.5 9.75 7.5-3.75 7.5-9.75 7.5S2.25 12 2.25 12z" />
                           <circle cx="12" cy="12" r="3" />
