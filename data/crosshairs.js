@@ -9,7 +9,7 @@ export const crosshairs = [
     cur: '/crosshairs/preview/capybara/capybara-default.cur',
     downloadUrl: '/crosshairs/zip/capybara/capybara-pack.zip',
     category: 'Animals',
-    tags: ['capybara', 'animal', 'fun', 'pack']
+    tags: ['animal']
   },
   {
     id: 402,
@@ -21,7 +21,7 @@ export const crosshairs = [
     cur: '/crosshairs/preview/naruto/NarutoAlternate.cur',
     downloadUrl: '/crosshairs/zip/naruto/naruto-3.zip',
     category: 'Anime',
-    tags: ['naruto', 'anime', 'naruto shippuden', 'naruto cursor']
+    tags: ['naruto', 'anime']
   },
   {
     id: 403,
@@ -33,7 +33,7 @@ export const crosshairs = [
     cur: '/crosshairs/preview/diamondSword/diamond-sword-cur.cur',
     downloadUrl: '/crosshairs/zip/minecraft/diamond-sword.zip',
     category: 'Games',
-    tags: ['minecraft', 'diamond sword', 'game', 'pixel art']
+    tags: ['minecraft','game', 'pixel art']
   },
   {
     id: 404,
@@ -45,6 +45,6 @@ export const crosshairs = [
     cur: '/crosshairs/preview/crossbow/crossbow-cur.cur',
     downloadUrl: '/crosshairs/zip/minecraft/crossbow.zip',
     category: 'Games',
-    tags: ['minecraft', 'crossbow', 'game', 'pixel art']
+    tags: ['minecraft', 'game', 'pixel art']
   }
 ]; 

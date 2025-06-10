@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Geist } from "next/font/google";
+import { Quicksand } from "next/font/google";
 import { crosshairs } from "../data/crosshairs";
 import Head from "next/head";
 import { useState, useMemo, useEffect } from "react";
@@ -8,7 +8,7 @@ import CookieConsent from "../components/CookieConsent";
 import { logDownload } from '../utils/analytics';
 import AnimatedCursor from '../components/AnimatedCursor';
 
-const geist = Geist({
+const quicksand = Quicksand({
   subsets: ["latin"],
 });
 
@@ -33,6 +33,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeCursor, setActiveCursor] = useState('');
   const [previewGif, setPreviewGif] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Get all unique tags
   const allTags = useMemo(() => {
@@ -43,13 +44,29 @@ export default function Home() {
     return Array.from(tags).sort();
   }, []);
 
-  // Filter crosshairs based on selected tags
+  // Filter crosshairs based on selected tags and search query
   const filteredCrosshairs = useMemo(() => {
-    if (selectedTags.length === 0) return crosshairs;
-    return crosshairs.filter(crosshair =>
-      selectedTags.every(tag => crosshair.tags.includes(tag))
-    );
-  }, [selectedTags]);
+    let filtered = crosshairs;
+    
+    // Apply tag filtering
+    if (selectedTags.length > 0) {
+      filtered = filtered.filter(crosshair =>
+        selectedTags.every(tag => crosshair.tags.includes(tag))
+      );
+    }
+    
+    // Apply search filtering
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(crosshair =>
+        crosshair.title.toLowerCase().includes(query) ||
+        crosshair.description.toLowerCase().includes(query) ||
+        crosshair.tags.some(tag => tag.toLowerCase().includes(query))
+      );
+    }
+    
+    return filtered;
+  }, [selectedTags, searchQuery]);
 
   useEffect(() => {
     // Simulate loading state
@@ -146,22 +163,17 @@ export default function Home() {
         <meta property="og:url" content="https://cursortech.vercel.app" />
       </Head>
 
-      <div className={`${geist.className} min-h-screen bg-white dark:bg-gray-900`}>
-        <header className="w-full border-b border-gray-200 dark:border-gray-700 py-4 text-center bg-white dark:bg-gray-900 top-0 z-30">
-          <span className="text-gray-600 dark:text-gray-400 text-sm">
-            Need help? <Link href="/install" className="text-blue-600 hover:underline">How to Install Custom Cursors</Link>
-          </span>
-        </header>
+      <div className={`${quicksand.className} min-h-screen bg-white dark:bg-black`}>
         <AnimatedCursor gifUrl={previewGif} hotspotX={-12} hotspotY={-12} />
         <main className="container mx-auto px-4 py-8">
           <div className="max-w-6xl mx-auto">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+            {/* <h1 className="text-4xl font-bold text-gray-900 dark:text-orange-500 mb-8 text-center">
               Animated Cursors
-            </h1>
+            </h1> */}
 
             {/* Tag Filter */}
             <div className="mb-8">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-orange-500 mb-4">
                 Filter by Style
               </h2>
               <div className="flex flex-wrap gap-2">
@@ -171,7 +183,7 @@ export default function Home() {
                     onClick={() => toggleTag(tag)}
                     className={`px-3 py-1 rounded-full text-sm transition-colors ${
                       selectedTags.includes(tag)
-                        ? 'bg-blue-600 text-white'
+                        ? 'bg-orange-700 text-white'
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
@@ -192,7 +204,7 @@ export default function Home() {
                 filteredCrosshairs.map((crosshair) => (
                   <div
                     key={crosshair.id}
-                    className="group relative bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all"
+                    className="group relative bg-white dark:bg-black rounded-lg shadow-lg overflow-hidden hover:shadow-xl hover:shadow-orange-500 transition-all"
                   >
                     <Link
                       href={`/crosshair/${crosshair.slug}`}
@@ -210,10 +222,10 @@ export default function Home() {
                         />
                       </div>
                       <div className="p-4">
-                        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                        <h2 className="text-xl font-semibold text-gray-900 dark:text-orange-500 mb-2">
                           {crosshair.title}
                         </h2>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                        <p className="text-gray-600 dark:text-gray-200 text-sm mb-4">
                           {crosshair.description}
                         </p>
                         <div className="flex flex-wrap gap-2 mb-4">
@@ -237,13 +249,13 @@ export default function Home() {
                           logDownload(crosshair.slug, crosshair.title);
                           window.location.href = crosshair.downloadUrl;
                         }}
-                        className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                        className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
                       >
                         Download
                       </a>
                       <Link
                         href={`/crosshair/${crosshair.slug}`}
-                        className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                        className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
                       >
                         Details
                       </Link>
@@ -269,7 +281,7 @@ export default function Home() {
                             }
                           }
                         }}
-                        className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-purple-600 text-sm font-medium rounded-md text-purple-600 bg-white dark:bg-gray-900 hover:bg-purple-50 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
+                        className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-orange-600 text-sm font-medium rounded-md text-orange-600 bg-white dark:bg-gray-900 hover:bg-orange-50 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
                       >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12s3.75-7.5 9.75-7.5 9.75 7.5 9.75 7.5-3.75 7.5-9.75 7.5S2.25 12 2.25 12z" />
@@ -289,7 +301,7 @@ export default function Home() {
                 </p>
                 <button
                   onClick={() => setSelectedTags([])}
-                  className="mt-4 text-blue-600 dark:text-blue-400 hover:underline"
+                  className="mt-4 text-orange-600 dark:text-orange-500 hover:underline"
         >
                   Clear filters
                 </button>
@@ -297,8 +309,26 @@ export default function Home() {
             )}
           </div>
         </main>
+        <footer className="w-full border-t border-gray-200 dark:border-gray-700 py-6 mt-12">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto text-center text-sm text-gray-600 dark:text-gray-400">
+              <p>
+                All cursor designs are used in accordance with the licensing policy of{' '}
+                <a 
+                  href="https://www.rw-designer.com/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-orange-600 dark:text-orange-500 hover:underline"
+                >
+                  RW-Designer
+                </a>
+                . Special thanks to their community for creating these amazing cursor designs.
+              </p>
+            </div>
+          </div>
+        </footer>
         <CookieConsent />
-    </div>
+      </div>
     </>
   );
 }

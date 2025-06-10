@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { Geist } from 'next/font/google';
+import { Quicksand } from 'next/font/google';
 import Head from 'next/head';
 
-const geist = Geist({
+const quicksand = Quicksand({
   subsets: ['latin'],
 });
 
@@ -14,7 +14,7 @@ export default function Custom404() {
         <meta name="robots" content="noindex" />
       </Head>
       
-      <div className={`${geist.className} min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center px-4`}>
+      <div className={`${quicksand.className} min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center px-4`}>
         <div className="text-center">
           <h1 className="text-6xl font-bold text-gray-900 dark:text-white mb-4">404</h1>
           <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-6">
@@ -26,7 +26,7 @@ export default function Custom404() {
           </p>
           <Link
             href="/"
-            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
           >
             Browse All Cursors
           </Link>

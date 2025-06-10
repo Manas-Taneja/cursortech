@@ -100,7 +100,7 @@ export default function CrosshairDetail({ crosshair, relatedCrosshairs }) {
         <meta name="twitter:image" content={`https://cursortech.vercel.app${crosshair.image}`} />
       </Head>
 
-      <div className={`${geist.className} min-h-screen bg-white dark:bg-gray-900`}>
+      <div className={`${geist.className} min-h-screen bg-white dark:bg-black`}>
         <main className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
             {/* Back Button */}
@@ -125,9 +125,9 @@ export default function CrosshairDetail({ crosshair, relatedCrosshairs }) {
             </button>
 
             {/* Main Content */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+            <div className="bg-white dark:bg-black rounded-lg shadow-lg overflow-hidden">
               <div className="p-6">
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-orange-500 mb-4">
                   {crosshair.title}
                 </h1>
 
@@ -161,7 +161,7 @@ export default function CrosshairDetail({ crosshair, relatedCrosshairs }) {
                     href={crosshair.downloadUrl}
                     download
                     onClick={handleDownload}
-                    className="flex-1 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                    className="flex-1 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
                   >
                     Download Cursor
                   </a>
