@@ -110,9 +110,7 @@ export default function Navbar({ onSearch }) {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <Link href="/collections" className="text-white hover:text-orange-500 text-base font-medium">Collections</Link>
-            <Link href="/specials" className="text-white hover:text-orange-500 text-base font-medium">Specials</Link>
-            <Link href="/install" className="text-white hover:text-orange-500 text-base font-medium">How to</Link>
+            <Link href="/install" className="text-white hover:text-orange-500 text-base font-medium">How to install</Link>
           </div>
         </div>
       </div>

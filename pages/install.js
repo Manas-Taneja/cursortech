@@ -1,10 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function InstallGuide() {
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-white dark:bg-black">
       <Head>
         <title>How to Install Custom Cursors on Windows – CursorTech</title>
         <meta 
@@ -14,7 +13,7 @@ export default function InstallGuide() {
       </Head>
 
       <main className="max-w-4xl mx-auto px-4 py-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">
+        <h1 className="text-4xl font-bold text-white mb-8">
           How to Install Custom Cursors on Windows
         </h1>
 
@@ -22,16 +21,16 @@ export default function InstallGuide() {
           <section className="mb-12">
             <h2 className="text-2xl font-semibold mb-4">Step 1: Download and Extract</h2>
             <p>Download your chosen cursor pack ZIP file and extract the .cur or .ani files to a location you can easily find.</p>
-            <div className="bg-gray-100 p-4 rounded-lg my-4">
-              <p className="text-sm text-gray-600">💡 Tip: Create a dedicated folder for your cursors to keep them organized.</p>
+            <div className="bg-gray-100 p-4 rounded-lg my-4 dark:bg-black border border-orange-500 border-2">
+              <p className="text-sm text-white">💡 Tip: Create a dedicated folder for your cursors to keep them organized.</p>
             </div>
           </section>
 
           <section className="mb-12">
             <h2 className="text-2xl font-semibold mb-4">Step 2: Access Personalization Settings</h2>
             <p>Right-click on your desktop and select "Personalize" from the context menu.</p>
-            <div className="bg-gray-100 p-4 rounded-lg my-4">
-              <p className="text-sm text-gray-600">Alternative: Press Windows key + I to open Settings, then search for "Mouse cursor"</p>
+            <div className="bg-gray-100 p-4 rounded-lg my-4 dark:bg-black border border-orange-500 border-2">
+              <p className="text-sm text-white">Alternative: Press Windows key + I to open Settings, then search for "Mouse cursor"</p>
             </div>
           </section>
 
@@ -76,7 +75,7 @@ export default function InstallGuide() {
         <div className="mt-12 text-center">
           <Link 
             href="/"
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700"
           >
             ← Back to Home
           </Link>

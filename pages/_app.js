@@ -4,6 +4,7 @@ import Script from 'next/script';
 import { useEffect, useState } from 'react';
 import { pageview } from '../utils/analytics';
 import Navbar from '../components/Navbar';
+import CookieConsent from '../components/CookieConsent';
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -44,6 +45,25 @@ export default function App({ Component, pageProps }) {
       />
       <Navbar onSearch={setSearchQuery} />
       <Component {...pageProps} searchQuery={searchQuery} />
+      <footer className="w-full border-t border-orange-500 dark:border-orange-500 py-6 mt-12">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto text-center text-sm text-gray-600 dark:text-gray-400">
+            <p>
+              All cursor designs are used in accordance with the licensing policy of{' '}
+              <a 
+                href="https://www.rw-designer.com/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-orange-600 dark:text-orange-500 hover:underline"
+              >
+                RW-Designer
+              </a>
+              . Special thanks to their community for creating these amazing cursor designs and allowing me to use them for educational purposes.
+            </p>
+          </div>
+        </div>
+      </footer>
+      <CookieConsent />
     </>
   );
 }
