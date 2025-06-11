@@ -21,7 +21,7 @@ export const crosshairs = [
     link: '/crosshairs/preview/naruto/Naruto-Link.gif',
     downloadUrl: '/crosshairs/zip/naruto/naruto-3.zip',
     category: 'Anime',
-    tags: ['naruto', 'anime']
+    tags: ['anime']
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ export const crosshairs = [
     link: '/crosshairs/preview/chamber-valorant/ChamberNormalSelect.cur',
     downloadUrl: '/crosshairs/zip/chamber-valorant/chamber-valorant.zip',
     category: 'Games',
-    tags: ['valorant', 'chamber', 'games']
+    tags: ['games']
   },
   {
     id: 4,
@@ -45,7 +45,7 @@ export const crosshairs = [
     link: '/crosshairs/preview/animated-minecraft/MinecraftTorch.cur',
     downloadUrl: '/crosshairs/zip/animated-minecraft/minecraft-pack.zip',
     category: 'Games',
-    tags: ['minecraft', 'games', 'animated']
+    tags: ['games']
   },
   {
     id: 5,
@@ -57,7 +57,7 @@ export const crosshairs = [
     link: '/crosshairs/preview/yoru-valorant/YoruNormalSelect.cur',
     downloadUrl: '/crosshairs/zip/yoru-valorant/yoru-valorant.zip',
     category: 'Games',
-    tags: ['valorant', 'yoru', 'games']
+    tags: ['games']
   },
   // {
   //   id: 6,
@@ -81,7 +81,7 @@ export const crosshairs = [
     link: '/crosshairs/preview/fortnite-default-dancing/BlackDefaultDance.gif',
     downloadUrl: '/crosshairs/zip/fortnite-default-dancing/fortnite-dancing.zip',
     category: 'Games',
-    tags: ['fortnite', 'games', 'animated']
+    tags: ['games']
   },
   {
     id: 8,
@@ -93,7 +93,7 @@ export const crosshairs = [
     link: '/crosshairs/preview/garen/Garen-LinkSelect.cur',
     downloadUrl: '/crosshairs/zip/garen/garen.zip',
     category: 'Games',
-    tags: ['league-of-legends', 'garen', 'games']
+    tags: ['games']
   },
   {
     id: 9,
@@ -105,7 +105,7 @@ export const crosshairs = [
     link: '/crosshairs/preview/hello-kitty/HelloKittylinkselect.gif',
     downloadUrl: '/crosshairs/zip/hello-kitty/hello-kitty.zip',
     category: 'Characters',
-    tags: ['hello-kitty', 'cute', 'characters']
+    tags: ['cute']
   },
   {
     id: 10,
@@ -117,7 +117,7 @@ export const crosshairs = [
     link: '/crosshairs/preview/ichigo/IchigoLink.gif',
     downloadUrl: '/crosshairs/zip/ichigo/ichigo.zip',
     category: 'Anime',
-    tags: ['bleach', 'ichigo', 'anime']
+    tags: ['anime']
   },
   {
     id: 11,
@@ -129,7 +129,7 @@ export const crosshairs = [
     link: '/crosshairs/preview/jett-kunai-valorant/15-JettKunaiLinkSelect.gif',
     downloadUrl: '/crosshairs/zip/jett-kunai-valorant/jett-kunai.zip',
     category: 'Games',
-    tags: ['valorant', 'jett', 'games']
+    tags: ['games']
   },
   {
     id: 12,
@@ -141,7 +141,7 @@ export const crosshairs = [
     link: '/crosshairs/preview/knife/LinkSelect.cur',
     downloadUrl: '/crosshairs/zip/knife/knife.zip',
     category: 'Weapons',
-    tags: ['knife', 'weapons']
+    tags: ['weapons']
   },
   {
     id: 13,
@@ -153,7 +153,7 @@ export const crosshairs = [
     link: '/crosshairs/preview/razer_chroma/AlternateSelect.gif',
     downloadUrl: '/crosshairs/zip/razer_chroma/razer-chroma.zip',
     category: 'Gaming',
-    tags: ['razer', 'chroma', 'rgb']
+    tags: ['rgb']
   },
   {
     id: 14,
@@ -165,7 +165,7 @@ export const crosshairs = [
     link: '/crosshairs/preview/ruination-pack-valorant/15-RuinationLinkSelect.gif',
     downloadUrl: '/crosshairs/zip/ruination-pack-valorant/ruination-pack.zip',
     category: 'Games',
-    tags: ['valorant', 'ruination', 'games']
+    tags: ['games']
   },
   {
     id: 15,
@@ -177,7 +177,7 @@ export const crosshairs = [
     link: '/crosshairs/preview/saitama-punter-v2/SaitamaLink.gif',
     downloadUrl: '/crosshairs/zip/saitama-punter-v2/saitama-punter-v2.zip',
     category: 'Anime',
-    tags: ['one-punch-man', 'saitama', 'anime']
+    tags: ['anime']
   },
   {
     id: 16,
@@ -189,7 +189,7 @@ export const crosshairs = [
     link: '/crosshairs/preview/son-goku-1/GokuLink.gif',
     downloadUrl: '/crosshairs/zip/son-goku-1/son-goku.zip',
     category: 'Anime',
-    tags: ['dragon-ball', 'goku', 'anime']
+    tags: ['anime']
   },
   {
     id: 17,
@@ -201,7 +201,7 @@ export const crosshairs = [
     link: '/crosshairs/preview/soyjak-wojak/ClickerSoyjak.gif',
     downloadUrl: '/crosshairs/zip/soyjak-wojak/soyjak-wojak.zip',
     category: 'Memes',
-    tags: ['soyjak', 'wojak', 'memes']
+    tags: ['memes']
   },
   {
     id: 18,
@@ -213,7 +213,7 @@ export const crosshairs = [
     link: '/crosshairs/preview/spider-man-punter/Spider-ManLink.gif',
     downloadUrl: '/crosshairs/zip/spider-man-punter/spider-man-punter.zip',
     category: 'Superheroes',
-    tags: ['spider-man', 'superheroes']
+    tags: ['superheroes']
   },
   {
     id: 19,
@@ -225,6 +225,6 @@ export const crosshairs = [
     link: '/crosshairs/preview/swiss-army-knife/SwissArmyKnifeCursorLink.cur',
     downloadUrl: '/crosshairs/zip/swiss-army-knife/swiss-army-knife.zip',
     category: 'Tools',
-    tags: ['swiss-army-knife', 'tools']
+    tags: ['tools', 'weapons']
   }
 ]; 
