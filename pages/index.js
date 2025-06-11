@@ -28,12 +28,17 @@ function CrosshairCardSkeleton() {
   );
 }
 
-export default function Home() {
+export default function Home({ searchQuery: initialSearchQuery }) {
   const [selectedTags, setSelectedTags] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [activeCursor, setActiveCursor] = useState('');
   const [previewGif, setPreviewGif] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(initialSearchQuery || '');
+
+  // Update searchQuery when initialSearchQuery changes
+  useEffect(() => {
+    setSearchQuery(initialSearchQuery || '');
+  }, [initialSearchQuery]);
 
   // Get all unique tags
   const allTags = useMemo(() => {
@@ -309,7 +314,7 @@ export default function Home() {
             )}
           </div>
         </main>
-        <footer className="w-full border-t border-gray-200 dark:border-gray-700 py-6 mt-12">
+        <footer className="w-full border-t border-orange-500 dark:border-orange-500 py-6 mt-12">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto text-center text-sm text-gray-600 dark:text-gray-400">
               <p>
@@ -322,7 +327,7 @@ export default function Home() {
                 >
                   RW-Designer
                 </a>
-                . Special thanks to their community for creating these amazing cursor designs.
+                . Special thanks to their community for creating these amazing cursor designs and allowing me to use them for educational purposes.
               </p>
             </div>
           </div>
