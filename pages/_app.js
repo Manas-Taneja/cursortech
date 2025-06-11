@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import Script from 'next/script';
 import { useEffect, useState } from 'react';
 import { pageview } from '../utils/analytics';
-import Navbar from '../components/Navbar';
 import CookieConsent from '../components/CookieConsent';
 
 export default function App({ Component, pageProps }) {
@@ -43,7 +42,6 @@ export default function App({ Component, pageProps }) {
           `,
         }}
       />
-      <Navbar onSearch={setSearchQuery} />
       <Component {...pageProps} searchQuery={searchQuery} />
       <footer className="w-full border-t border-orange-500 dark:border-orange-500 py-6 mt-12">
         <div className="container mx-auto px-4">

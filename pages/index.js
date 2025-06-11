@@ -7,6 +7,7 @@ import { useState, useMemo, useEffect } from "react";
 import CookieConsent from "../components/CookieConsent";
 import { logDownload } from '../utils/analytics';
 import AnimatedCursor from '../components/AnimatedCursor';
+import Navbar from '../components/Navbar';
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -169,7 +170,8 @@ export default function Home({ searchQuery: initialSearchQuery }) {
       </Head>
 
       <div className={`${quicksand.className} min-h-screen bg-white dark:bg-black`}>
-        <AnimatedCursor gifUrl={previewGif} hotspotX={-12} hotspotY={-12} />
+        <Navbar onSearch={setSearchQuery} />
+        {previewGif && <AnimatedCursor gifUrl={previewGif} hotspotX={-12} hotspotY={-12} />}
         <main className="container mx-auto px-4 py-8">
           <div className="max-w-6xl mx-auto">
             {/* <h1 className="text-4xl font-bold text-gray-900 dark:text-orange-500 mb-8 text-center">
