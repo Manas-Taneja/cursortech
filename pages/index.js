@@ -8,6 +8,7 @@ import CookieConsent from "../components/CookieConsent";
 import { logDownload } from '../utils/analytics';
 import AnimatedCursor from '../components/AnimatedCursor';
 import Navbar from '../components/Navbar';
+import { getDownloadCount, incrementDownloadCount } from '../data/downloads';
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -35,11 +36,24 @@ export default function Home({ searchQuery: initialSearchQuery }) {
   const [activeCursor, setActiveCursor] = useState('');
   const [previewGif, setPreviewGif] = useState('');
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery || '');
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   // Update searchQuery when initialSearchQuery changes
   useEffect(() => {
     setSearchQuery(initialSearchQuery || '');
   }, [initialSearchQuery]);
+
+  // Handle click outside to close filter dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isFilterOpen && !event.target.closest('.filter-dropdown')) {
+        setIsFilterOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isFilterOpen]);
 
   // Get all unique tags
   const allTags = useMemo(() => {
@@ -180,23 +194,45 @@ export default function Home({ searchQuery: initialSearchQuery }) {
 
             {/* Tag Filter */}
             <div className="mb-8">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-orange-500 mb-4">
-                Filter by Style
-              </h2>
-              <div className="flex flex-wrap gap-2">
-                {allTags.map((tag) => (
-                  <button
-                    key={tag}
-                    onClick={() => toggleTag(tag)}
-                    className={`px-3 py-1 rounded-full text-sm transition-colors ${
-                      selectedTags.includes(tag)
-                        ? 'bg-orange-700 text-white'
-                        : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-                    }`}
+              <div className="relative filter-dropdown">
+                <button
+                  onClick={() => setIsFilterOpen(!isFilterOpen)}
+                  className="text-lg font-semibold text-gray-900 dark:text-orange-500 mb-4 flex items-center gap-2 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+                >
+                  Filter by Style
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    strokeWidth={1.5} 
+                    stroke="currentColor" 
+                    className={`w-5 h-5 transition-transform ${isFilterOpen ? 'rotate-180' : ''}`}
                   >
-                    {tag}
-                  </button>
-                ))}
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </button>
+                {isFilterOpen && (
+                  <div className="absolute top-full left-0 w-full bg-white dark:bg-black rounded-lg shadow-lg p-4 z-10 border border-gray-200 dark:border-orange-700">
+                    <div className="flex flex-wrap gap-2">
+                      {allTags.map((tag) => (
+                        <button
+                          key={tag}
+                          onClick={() => {
+                            toggleTag(tag);
+                            setIsFilterOpen(false);
+                          }}
+                          className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                            selectedTags.includes(tag)
+                              ? 'bg-orange-700 text-white'
+                              : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                          }`}
+                        >
+                          {tag}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             
@@ -240,12 +276,18 @@ export default function Home({ searchQuery: initialSearchQuery }) {
                             <span
                               key={tag}
                               className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-xs"
-          >
+                            >
                               {tag}
                             </span>
                           ))}
                         </div>
-        </div>
+                        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-1">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                          </svg>
+                          <span>{getDownloadCount(crosshair.id).toLocaleString()} downloads</span>
+                        </div>
+                      </div>
                     </Link>
                     <div className="flex gap-2 px-4 pb-4">
                       <a
@@ -254,6 +296,7 @@ export default function Home({ searchQuery: initialSearchQuery }) {
                         onClick={(e) => {
                           e.preventDefault();
                           logDownload(crosshair.slug, crosshair.title);
+                          incrementDownloadCount(crosshair.id);
                           window.location.href = crosshair.downloadUrl;
                         }}
                         className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"

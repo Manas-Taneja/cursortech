@@ -19,7 +19,7 @@ export const crosshairs = [
     image: '/crosshairs/preview/naruto/naruto-uzumaki-v2.png',
     def: '/crosshairs/preview/naruto/Naruto-Normal.gif',
     link: '/crosshairs/preview/naruto/Naruto-Link.gif',
-    downloadUrl: '/crosshairs/zip/naruto/naruto-3.zip',
+    downloadUrl: '/crosshairs/zip/naruto/naruto-uzumaki-v2.zip',
     category: 'Anime',
     tags: ['anime']
   },
@@ -59,18 +59,6 @@ export const crosshairs = [
     category: 'Games',
     tags: ['games']
   },
-  // {
-  //   id: 6,
-  //   slug: 'among-us-vent',
-  //   title: 'Among Us Vent Animated Cursor Pack',
-  //   description: 'Animated Among Us cursor pack featuring the iconic vent animation.',
-  //   image: '/crosshairs/preview/Among Us Vent Animated/among-us-vent.png',
-  //   def: '/crosshairs/preview/Among Us Vent Animated/Among Us Vent Animated.gif',
-  //   link: '/crosshairs/preview/Among Us Vent Animated/Among Us Vent Animated.cur',
-  //   downloadUrl: '/crosshairs/zip/Among Us Vent Animated/among-us-vent.zip',
-  //   category: 'Games',
-  //   tags: ['among-us', 'games', 'animated']
-  // },
   {
     id: 7,
     slug: 'fortnite-dancing',
@@ -79,7 +67,7 @@ export const crosshairs = [
     image: '/crosshairs/preview/fortnite-default-dancing/default-dancing.png',
     def: '/crosshairs/preview/fortnite-default-dancing/FastRainbowDefaultDance.gif',
     link: '/crosshairs/preview/fortnite-default-dancing/BlackDefaultDance.gif',
-    downloadUrl: '/crosshairs/zip/fortnite-default-dancing/fortnite-dancing.zip',
+    downloadUrl: '/crosshairs/zip/fortnite-default-dancing/fortnite-default-dancing.zip',
     category: 'Games',
     tags: ['games']
   },
@@ -127,7 +115,7 @@ export const crosshairs = [
     image: '/crosshairs/preview/jett-kunai-valorant/jett-kunai-valorant.png',
     def: '/crosshairs/preview/jett-kunai-valorant/JettKunaiNormalSelect.cur',
     link: '/crosshairs/preview/jett-kunai-valorant/15-JettKunaiLinkSelect.gif',
-    downloadUrl: '/crosshairs/zip/jett-kunai-valorant/jett-kunai.zip',
+    downloadUrl: '/crosshairs/zip/jett-kunai-valorant/jett-kunai-valorant.zip',
     category: 'Games',
     tags: ['games']
   },
@@ -151,7 +139,7 @@ export const crosshairs = [
     image: '/crosshairs/preview/razer_chroma/chroma.png',
     def: '/crosshairs/preview/razer_chroma/NormalSelect.gif',
     link: '/crosshairs/preview/razer_chroma/AlternateSelect.gif',
-    downloadUrl: '/crosshairs/zip/razer_chroma/razer-chroma.zip',
+    downloadUrl: '/crosshairs/zip/razer_chroma/razer_chroma.zip',
     category: 'Gaming',
     tags: ['rgb']
   },
@@ -163,7 +151,7 @@ export const crosshairs = [
     image: '/crosshairs/preview/ruination-pack-valorant/ruination-pack-valorant.png',
     def: '/crosshairs/preview/ruination-pack-valorant/RuinationNormalSelect.cur',
     link: '/crosshairs/preview/ruination-pack-valorant/15-RuinationLinkSelect.gif',
-    downloadUrl: '/crosshairs/zip/ruination-pack-valorant/ruination-pack.zip',
+    downloadUrl: '/crosshairs/zip/ruination-pack-valorant/ruination-pack-valorant.zip',
     category: 'Games',
     tags: ['games']
   },
@@ -187,7 +175,7 @@ export const crosshairs = [
     image: '/crosshairs/preview/son-goku-1/son-goku.png',
     def: '/crosshairs/preview/son-goku-1/GokuNormal.gif',
     link: '/crosshairs/preview/son-goku-1/GokuLink.gif',
-    downloadUrl: '/crosshairs/zip/son-goku-1/son-goku.zip',
+    downloadUrl: '/crosshairs/zip/son-goku-1/son-goku-1.zip',
     category: 'Anime',
     tags: ['anime']
   },
