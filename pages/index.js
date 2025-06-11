@@ -269,20 +269,20 @@ export default function Home({ searchQuery: initialSearchQuery }) {
                         onClick={(e) => {
                           e.stopPropagation();
                           // Toggle logic: if the same cursor is clicked again, clear states
-                          if (activeCursor === crosshair.cur && previewGif === crosshair.gif) {
+                          if (activeCursor === crosshair.link && previewGif === crosshair.def) {
                             setActiveCursor('');
                             setPreviewGif('');
                           } else {
                             // Always clear both states first
                             setActiveCursor('');
                             setPreviewGif('');
-                            if (crosshair.gif && crosshair.cur) {
-                              setPreviewGif(crosshair.gif);
-                              setActiveCursor(crosshair.cur);
-                            } else if (crosshair.cur) {
-                              setActiveCursor(crosshair.cur);
-                            } else if (crosshair.gif) {
-                              setPreviewGif(crosshair.gif);
+                            if (crosshair.def && crosshair.link) {
+                              setPreviewGif(crosshair.def);
+                              setActiveCursor(crosshair.link);
+                            } else if (crosshair.link) {
+                              setActiveCursor(crosshair.link);
+                            } else if (crosshair.def) {
+                              setPreviewGif(crosshair.def);
                             }
                           }
                         }}
