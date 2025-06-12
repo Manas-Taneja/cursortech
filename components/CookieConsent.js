@@ -28,14 +28,16 @@ export default function CookieConsent() {
           <button
             onClick={acceptCookies}
             className="px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 transition-colors text-sm"
+            aria-label="Accept cookies and close this banner"
           >
             Accept
           </button>
           <a
             href="/privacy"
             className="px-4 py-2 text-gray-600 dark:text-gray-300 hover:underline text-sm"
+            aria-label="Read our Privacy Policy to learn more about how we use cookies"
           >
-            Learn More
+            Read Privacy Policy
           </a>
         </div>
       </div>

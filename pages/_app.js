@@ -55,14 +55,14 @@ export default function App({ Component, pageProps }) {
             <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-4">
               <Link 
                 href="/privacy" 
-                className="text-orange-600 dark:text-orange-500 hover:underline"
+                className="text-orange-600 dark:text-orange-500 hover:text-orange-700 dark:hover:text-orange-400 underline"
               >
                 Privacy Policy
               </Link>
               <span className="hidden md:inline">•</span>
               <Link 
                 href="/install" 
-                className="text-orange-600 dark:text-orange-500 hover:underline"
+                className="text-orange-600 dark:text-orange-500 hover:text-orange-700 dark:hover:text-orange-400 underline"
               >
                 How to Install
               </Link>
@@ -73,7 +73,7 @@ export default function App({ Component, pageProps }) {
                 href="https://www.rw-designer.com/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-orange-600 dark:text-orange-500 hover:underline"
+                className="text-orange-600 dark:text-orange-500 hover:text-orange-700 dark:hover:text-orange-400 underline font-medium"
               >
                 RW-Designer
               </a>
