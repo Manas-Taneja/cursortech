@@ -1,8 +1,9 @@
 import { Octokit } from '@octokit/rest';
 
-// Initialize Octokit
+// Initialize Octokit with better error handling
 const octokit = new Octokit({
-  auth: process.env.GH_PAT
+  auth: process.env.GH_PAT,
+  log: console
 });
 
 export default async function handler(req, res) {
@@ -41,60 +42,54 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Get the current content of counters.json
     const [owner, repo] = process.env.GITHUB_REPO.split('/');
-    console.log('Fetching counters from GitHub:', { owner, repo, slug });
+    console.log('Starting counter update for:', { owner, repo, slug });
 
-    let fileData;
-    try {
-      const response = await octokit.repos.getContent({
-        owner,
-        repo,
-        path: 'data/counters.json',
-      });
-      fileData = response.data;
-      console.log('Successfully fetched counters file');
-    } catch (error) {
-      console.error('Error fetching counters file:', {
-        status: error.status,
-        message: error.message,
-        response: error.response?.data
-      });
-      throw error;
-    }
+    // Get the current content
+    const { data: fileData } = await octokit.repos.getContent({
+      owner,
+      repo,
+      path: 'data/counters.json',
+      ref: 'main'
+    }).catch(error => {
+      console.error('Error fetching file:', error);
+      throw new Error(`Failed to fetch counters file: ${error.message}`);
+    });
 
-    // Decode and parse the current counters
+    // Parse the current content
     const content = Buffer.from(fileData.content, 'base64').toString();
     const counters = JSON.parse(content);
     console.log('Current counters:', counters);
 
-    // Increment the counter
+    // Update the counter
     const currentCount = counters[slug] || 0;
     const newCount = currentCount + 1;
     counters[slug] = newCount;
     console.log('Updated counter:', { slug, newCount });
 
-    // Update the file on GitHub
-    try {
-      const updateResponse = await octokit.repos.createOrUpdateFileContents({
-        owner,
-        repo,
-        path: 'data/counters.json',
-        message: `Update download count for ${slug} to ${newCount}`,
-        content: Buffer.from(JSON.stringify(counters, null, 2)).toString('base64'),
-        sha: fileData.sha,
-      });
-      console.log('Successfully updated counters file:', updateResponse.status);
-    } catch (error) {
-      console.error('Error updating counters file:', {
-        status: error.status,
-        message: error.message,
-        response: error.response?.data
-      });
-      throw error;
-    }
+    // Create the update
+    const updateResponse = await octokit.repos.createOrUpdateFileContents({
+      owner,
+      repo,
+      path: 'data/counters.json',
+      message: `Update download count for ${slug} to ${newCount}`,
+      content: Buffer.from(JSON.stringify(counters, null, 2)).toString('base64'),
+      sha: fileData.sha,
+      branch: 'main'
+    }).catch(error => {
+      console.error('Error updating file:', error);
+      throw new Error(`Failed to update counters file: ${error.message}`);
+    });
 
-    return res.status(200).json({ success: true, count: newCount });
+    console.log('Update successful:', updateResponse.status);
+
+    // Return success response
+    return res.status(200).json({ 
+      success: true, 
+      count: newCount,
+      message: 'Counter updated successfully'
+    });
+
   } catch (error) {
     console.error('Error in increment-download:', {
       message: error.message,
@@ -102,8 +97,11 @@ export default async function handler(req, res) {
       response: error.response?.data,
       stack: error.stack
     });
+
+    // Return error response
     return res.status(500).json({ 
       error: 'Failed to increment download count',
+      message: error.message,
       ...(process.env.NODE_ENV === 'development' && { 
         details: error.message,
         status: error.status,
