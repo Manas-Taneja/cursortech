@@ -34,7 +34,8 @@ export default async function handler(req, res) {
   if (!process.env.GITHUB_REPO || !process.env.GH_PAT) {
     console.error('Missing GitHub configuration:', {
       hasRepo: !!process.env.GITHUB_REPO,
-      hasToken: !!process.env.GH_PAT
+      hasToken: !!process.env.GH_PAT,
+      repo: process.env.GITHUB_REPO
     });
     return res.status(500).json({ error: 'GitHub configuration missing' });
   }
@@ -44,11 +45,23 @@ export default async function handler(req, res) {
     const [owner, repo] = process.env.GITHUB_REPO.split('/');
     console.log('Fetching counters from GitHub:', { owner, repo, slug });
 
-    const { data: fileData } = await octokit.repos.getContent({
-      owner,
-      repo,
-      path: 'data/counters.json',
-    });
+    let fileData;
+    try {
+      const response = await octokit.repos.getContent({
+        owner,
+        repo,
+        path: 'data/counters.json',
+      });
+      fileData = response.data;
+      console.log('Successfully fetched counters file');
+    } catch (error) {
+      console.error('Error fetching counters file:', {
+        status: error.status,
+        message: error.message,
+        response: error.response?.data
+      });
+      throw error;
+    }
 
     // Decode and parse the current counters
     const content = Buffer.from(fileData.content, 'base64').toString();
@@ -62,23 +75,32 @@ export default async function handler(req, res) {
     console.log('Updated counter:', { slug, newCount });
 
     // Update the file on GitHub
-    const updateResponse = await octokit.repos.createOrUpdateFileContents({
-      owner,
-      repo,
-      path: 'data/counters.json',
-      message: `Update download count for ${slug} to ${newCount}`,
-      content: Buffer.from(JSON.stringify(counters, null, 2)).toString('base64'),
-      sha: fileData.sha,
-    });
-
-    console.log('GitHub update response:', updateResponse.status);
+    try {
+      const updateResponse = await octokit.repos.createOrUpdateFileContents({
+        owner,
+        repo,
+        path: 'data/counters.json',
+        message: `Update download count for ${slug} to ${newCount}`,
+        content: Buffer.from(JSON.stringify(counters, null, 2)).toString('base64'),
+        sha: fileData.sha,
+      });
+      console.log('Successfully updated counters file:', updateResponse.status);
+    } catch (error) {
+      console.error('Error updating counters file:', {
+        status: error.status,
+        message: error.message,
+        response: error.response?.data
+      });
+      throw error;
+    }
 
     return res.status(200).json({ success: true, count: newCount });
   } catch (error) {
-    console.error('Error updating counter:', {
+    console.error('Error in increment-download:', {
       message: error.message,
       status: error.status,
-      response: error.response?.data
+      response: error.response?.data,
+      stack: error.stack
     });
     return res.status(500).json({ 
       error: 'Failed to increment download count',
