@@ -3,7 +3,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { useState, useMemo, useEffect } from "react";
 import { Quicksand } from "next/font/google";
-import crosshairs from "../data/crosshairs";
+import { crosshairs } from "../data/crosshairs";
 import { logDownload } from '../utils/analytics';
 import Navbar from '../components/Navbar';
 import AnimatedCursor from '../components/AnimatedCursor';

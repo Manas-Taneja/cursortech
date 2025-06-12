@@ -217,4 +217,4 @@ const crosshairs = [
   }
 ];
 
-export default crosshairs; 
+export { crosshairs }; 
