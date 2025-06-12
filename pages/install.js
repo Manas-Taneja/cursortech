@@ -19,8 +19,8 @@ export default function InstallGuide() {
 
         <div className="prose prose-lg max-w-none">
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold mb-4">Step 1: Download and Extract</h2>
-            <p>Download your chosen cursor pack ZIP file and extract the .cur or .ani files to a location you can easily find.</p>
+            <h2 className="text-2xl font-semibold mb-4 text-white">Step 1: Download and Extract</h2>
+            <p className="text-white">Download your chosen cursor pack ZIP file and extract the .cur or .ani files to a location you can easily find.</p>
             <div className="bg-gray-100 p-4 rounded-lg my-4 dark:bg-black border border-orange-500 border-2">
               <p className="text-sm text-white">💡 Tip: Create a dedicated folder for your cursors to keep them organized.</p>
             </div>
@@ -50,22 +50,22 @@ export default function InstallGuide() {
             </ol>
           </section>
 
-          <section className="mb-12">
-            <h2 className="text-2xl font-semibold mb-4">Frequently Asked Questions</h2>
+          <section className="mb-12 text-white">
+            <h2 className="text-2xl font-semibold mb-4 text-white">Frequently Asked Questions</h2>
             
-            <div className="space-y-6">
+            <div className="space-y-6 text-white">
               <div>
-                <h3 className="text-xl font-medium mb-2">How do I revert to default cursors?</h3>
+                <h3 className="text-xl font-medium mb-2 text-white">How do I revert to default cursors?</h3>
                 <p>In the Mouse Properties window, click "Use Default" for each cursor type you want to reset.</p>
               </div>
 
               <div>
-                <h3 className="text-xl font-medium mb-2">Are these cursors safe?</h3>
+                <h3 className="text-xl font-medium mb-2 text-white">Are these cursors safe?</h3>
                 <p>Yes! All cursors on CursorTech are thoroughly scanned and verified. We only provide .cur and .ani files, which are safe cursor file formats that cannot contain malicious code.</p>
               </div>
 
               <div>
-                <h3 className="text-xl font-medium mb-2">Can I use these cursors on macOS?</h3>
+                <h3 className="text-xl font-medium mb-2 text-white">Can I use these cursors on macOS?</h3>
                 <p>Unfortunately, Windows cursor files (.cur/.ani) are not directly compatible with macOS. macOS uses a different cursor format. We recommend using macOS-specific cursor packs if you're on a Mac.</p>
               </div>
             </div>

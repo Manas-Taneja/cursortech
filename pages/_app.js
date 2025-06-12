@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { pageview } from '../utils/analytics';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import CookieConsent from '../components/CookieConsent';
+import Link from 'next/link';
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -51,6 +52,21 @@ export default function App({ Component, pageProps }) {
       <footer className="w-full border-t border-orange-500 dark:border-orange-500 py-6 mt-12">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto text-center text-sm text-gray-600 dark:text-gray-400">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-4">
+              <Link 
+                href="/privacy" 
+                className="text-orange-600 dark:text-orange-500 hover:underline"
+              >
+                Privacy Policy
+              </Link>
+              <span className="hidden md:inline">•</span>
+              <Link 
+                href="/install" 
+                className="text-orange-600 dark:text-orange-500 hover:underline"
+              >
+                How to Install
+              </Link>
+            </div>
             <p>
               All cursor designs are used in accordance with the licensing policy of{' '}
               <a 
