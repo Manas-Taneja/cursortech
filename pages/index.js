@@ -7,7 +7,6 @@ import { crosshairs } from "../data/crosshairs";
 import { logDownload } from '../utils/analytics';
 import Navbar from '../components/Navbar';
 import AnimatedCursor from '../components/AnimatedCursor';
-import CookieConsent from "../components/CookieConsent";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -362,7 +361,6 @@ export default function Home({ searchQuery: initialSearchQuery = '', cursors = [
             )}
           </div>
         </main>
-        <CookieConsent />
       </div>
     </>
   );
