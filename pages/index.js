@@ -151,6 +151,7 @@ export default function Home({ searchQuery: initialSearchQuery = '', cursors = [
     <>
       <Head>
         <title>Free Windows Cursor Crosshairs - Download Animated Cursors</title>
+        <meta name="google-site-verification" content="o9k6uoj3gtFBoqrKCXxCPfRjbVT27kV_3vjDxsQ8DBU" />
         <meta name="description" content="Download free animated cursor crosshairs for Windows. Choose from a variety of styles including neon, classic, and tech-inspired designs." />
         <meta name="keywords" content="windows cursor, crosshair, animated cursor, free cursor, custom cursor" />
         <link rel="canonical" href="https://cursortech.vercel.app" />
