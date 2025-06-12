@@ -1,7 +1,7 @@
 {
   "capybara-default": 0,
   "naruto-default": 0,
-  "chamber-valorant": 0,
+  "chamber-valorant": 1,
   "animated-minecraft": 0,
   "yoru-valorant": 0,
   "fortnite-dancing": 0,
@@ -17,4 +17,4 @@
   "soyjak-wojak": 0,
   "spider-man-punter": 0,
   "swiss-army-knife": 0
-} 
+}
