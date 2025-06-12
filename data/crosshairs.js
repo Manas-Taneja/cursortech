@@ -1,4 +1,4 @@
-export const crosshairs = [
+const crosshairs = [
   {
     id: 1,
     slug: 'capybara-default',
@@ -215,4 +215,6 @@ export const crosshairs = [
     category: 'Tools',
     tags: ['tools', 'weapons']
   }
-]; 
+];
+
+export default crosshairs; 

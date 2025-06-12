@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Script from 'next/script';
 import { useEffect, useState } from 'react';
 import { pageview } from '../utils/analytics';
+import { ThemeProvider } from '../contexts/ThemeContext';
 import CookieConsent from '../components/CookieConsent';
 
 export default function App({ Component, pageProps }) {
@@ -22,7 +23,7 @@ export default function App({ Component, pageProps }) {
   }, [router.events]);
 
   return (
-    <>
+    <ThemeProvider>
       {/* Global Site Tag (gtag.js) - Google Analytics */}
       <Script
         strategy="afterInteractive"
@@ -42,7 +43,11 @@ export default function App({ Component, pageProps }) {
           `,
         }}
       />
-      <Component {...pageProps} searchQuery={searchQuery} />
+      {router.pathname === '/' ? (
+        <Component {...pageProps} searchQuery={searchQuery} />
+      ) : (
+        <Component {...pageProps} />
+      )}
       <footer className="w-full border-t border-orange-500 dark:border-orange-500 py-6 mt-12">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto text-center text-sm text-gray-600 dark:text-gray-400">
@@ -62,6 +67,6 @@ export default function App({ Component, pageProps }) {
         </div>
       </footer>
       <CookieConsent />
-    </>
+    </ThemeProvider>
   );
 }

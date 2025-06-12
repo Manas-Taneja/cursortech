@@ -6,23 +6,26 @@ A modern, responsive website for custom cursor downloads and previews.
 
 - **`public/`**: Static assets
   - **`crosshairs/`**: Cursor files and preview images
-    - `obi-lightsaber.cur`: Static cursor inspired by Obi-Wan Kenobi's lightsaber
-- **`data/`**: JSON data for crosshairs
-  - `crosshairs.js`: Contains metadata for each cursor, including the new Obi-Wan Lightsaber cursor
+- **`data/`**: Data files
+  - `crosshairs.js`: Contains metadata for each cursor
+  - `downloads.js`: Manages cursor download counts
 - **`components/`**: React components
-  - `Header.js`: Site header with navigation and search
-  - `Footer.js`: Site footer
-  - `CrosshairCard.js`: Card component for displaying cursor previews
-  - `CrosshairDetail.js`: Detailed view for a single cursor
+  - `Navbar.js`: Main navigation with search and theme toggle
+  - `AnimatedCursor.js`: Handles cursor preview animations
+  - `CookieConsent.js`: Cookie consent banner
+  - `CursorPack.js`: Displays cursor pack information
+  - `InstallGuideModal.js`: Installation instructions modal
 - **`pages/`**: Next.js pages
-  - `index.js`: Homepage
+  - `index.js`: Homepage with cursor grid
   - `crosshair/[slug].js`: Dynamic page for individual cursor details
-- **`styles/`**: CSS/SCSS files
-  - `globals.css`: Global styles
-  - `Header.module.css`: Styles for the header component
-  - `Footer.module.css`: Styles for the footer component
-  - `CrosshairCard.module.css`: Styles for the crosshair card component
-  - `CrosshairDetail.module.css`: Styles for the crosshair detail page
+  - `install.js`: Installation guide page
+  - `404.js`: Custom 404 page
+- **`styles/`**: CSS files
+  - `globals.css`: Global styles and theme variables
+- **`contexts/`**: React contexts
+  - `ThemeContext.js`: Dark/light theme management
+- **`utils/`**: Utility functions
+  - `analytics.js`: Google Analytics integration
 
 ## Getting Started
 
@@ -32,9 +35,9 @@ A modern, responsive website for custom cursor downloads and previews.
    npm install
    ```
 3. Run the development server:
-```bash
-npm run dev
-```
+   ```bash
+   npm run dev
+   ```
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## Features
@@ -44,6 +47,8 @@ npm run dev
 - Search functionality
 - Dark/light theme toggle
 - Easy cursor downloads
+- Download count tracking
+- Cookie consent management
 
 ## Deployment
 

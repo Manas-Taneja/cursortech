@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Image from 'next/image';
-import { crosshairs } from '../../data/crosshairs';
-import { Geist } from 'next/font/google';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { Geist } from 'next/font/google';
+import { crosshairs } from '../../data/crosshairs';
 import { logDownload } from '../../utils/analytics';
 import CookieConsent from '../../components/CookieConsent';
-import Link from 'next/link';
 
 const geist = Geist({
   subsets: ['latin'],
@@ -39,7 +39,7 @@ export default function CrosshairDetail({ crosshair, relatedCrosshairs }) {
   const router = useRouter();
   const [fileExists, setFileExists] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
-  const [downloadCount, setDownloadCount] = useState(0);
+  const [cursorPreview, setCursorPreview] = useState({ activeCursor: '', previewGif: '' });
 
   useEffect(() => {
     // Check if the cursor file exists
@@ -53,24 +53,6 @@ export default function CrosshairDetail({ crosshair, relatedCrosshairs }) {
         setIsLoading(false);
       });
   }, [crosshair.downloadUrl]);
-
-  const handleDownload = async () => {
-    try {
-      // Update download count
-      const response = await fetch('/api/downloads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug: crosshair.slug }),
-      });
-      const data = await response.json();
-      setDownloadCount(data[crosshair.slug]);
-
-      // Log to Google Analytics
-      logDownload(crosshair.slug, crosshair.title);
-    } catch (error) {
-      console.error('Failed to update download count:', error);
-    }
-  };
 
   if (router.isFallback) {
     return <div>Loading...</div>;
@@ -160,10 +142,14 @@ export default function CrosshairDetail({ crosshair, relatedCrosshairs }) {
                   <a
                     href={crosshair.downloadUrl}
                     download
-                    onClick={handleDownload}
-                    className="flex-1 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      logDownload(crosshair.slug, crosshair.title);
+                      window.location.href = crosshair.downloadUrl;
+                    }}
+                    className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
                   >
-                    Download Cursor
+                    Download
                   </a>
                 </div>
               </div>

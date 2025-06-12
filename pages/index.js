@@ -1,14 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Quicksand } from "next/font/google";
-import { crosshairs } from "../data/crosshairs";
 import Head from "next/head";
 import { useState, useMemo, useEffect } from "react";
-import CookieConsent from "../components/CookieConsent";
+import { Quicksand } from "next/font/google";
+import crosshairs from "../data/crosshairs";
 import { logDownload } from '../utils/analytics';
-import AnimatedCursor from '../components/AnimatedCursor';
 import Navbar from '../components/Navbar';
-import { getDownloadCount, incrementDownloadCount } from '../data/downloads';
+import AnimatedCursor from '../components/AnimatedCursor';
+import CookieConsent from "../components/CookieConsent";
+
+console.log('Crosshairs:', crosshairs);
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -30,43 +31,25 @@ function CrosshairCardSkeleton() {
   );
 }
 
-export default function Home({ searchQuery: initialSearchQuery }) {
+export default function Home({ searchQuery: initialSearchQuery = '', cursors = [] }) {
   const [selectedTags, setSelectedTags] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [activeCursor, setActiveCursor] = useState('');
-  const [previewGif, setPreviewGif] = useState('');
-  const [searchQuery, setSearchQuery] = useState(initialSearchQuery || '');
+  const [cursorPreview, setCursorPreview] = useState({ activeCursor: '', previewGif: '' });
+  const [searchQuery, setSearchQuery] = useState(initialSearchQuery);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-
-  // Update searchQuery when initialSearchQuery changes
-  useEffect(() => {
-    setSearchQuery(initialSearchQuery || '');
-  }, [initialSearchQuery]);
-
-  // Handle click outside to close filter dropdown
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (isFilterOpen && !event.target.closest('.filter-dropdown')) {
-        setIsFilterOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isFilterOpen]);
 
   // Get all unique tags
   const allTags = useMemo(() => {
     const tags = new Set();
-    crosshairs.forEach(crosshair => {
-      crosshair.tags.forEach(tag => tags.add(tag));
+    (cursors || []).forEach(crosshair => {
+      (crosshair.tags || []).forEach(tag => tags.add(tag));
     });
     return Array.from(tags).sort();
-  }, []);
+  }, [cursors]);
 
   // Filter crosshairs based on selected tags and search query
   const filteredCrosshairs = useMemo(() => {
-    let filtered = crosshairs;
+    let filtered = cursors || [];
     
     // Apply tag filtering
     if (selectedTags.length > 0) {
@@ -86,7 +69,7 @@ export default function Home({ searchQuery: initialSearchQuery }) {
     }
     
     return filtered;
-  }, [selectedTags, searchQuery]);
+  }, [selectedTags, searchQuery, cursors]);
 
   useEffect(() => {
     // Simulate loading state
@@ -97,11 +80,11 @@ export default function Home({ searchQuery: initialSearchQuery }) {
   }, []);
 
   useEffect(() => {
-    if (activeCursor && !previewGif) {
-      document.body.style.cursor = `url(${activeCursor}), auto`;
+    if (cursorPreview.activeCursor && !cursorPreview.previewGif) {
+      document.body.style.cursor = `url(${cursorPreview.activeCursor}), auto`;
       const all = document.querySelectorAll('*');
       all.forEach(el => {
-        el.style.cursor = `url(${activeCursor}), auto`;
+        el.style.cursor = `url(${cursorPreview.activeCursor}), auto`;
       });
       // Inject style for all cursor types
       let style = document.getElementById('custom-cursor-style');
@@ -111,10 +94,10 @@ export default function Home({ searchQuery: initialSearchQuery }) {
         document.head.appendChild(style);
       }
       style.innerHTML = `
-        * { cursor: url(${activeCursor}), auto !important; }
-        input, textarea, [contenteditable] { cursor: url(${activeCursor}), auto !important; }
+        * { cursor: url(${cursorPreview.activeCursor}), auto !important; }
+        input, textarea, [contenteditable] { cursor: url(${cursorPreview.activeCursor}), auto !important; }
       `;
-    } else if (!previewGif) {
+    } else if (!cursorPreview.previewGif) {
       document.body.style.cursor = '';
       const all = document.querySelectorAll('*');
       all.forEach(el => {
@@ -124,10 +107,10 @@ export default function Home({ searchQuery: initialSearchQuery }) {
       const style = document.getElementById('custom-cursor-style');
       if (style) style.remove();
     }
-  }, [activeCursor, previewGif]);
+  }, [cursorPreview.activeCursor, cursorPreview.previewGif]);
 
   useEffect(() => {
-    if (previewGif && activeCursor) {
+    if (cursorPreview.previewGif && cursorPreview.activeCursor) {
       // Hide native cursor only on body
       document.body.style.cursor = 'none';
       // Set .cur file for interactive elements
@@ -139,7 +122,7 @@ export default function Home({ searchQuery: initialSearchQuery }) {
       }
       style.innerHTML = `
         button, a, input, textarea, select, [role="button"], [tabindex]:not([tabindex="-1"]) {
-          cursor: url(${activeCursor}), auto !important;
+          cursor: url(${cursorPreview.activeCursor}), auto !important;
         }
       `;
     } else {
@@ -147,13 +130,12 @@ export default function Home({ searchQuery: initialSearchQuery }) {
       const style = document.getElementById('custom-cursor-style');
       if (style) style.remove();
     }
-  }, [previewGif, activeCursor]);
+  }, [cursorPreview.previewGif, cursorPreview.activeCursor]);
 
   useEffect(() => {
     // Cleanup cursor state on unmount
     return () => {
-      setActiveCursor('');
-      setPreviewGif('');
+      setCursorPreview({ activeCursor: '', previewGif: '' });
       document.body.style.cursor = '';
       const style = document.getElementById('custom-cursor-style');
       if (style) style.remove();
@@ -184,8 +166,16 @@ export default function Home({ searchQuery: initialSearchQuery }) {
       </Head>
 
       <div className={`${quicksand.className} min-h-screen bg-white dark:bg-black`}>
-        <Navbar onSearch={setSearchQuery} />
-        {previewGif && <AnimatedCursor gifUrl={previewGif} hotspotX={-12} hotspotY={-12} />}
+        <Navbar onSearch={(query) => {
+          setSearchQuery(query);
+        }} />
+        {cursorPreview.previewGif && (
+          <AnimatedCursor 
+            gifUrl={cursorPreview.previewGif} 
+            hotspotX={-12} 
+            hotspotY={-12} 
+          />
+        )}
         <main className="container mx-auto px-4 py-8">
           <div className="max-w-6xl mx-auto">
             {/* <h1 className="text-4xl font-bold text-gray-900 dark:text-orange-500 mb-8 text-center">
@@ -196,7 +186,9 @@ export default function Home({ searchQuery: initialSearchQuery }) {
             <div className="mb-8">
               <div className="relative filter-dropdown">
                 <button
-                  onClick={() => setIsFilterOpen(!isFilterOpen)}
+                  onClick={() => {
+                    setIsFilterOpen(!isFilterOpen);
+                  }}
                   className="text-lg font-semibold text-gray-900 dark:text-orange-500 mb-4 flex items-center gap-2 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
                 >
                   Filter by Style
@@ -244,6 +236,7 @@ export default function Home({ searchQuery: initialSearchQuery }) {
                   <CrosshairCardSkeleton />
                 </>
               ) : (
+                console.log('Rendering filteredCrosshairs:', filteredCrosshairs),
                 filteredCrosshairs.map((crosshair) => (
                   <div
                     key={crosshair.id}
@@ -254,7 +247,7 @@ export default function Home({ searchQuery: initialSearchQuery }) {
                       className="block"
                     >
                       <div className="relative h-48">
-            <Image
+                        <Image
                           src={crosshair.image}
                           alt={`${crosshair.title} cursor preview`}
                           fill
@@ -285,7 +278,7 @@ export default function Home({ searchQuery: initialSearchQuery }) {
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-1">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                           </svg>
-                          <span>{getDownloadCount(crosshair.id).toLocaleString()} downloads</span>
+                          <span>Download</span>
                         </div>
                       </div>
                     </Link>
@@ -296,7 +289,6 @@ export default function Home({ searchQuery: initialSearchQuery }) {
                         onClick={(e) => {
                           e.preventDefault();
                           logDownload(crosshair.slug, crosshair.title);
-                          incrementDownloadCount(crosshair.id);
                           window.location.href = crosshair.downloadUrl;
                         }}
                         className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
@@ -314,20 +306,17 @@ export default function Home({ searchQuery: initialSearchQuery }) {
                         onClick={(e) => {
                           e.stopPropagation();
                           // Toggle logic: if the same cursor is clicked again, clear states
-                          if (activeCursor === crosshair.link && previewGif === crosshair.def) {
-                            setActiveCursor('');
-                            setPreviewGif('');
+                          if (cursorPreview.activeCursor === crosshair.link && cursorPreview.previewGif === crosshair.def) {
+                            setCursorPreview({ activeCursor: '', previewGif: '' });
                           } else {
                             // Always clear both states first
-                            setActiveCursor('');
-                            setPreviewGif('');
+                            setCursorPreview({ activeCursor: '', previewGif: '' });
                             if (crosshair.def && crosshair.link) {
-                              setPreviewGif(crosshair.def);
-                              setActiveCursor(crosshair.link);
+                              setCursorPreview({ previewGif: crosshair.def, activeCursor: crosshair.link });
                             } else if (crosshair.link) {
-                              setActiveCursor(crosshair.link);
+                              setCursorPreview({ activeCursor: crosshair.link, previewGif: '' });
                             } else if (crosshair.def) {
-                              setPreviewGif(crosshair.def);
+                              setCursorPreview({ previewGif: crosshair.def, activeCursor: '' });
                             }
                           }
                         }}
@@ -352,7 +341,7 @@ export default function Home({ searchQuery: initialSearchQuery }) {
                 <button
                   onClick={() => setSelectedTags([])}
                   className="mt-4 text-orange-600 dark:text-orange-500 hover:underline"
-        >
+                >
                   Clear filters
                 </button>
               </div>
@@ -363,4 +352,23 @@ export default function Home({ searchQuery: initialSearchQuery }) {
       </div>
     </>
   );
+}
+
+export async function getStaticProps() {
+  try {
+    return {
+      props: {
+        searchQuery: '',
+        cursors: crosshairs || []
+      }
+    };
+  } catch (error) {
+    console.error('Error in getStaticProps:', error);
+    return {
+      props: {
+        searchQuery: '',
+        cursors: []
+      }
+    };
+  }
 }
