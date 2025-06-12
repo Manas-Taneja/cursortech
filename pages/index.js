@@ -278,7 +278,7 @@ export default function Home({ searchQuery: initialSearchQuery = '', cursors = [
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-1">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                           </svg>
-                          <span>Download</span>
+                          <span>{crosshair.downloadCount} downloads</span>
                         </div>
                       </div>
                     </Link>
@@ -356,10 +356,22 @@ export default function Home({ searchQuery: initialSearchQuery = '', cursors = [
 
 export async function getStaticProps() {
   try {
+    // Read the counters file
+    const fs = require('fs');
+    const path = require('path');
+    const countersPath = path.join(process.cwd(), 'data', 'counters.json');
+    const counters = JSON.parse(fs.readFileSync(countersPath, 'utf8'));
+
+    // Add download counts to each cursor
+    const cursorsWithCounts = crosshairs.map(cursor => ({
+      ...cursor,
+      downloadCount: counters[cursor.slug] || 0
+    }));
+
     return {
       props: {
         searchQuery: '',
-        cursors: crosshairs || []
+        cursors: cursorsWithCounts
       }
     };
   } catch (error) {
@@ -367,7 +379,10 @@ export async function getStaticProps() {
     return {
       props: {
         searchQuery: '',
-        cursors: []
+        cursors: crosshairs.map(cursor => ({
+          ...cursor,
+          downloadCount: 0
+        }))
       }
     };
   }
