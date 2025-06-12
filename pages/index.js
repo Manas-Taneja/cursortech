@@ -9,8 +9,6 @@ import Navbar from '../components/Navbar';
 import AnimatedCursor from '../components/AnimatedCursor';
 import CookieConsent from "../components/CookieConsent";
 
-console.log('Crosshairs:', crosshairs);
-
 const quicksand = Quicksand({
   subsets: ["latin"],
 });
@@ -236,7 +234,6 @@ export default function Home({ searchQuery: initialSearchQuery = '', cursors = [
                   <CrosshairCardSkeleton />
                 </>
               ) : (
-                console.log('Rendering filteredCrosshairs:', filteredCrosshairs),
                 filteredCrosshairs.map((crosshair) => (
                   <div
                     key={crosshair.id}
@@ -286,10 +283,27 @@ export default function Home({ searchQuery: initialSearchQuery = '', cursors = [
                       <a
                         href={crosshair.downloadUrl}
                         download
-                        onClick={(e) => {
+                        onClick={async (e) => {
                           e.preventDefault();
-                          logDownload(crosshair.slug, crosshair.title);
-                          window.location.href = crosshair.downloadUrl;
+                          try {
+                            // Increment download count
+                            const response = await fetch(`/api/increment-download?slug=${crosshair.slug}`, {
+                              method: 'POST',
+                              headers: {
+                                'Content-Type': 'application/json',
+                              },
+                            });
+                            
+                            if (!response.ok) {
+                              console.error('Failed to increment download count:', await response.text());
+                            }
+
+                            // Log download and trigger download
+                            logDownload(crosshair.slug, crosshair.title);
+                            window.location.href = crosshair.downloadUrl;
+                          } catch (error) {
+                            console.error('Error downloading cursor:', error);
+                          }
                         }}
                         className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
                       >
