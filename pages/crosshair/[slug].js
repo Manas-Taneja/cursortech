@@ -152,6 +152,18 @@ export default function CrosshairDetail({ crosshair, relatedCrosshairs }) {
                     Download
                   </a>
                 </div>
+
+                {/* Conditional Footer based on source */}
+                {crosshair.source === 'RW-Designer' && (
+                  <footer className="mt-8 text-xs text-gray-500 dark:text-gray-400 text-center">
+                    Cursor design by <a href="https://www.rw-designer.com/" target="_blank" rel="noopener noreferrer" className="text-orange-500 underline">RW-Designer</a>
+                  </footer>
+                )}
+                {crosshair.source === 'Sweezy' && (
+                  <footer className="mt-8 text-xs text-gray-500 dark:text-gray-400 text-center">
+                    Cursor design by <a href="https://sweezy-cursors.com/" target="_blank" rel="noopener noreferrer" className="text-orange-500 underline">Sweezy Cursors</a>
+                  </footer>
+                )}
               </div>
             </div>
 

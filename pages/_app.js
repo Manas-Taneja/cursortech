@@ -75,9 +75,17 @@ export default function App({ Component, pageProps }) {
                 rel="noopener noreferrer"
                 className="text-orange-600 dark:text-orange-500 hover:text-orange-700 dark:hover:text-orange-400 underline font-medium"
               >
-                RW-Designer
+                RW-Designer 
               </a>
-              . Special thanks to their community for creating these amazing cursor designs and allowing me to use them for educational purposes.
+              & 
+              <a 
+                href="https://sweezy-cursors.com/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-orange-600 dark:text-orange-500 hover:text-orange-700 dark:hover:text-orange-400 underline font-medium"
+              >
+                Sweezy Cursors 
+              </a> . Special thanks to their community for creating these amazing cursor designs and allowing me to use them for educational purposes.
             </p>
           </div>
         </div>

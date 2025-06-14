@@ -243,15 +243,16 @@ export default function Home({ searchQuery: initialSearchQuery = '', cursors = [
                       href={`/crosshair/${crosshair.slug}`}
                       className="block"
                     >
-                      <div className="relative h-48">
+                      <div className="relative w-[144px] h-[112px] mx-auto">
                         <Image
                           src={crosshair.image}
                           alt={`${crosshair.title} cursor preview`}
-                          fill
+                          width={122.4}
+                          height={95.2}
                           className="object-contain"
                           loading="lazy"
                           placeholder="blur"
-                          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSEkMjU1LS0yMi4qLjgyPj4+Oj5CQkJCQkJCQkJCQkJCQkJCQkJCQkL/2wBDAR4eHh4eHh4eHh4eHh4eHh7/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSEkMjU1LS0yMi4qLjgyPj4+Oj5CQkJCQkJCQkJCQkJCQkJCQkJCQkL/2wBDAR4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                         />
                       </div>
                       <div className="p-4">
@@ -283,31 +284,16 @@ export default function Home({ searchQuery: initialSearchQuery = '', cursors = [
                       <a
                         href={crosshair.downloadUrl}
                         download
-                        onClick={async (e) => {
+                        onClick={(e) => {
                           e.preventDefault();
-                          try {
-                            // Increment download count
-                            const response = await fetch(`/api/increment-download?slug=${crosshair.slug}`, {
-                              method: 'POST',
-                              headers: {
-                                'Content-Type': 'application/json',
-                              },
-                            });
-                            
-                            if (!response.ok) {
-                              console.error('Failed to increment download count:', await response.text());
-                            }
-
-                            // Log download and trigger download
-                            logDownload(crosshair.slug, crosshair.title);
-                            window.location.href = crosshair.downloadUrl;
-                          } catch (error) {
-                            console.error('Error downloading cursor:', error);
-                          }
+                          logDownload(crosshair.slug, crosshair.title);
+                          window.location.href = crosshair.downloadUrl;
                         }}
-                        className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
+                        className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
                       >
-                        Download
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4 mr-1">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                        </svg>
                       </a>
                       <Link
                         href={`/crosshair/${crosshair.slug}`}
@@ -315,32 +301,31 @@ export default function Home({ searchQuery: initialSearchQuery = '', cursors = [
                       >
                         Details
                       </Link>
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          // Toggle logic: if the same cursor is clicked again, clear states
-                          if (cursorPreview.activeCursor === crosshair.link && cursorPreview.previewGif === crosshair.def) {
-                            setCursorPreview({ activeCursor: '', previewGif: '' });
-                          } else {
-                            // Always clear both states first
-                            setCursorPreview({ activeCursor: '', previewGif: '' });
-                            if (crosshair.def && crosshair.link) {
-                              setCursorPreview({ previewGif: crosshair.def, activeCursor: crosshair.link });
-                            } else if (crosshair.link) {
-                              setCursorPreview({ activeCursor: crosshair.link, previewGif: '' });
-                            } else if (crosshair.def) {
-                              setCursorPreview({ previewGif: crosshair.def, activeCursor: '' });
+                      {crosshair.source === 'RW-Designer' && (
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            // Toggle logic: if the same cursor is clicked again, clear states
+                            if (cursorPreview.activeCursor === crosshair.link && cursorPreview.previewGif === crosshair.def) {
+                              setCursorPreview({ activeCursor: '', previewGif: '' });
+                            } else {
+                              // Always clear both states first
+                              setCursorPreview({ activeCursor: '', previewGif: '' });
+                              if (crosshair.def && crosshair.link) {
+                                setCursorPreview({ previewGif: crosshair.def, activeCursor: crosshair.link });
+                              } else if (crosshair.link) {
+                                setCursorPreview({ activeCursor: crosshair.link, previewGif: '' });
+                              } else if (crosshair.def) {
+                                setCursorPreview({ previewGif: crosshair.def, activeCursor: '' });
+                              }
                             }
-                          }
-                        }}
-                        className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-orange-600 text-sm font-medium rounded-md text-orange-600 bg-white dark:bg-gray-900 hover:bg-orange-50 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12s3.75-7.5 9.75-7.5 9.75 7.5 9.75 7.5-3.75 7.5-9.75 7.5S2.25 12 2.25 12z" />
-                          <circle cx="12" cy="12" r="3" />
-                        </svg>
-                      </button>
+                          }}
+                          className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-orange-600 text-sm font-medium rounded-md text-orange-600 bg-white dark:bg-gray-900 hover:bg-orange-50 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
+                        >
+                          Preview
+                        </button>
+                      )}
                     </div>
                   </div>
                 ))
