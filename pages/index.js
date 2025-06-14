@@ -1,15 +1,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { Quicksand } from "next/font/google";
 import { crosshairs } from "../data/crosshairs";
 import { logDownload } from '../utils/analytics';
 import Navbar from '../components/Navbar';
 import AnimatedCursor from '../components/AnimatedCursor';
+import dynamic from 'next/dynamic';
 
 const quicksand = Quicksand({
   subsets: ["latin"],
+});
+
+// Cache configuration
+const CACHE_DURATION = 1000 * 60 * 60; // 1 hour
+let crosshairsCache = {
+  data: null,
+  timestamp: null
+};
+
+// Dynamically import the CrosshairCard component
+const CrosshairCard = dynamic(() => import('../components/CrosshairCard'), {
+  loading: () => <CrosshairCardSkeleton />,
+  ssr: false
 });
 
 function CrosshairCardSkeleton() {
@@ -30,10 +44,27 @@ function CrosshairCardSkeleton() {
 
 export default function Home({ searchQuery: initialSearchQuery = '', cursors = [] }) {
   const [selectedTags, setSelectedTags] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [cursorPreview, setCursorPreview] = useState({ activeCursor: '', previewGif: '' });
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const ITEMS_PER_PAGE = 12;
+  const observer = useRef();
+  const lastCursorRef = useCallback(node => {
+    if (isLoading) return;
+    if (observer.current) observer.current.disconnect();
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore) {
+        setPage(prevPage => prevPage + 1);
+      }
+    });
+    if (node) observer.current.observe(node);
+  }, [isLoading, hasMore]);
+  const [cursorPreview, setCursorPreview] = useState({ activeCursor: '', previewGif: '' });
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  // Loading state for infinite scroll
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   // Get all unique tags
   const allTags = useMemo(() => {
@@ -44,6 +75,16 @@ export default function Home({ searchQuery: initialSearchQuery = '', cursors = [
     return Array.from(tags).sort();
   }, [cursors]);
 
+  // Shuffle array function
+  const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
   // Filter crosshairs based on selected tags and search query
   const filteredCrosshairs = useMemo(() => {
     let filtered = cursors || [];
@@ -51,7 +92,7 @@ export default function Home({ searchQuery: initialSearchQuery = '', cursors = [
     // Apply tag filtering
     if (selectedTags.length > 0) {
       filtered = filtered.filter(crosshair =>
-        selectedTags.every(tag => crosshair.tags.includes(tag))
+        selectedTags.some(tag => crosshair.tags.includes(tag))
       );
     }
     
@@ -65,8 +106,24 @@ export default function Home({ searchQuery: initialSearchQuery = '', cursors = [
       );
     }
     
-    return filtered;
+    // Shuffle the filtered results
+    return shuffleArray(filtered);
   }, [selectedTags, searchQuery, cursors]);
+
+  // Get paginated results
+  const paginatedCrosshairs = useMemo(() => {
+    return filteredCrosshairs.slice(0, page * ITEMS_PER_PAGE);
+  }, [filteredCrosshairs, page]);
+
+  // Update hasMore state
+  useEffect(() => {
+    setHasMore(paginatedCrosshairs.length < filteredCrosshairs.length);
+  }, [paginatedCrosshairs, filteredCrosshairs]);
+
+  // Reset pagination when filters change
+  useEffect(() => {
+    setPage(1);
+  }, [selectedTags, searchQuery]);
 
   useEffect(() => {
     // Simulate loading state
@@ -147,12 +204,44 @@ export default function Home({ searchQuery: initialSearchQuery = '', cursors = [
     );
   };
 
+  // Load more items
+  const loadMore = useCallback(async () => {
+    if (isLoadingMore || !hasMore) return;
+    
+    setIsLoadingMore(true);
+    // Simulate loading delay
+    await new Promise(resolve => setTimeout(resolve, 500));
+    setPage(prevPage => prevPage + 1);
+    setIsLoadingMore(false);
+  }, [isLoadingMore, hasMore]);
+
+  // Update observer when loading state changes
+  useEffect(() => {
+    if (isLoadingMore) return;
+    
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting && hasMore) {
+          loadMore();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const lastElement = document.querySelector('#last-element');
+    if (lastElement) {
+      observer.observe(lastElement);
+    }
+
+    return () => observer.disconnect();
+  }, [isLoadingMore, hasMore, loadMore]);
+
   return (
     <>
       <Head>
         <title>Free Windows Cursor Crosshairs - Download Animated Cursors</title>
         <meta name="google-site-verification" content="o9k6uoj3gtFBoqrKCXxCPfRjbVT27kV_3vjDxsQ8DBU" />
-        <meta name="description" content="Download free animated cursor crosshairs for Windows. Choose from a variety of styles including neon, classic, and tech-inspired designs." />
+        <meta name="description" content="Download free animated cursors for Windows. Choose from a variety of styles including neon, classic, and tech-inspired designs." />
         <meta name="keywords" content="windows cursor, crosshair, animated cursor, free cursor, custom cursor" />
         <link rel="canonical" href="https://cursortech.vercel.app" />
         
@@ -226,123 +315,20 @@ export default function Home({ searchQuery: initialSearchQuery = '', cursors = [
               </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {isLoading ? (
-                <>
-                  <CrosshairCardSkeleton />
-                  <CrosshairCardSkeleton />
-                  <CrosshairCardSkeleton />
-                </>
-              ) : (
-                filteredCrosshairs.map((crosshair) => (
-                  <div
-                    key={crosshair.id}
-                    className="group relative bg-white dark:bg-black rounded-lg shadow-lg overflow-hidden hover:shadow-xl hover:shadow-orange-500 transition-all"
-                  >
-                    <Link
-                      href={`/crosshair/${crosshair.slug}`}
-                      className="block"
-                    >
-                      <div className="relative w-[144px] h-[112px] mx-auto">
-                        <Image
-                          src={crosshair.image}
-                          alt={`${crosshair.title} cursor preview`}
-                          width={122.4}
-                          height={95.2}
-                          className="object-contain"
-                          loading="lazy"
-                          placeholder="blur"
-                          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSEkMjU1LS0yMi4qLjgyPj4+Oj5CQkJCQkJCQkJCQkJCQkJCQkJCQkL/2wBDAR4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-                        />
-                      </div>
-                      <div className="p-4">
-                        <h2 className="text-xl font-semibold text-gray-900 dark:text-orange-500 mb-2">
-                          {crosshair.title}
-                        </h2>
-                        <p className="text-gray-600 dark:text-gray-200 text-sm mb-4">
-                          {crosshair.description}
-                        </p>
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {crosshair.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-xs"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-1">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                          </svg>
-                          <span>{crosshair.downloadCount} downloads</span>
-                        </div>
-                      </div>
-                    </Link>
-                    <div className="flex gap-2 px-4 pb-4">
-                      <a
-                        href={crosshair.downloadUrl}
-                        download
-                        onClick={(e) => {
-                          e.preventDefault();
-                          logDownload(crosshair.slug, crosshair.title);
-                          window.location.href = crosshair.downloadUrl;
-                        }}
-                        className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4 mr-1">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                        </svg>
-                      </a>
-                      <Link
-                        href={`/crosshair/${crosshair.slug}`}
-                        className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
-                      >
-                        Details
-                      </Link>
-                      {crosshair.source === 'RW-Designer' && (
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            // Toggle logic: if the same cursor is clicked again, clear states
-                            if (cursorPreview.activeCursor === crosshair.link && cursorPreview.previewGif === crosshair.def) {
-                              setCursorPreview({ activeCursor: '', previewGif: '' });
-                            } else {
-                              // Always clear both states first
-                              setCursorPreview({ activeCursor: '', previewGif: '' });
-                              if (crosshair.def && crosshair.link) {
-                                setCursorPreview({ previewGif: crosshair.def, activeCursor: crosshair.link });
-                              } else if (crosshair.link) {
-                                setCursorPreview({ activeCursor: crosshair.link, previewGif: '' });
-                              } else if (crosshair.def) {
-                                setCursorPreview({ previewGif: crosshair.def, activeCursor: '' });
-                              }
-                            }
-                          }}
-                          className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-orange-600 text-sm font-medium rounded-md text-orange-600 bg-white dark:bg-gray-900 hover:bg-orange-50 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
-                        >
-                          Preview
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                ))
-              )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {paginatedCrosshairs.map((crosshair, index) => (
+                <div
+                  key={crosshair.id}
+                  id={index === paginatedCrosshairs.length - 1 ? 'last-element' : undefined}
+                >
+                  <CrosshairCard crosshair={crosshair} />
+                </div>
+              ))}
             </div>
 
-            {!isLoading && filteredCrosshairs.length === 0 && (
-              <div className="text-center py-12">
-                <p className="text-gray-600 dark:text-gray-400">
-                  No cursors found matching the selected filters.
-                </p>
-                <button
-                  onClick={() => setSelectedTags([])}
-                  className="mt-4 text-orange-600 dark:text-orange-500 hover:underline"
-                >
-                  Clear filters
-                </button>
+            {isLoadingMore && (
+              <div className="flex justify-center mt-8">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
               </div>
             )}
           </div>
@@ -353,35 +339,29 @@ export default function Home({ searchQuery: initialSearchQuery = '', cursors = [
 }
 
 export async function getStaticProps() {
-  try {
-    // Read the counters file
-    const fs = require('fs');
-    const path = require('path');
-    const countersPath = path.join(process.cwd(), 'data', 'counters.json');
-    const counters = JSON.parse(fs.readFileSync(countersPath, 'utf8'));
-
-    // Add download counts to each cursor
-    const cursorsWithCounts = crosshairs.map(cursor => ({
-      ...cursor,
-      downloadCount: counters[cursor.slug] || 0
-    }));
-
+  // Check if cache is valid
+  if (crosshairsCache.data && crosshairsCache.timestamp && 
+      Date.now() - crosshairsCache.timestamp < CACHE_DURATION) {
     return {
       props: {
-        searchQuery: '',
-        cursors: cursorsWithCounts
-      }
-    };
-  } catch (error) {
-    console.error('Error in getStaticProps:', error);
-    return {
-      props: {
-        searchQuery: '',
-        cursors: crosshairs.map(cursor => ({
-          ...cursor,
-          downloadCount: 0
-        }))
-      }
+        cursors: crosshairsCache.data,
+        cached: true
+      },
+      revalidate: 3600 // Revalidate every hour
     };
   }
+
+  // Update cache
+  crosshairsCache = {
+    data: crosshairs,
+    timestamp: Date.now()
+  };
+
+  return {
+    props: {
+      cursors: crosshairs,
+      cached: false
+    },
+    revalidate: 3600 // Revalidate every hour
+  };
 }

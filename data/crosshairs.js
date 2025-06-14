@@ -7,7 +7,7 @@ const crosshairs = [
       image: '/crosshairs/preview/Capybara/capybara.png',
       def: '/crosshairs/preview/Capybara/capybara-default.cur',
       link: '/crosshairs/preview/Capybara/capybara-pointer.cur',
-      downloadUrl: '/crosshairs/zip/capybara/capybara-pack.zip',
+      downloadUrl: '/crosshairs/zip/Capybara/capybara-pack.zip',
       category: 'Animals',
       tags: ['animal'],
       source: 'RW-Designer'
@@ -20,7 +20,7 @@ const crosshairs = [
       image: '/crosshairs/preview/NarutoPixel/naruto-uzumaki-v2.png',
       def: '/crosshairs/preview/NarutoPixel/Naruto-Normal.gif',
       link: '/crosshairs/preview/NarutoPixel/Naruto-Link.gif',
-      downloadUrl: '/crosshairs/zip/naruto/naruto-uzumaki-v2.zip',
+      downloadUrl: '/crosshairs/zip/NarutoPixel/naruto-uzumaki-v2.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'RW-Designer'
@@ -28,12 +28,12 @@ const crosshairs = [
     {
       id: 3,
       slug: 'chamber-valorant',
-      title: 'Chamber Valorant Cursor Pack',
+      title: 'Chamber Cursor Pack',
       description: 'A collection of Chamber-themed cursors from Valorant. Features the iconic Chamber design and animations.',
       image: '/crosshairs/preview/ChamberValorant/chamber-valorant.png',
       def: '/crosshairs/preview/ChamberValorant/15-ChamberLinkSelect.gif',
       link: '/crosshairs/preview/ChamberValorant/ChamberNormalSelect.cur',
-      downloadUrl: '/crosshairs/zip/chamber-valorant/chamber-valorant.zip',
+      downloadUrl: '/crosshairs/zip/ChamberValorant/chamber-valorant.zip',
       category: 'Games',
       tags: ['games'],
       source: 'RW-Designer'
@@ -41,12 +41,12 @@ const crosshairs = [
     {
       id: 4,
       slug: 'animated-minecraft',
-      title: 'Animated Minecraft Cursor Pack',
+      title: 'Minecraft Cursor Pack',
       description: 'A collection of animated Minecraft-themed cursors featuring iconic items like the Diamond Sword and Torch.',
       image: '/crosshairs/preview/MinecraftAnimated/animated-minecraft.png',
       def: '/crosshairs/preview/MinecraftAnimated/MinecraftsDiamondSword.gif',
       link: '/crosshairs/preview/MinecraftAnimated/MinecraftTorch.cur',
-      downloadUrl: '/crosshairs/zip/animated-minecraft/minecraft-pack.zip',
+      downloadUrl: '/crosshairs/zip/MinecraftAnimated/animated-minecraft.zip',
       category: 'Games',
       tags: ['games'],
       source: 'RW-Designer'
@@ -54,12 +54,12 @@ const crosshairs = [
     {
       id: 5,
       slug: 'yoru-valorant',
-      title: 'Yoru Valorant Cursor Pack',
+      title: 'Yoru Cursor Pack',
       description: 'A collection of Yoru-themed cursors from Valorant. Features the iconic Yoru design and animations.',
       image: '/crosshairs/preview/Yoru-Valorant/yoru-valorant.png',
       def: '/crosshairs/preview/Yoru-Valorant/15-YoruLinkSelect-ezgif.com-ani-to-gif-converter.gif',
       link: '/crosshairs/preview/Yoru-Valorant/YoruNormalSelect.cur',
-      downloadUrl: '/crosshairs/zip/yoru-valorant/yoru-valorant.zip',
+      downloadUrl: '/crosshairs/zip/Yoru-Valorant/yoru-valorant.zip',
       category: 'Games',
       tags: ['games'],
       source: 'RW-Designer'
@@ -72,7 +72,7 @@ const crosshairs = [
       image: '/crosshairs/preview/FortniteDefaultDancing/default-dancing.png',
       def: '/crosshairs/preview/FortniteDefaultDancing/FastRainbowDefaultDance.gif',
       link: '/crosshairs/preview/FortniteDefaultDancing/BlackDefaultDance.gif',
-      downloadUrl: '/crosshairs/zip/fortnite-default-dancing/fortnite-default-dancing.zip',
+      downloadUrl: '/crosshairs/zip/FortniteDefaultDancing/fortnite-default-dancing.zip',
       category: 'Games',
       tags: ['games'],
       source: 'RW-Designer'
@@ -85,7 +85,7 @@ const crosshairs = [
       image: '/crosshairs/preview/LOL_Garen/garen.png',
       def: '/crosshairs/preview/LOL_Garen/Garen.cur',
       link: '/crosshairs/preview/LOL_Garen/Garen-LinkSelect.cur',
-      downloadUrl: '/crosshairs/zip/garen/garen.zip',
+      downloadUrl: '/crosshairs/zip/LOL_Garen/garen.zip',
       category: 'Games',
       tags: ['games'],
       source: 'RW-Designer'
@@ -98,7 +98,7 @@ const crosshairs = [
       image: '/crosshairs/preview/HelloKitty/hello-kitty.png',
       def: '/crosshairs/preview/HelloKitty/HelloKittyNormalSelect.cur',
       link: '/crosshairs/preview/HelloKitty/HelloKittylinkselect.gif',
-      downloadUrl: '/crosshairs/zip/hello-kitty/hello-kitty.zip',
+      downloadUrl: '/crosshairs/zip/HelloKitty/hello-kitty.zip',
       category: 'Characters',
       tags: ['cute'],
       source: 'RW-Designer'
@@ -111,7 +111,7 @@ const crosshairs = [
       image: '/crosshairs/preview/BleachIchigo/ichigo.png',
       def: '/crosshairs/preview/BleachIchigo/IchigoNormal.gif',
       link: '/crosshairs/preview/BleachIchigo/IchigoLink.gif',
-      downloadUrl: '/crosshairs/zip/ichigo/ichigo.zip',
+      downloadUrl: '/crosshairs/zip/BleachIchigo/ichigo.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'RW-Designer'
@@ -119,12 +119,12 @@ const crosshairs = [
     {
       id: 11,
       slug: 'jett-kunai-valorant',
-      title: 'Jett Kunai Valorant Cursor Pack',
+      title: 'Jett Kunai Cursor Pack',
       description: 'A collection of Jett-themed cursors from Valorant featuring her iconic kunai.',
       image: '/crosshairs/preview/JettKunaiValorant/jett-kunai-valorant.png',
       def: '/crosshairs/preview/JettKunaiValorant/JettKunaiNormalSelect.cur',
       link: '/crosshairs/preview/JettKunaiValorant/15-JettKunaiLinkSelect.gif',
-      downloadUrl: '/crosshairs/zip/jett-kunai-valorant/jett-kunai-valorant.zip',
+      downloadUrl: '/crosshairs/zip/JettKunaiValorant/jett-kunai-valorant.zip',
       category: 'Games',
       tags: ['games'],
       source: 'RW-Designer'
@@ -137,7 +137,7 @@ const crosshairs = [
       image: '/crosshairs/preview/BloodyKnife/knife.png',
       def: '/crosshairs/preview/BloodyKnife/NormalSelect.cur',
       link: '/crosshairs/preview/BloodyKnife/LinkSelect.cur',
-      downloadUrl: '/crosshairs/zip/knife/knife.zip',
+      downloadUrl: '/crosshairs/zip/BloodyKnife/knife.zip',
       category: 'Weapons',
       tags: ['weapons'],
       source: 'RW-Designer'
@@ -150,7 +150,7 @@ const crosshairs = [
       image: '/crosshairs/preview/RazerChroma/chroma.png',
       def: '/crosshairs/preview/RazerChroma/NormalSelect.gif',
       link: '/crosshairs/preview/RazerChroma/AlternateSelect.gif',
-      downloadUrl: '/crosshairs/zip/razer_chroma/razer_chroma.zip',
+      downloadUrl: '/crosshairs/zip/RazerChroma/razer_chroma.zip',
       category: 'Gaming',
       tags: ['rgb'],
       source: 'RW-Designer'
@@ -158,12 +158,12 @@ const crosshairs = [
     {
       id: 14,
       slug: 'ruination-pack-valorant',
-      title: 'Ruination Pack Valorant Cursor Pack',
+      title: 'Ruination Cursor Pack',
       description: 'A collection of Ruination-themed cursors from Valorant.',
       image: '/crosshairs/preview/RuinationPackValorant/ruination-pack-valorant.png',
       def: '/crosshairs/preview/RuinationPackValorant/RuinationNormalSelect.cur',
       link: '/crosshairs/preview/RuinationPackValorant/15-RuinationLinkSelect.gif',
-      downloadUrl: '/crosshairs/zip/ruination-pack-valorant/ruination-pack-valorant.zip',
+      downloadUrl: '/crosshairs/zip/RuinationPackValorant/ruination-pack-valorant.zip',
       category: 'Games',
       tags: ['games'],
       source: 'RW-Designer'
@@ -171,12 +171,12 @@ const crosshairs = [
     {
       id: 15,
       slug: 'saitama-punter-v2',
-      title: 'Saitama Punter V2 Cursor Pack',
+      title: 'Saitama Cursor Pack',
       description: 'A collection of Saitama-themed cursors from One Punch Man.',
       image: '/crosshairs/preview/SaitamaPixel/saitama-punter-v2.png',
       def: '/crosshairs/preview/SaitamaPixel/SaitamaNormal.gif',
       link: '/crosshairs/preview/SaitamaPixel/SaitamaLink.gif',
-      downloadUrl: '/crosshairs/zip/saitama-punter-v2/saitama-punter-v2.zip',
+      downloadUrl: '/crosshairs/zip/SaitamaPixel/saitama-punter-v2.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'RW-Designer'
@@ -189,7 +189,7 @@ const crosshairs = [
       image: '/crosshairs/preview/SonGoku/son-goku.png',
       def: '/crosshairs/preview/SonGoku/GokuNormal.gif',
       link: '/crosshairs/preview/SonGoku/GokuLink.gif',
-      downloadUrl: '/crosshairs/zip/son-goku-1/son-goku-1.zip',
+      downloadUrl: '/crosshairs/zip/SonGoku/son-goku-1.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'RW-Designer'
@@ -202,7 +202,7 @@ const crosshairs = [
       image: '/crosshairs/preview/SoyjakWojak/soyjak-wojak.png',
       def: '/crosshairs/preview/SoyjakWojak/Soyjak.cur',
       link: '/crosshairs/preview/SoyjakWojak/ClickerSoyjak.gif',
-      downloadUrl: '/crosshairs/zip/soyjak-wojak/soyjak-wojak.zip',
+      downloadUrl: '/crosshairs/zip/SoyjakWojak/soyjak-wojak.zip',
       category: 'Memes',
       tags: ['memes'],
       source: 'RW-Designer'
@@ -210,12 +210,12 @@ const crosshairs = [
     {
       id: 18,
       slug: 'spider-man-punter',
-      title: 'Spider-Man Punter Cursor Pack',
+      title: 'Spider-Man Cursor Pack',
       description: 'A collection of Spider-Man themed cursors.',
       image: '/crosshairs/preview/SpidermanPixel/spider-man-punter.png',
       def: '/crosshairs/preview/SpidermanPixel/Spider-ManNormal.gif',
       link: '/crosshairs/preview/SpidermanPixel/Spider-ManLink.gif',
-      downloadUrl: '/crosshairs/zip/spider-man-punter/spider-man-punter.zip',
+      downloadUrl: '/crosshairs/zip/SpidermanPixel/spider-man-punter.zip',
       category: 'Superheroes',
       tags: ['superheroes'],
       source: 'RW-Designer'
@@ -228,7 +228,7 @@ const crosshairs = [
       image: '/crosshairs/preview/SwissArmyKnife/swiss-army-knife.png',
       def: '/crosshairs/preview/SwissArmyKnife/SwissArmyKnifeCursor.cur',
       link: '/crosshairs/preview/SwissArmyKnife/SwissArmyKnifeCursorLink.cur',
-      downloadUrl: '/crosshairs/zip/swiss-army-knife/swiss-army-knife.zip',
+      downloadUrl: '/crosshairs/zip/SwissArmyKnife/swiss-army-knife.zip',
       category: 'Tools',
       tags: ['tools', 'weapons'],
       source: 'RW-Designer'
@@ -236,12 +236,12 @@ const crosshairs = [
     {
       id: 20,
       slug: 'demon-slayer-nezuko-running',
-      title: 'Demon Slayer Nezuko Running Pixel Cursor Pack',
+      title: 'Nezuko Running Cursor Pack',
       description: 'A collection of animated Nezuko running pixel cursors from Demon Slayer.',
       image: '/crosshairs/preview/DS_NezukoRunning/NezukoRunning.gif',
       def: '/crosshairs/preview/Demon Slayer Nezuko Running Pixel Animated/NezukoRunning.cur',
       link: '/crosshairs/preview/Demon Slayer Nezuko Running Pixel Animated/NezukoRunningLink.cur',
-      downloadUrl: '/crosshairs/zip/Demon Slayer Nezuko Running Pixel Animated/nezuko-running.zip',
+      downloadUrl: '/crosshairs/zip/DS_NezukoRunning/Demon Slayer Nezuko Running Pixel Animated.zip',
       category: 'Anime',
       tags: ['anime', 'pixel'],
       source: 'Sweezy'
@@ -249,12 +249,12 @@ const crosshairs = [
     {
       id: 21,
       slug: 'jujutsu-kaisen-gojo',
-      title: 'Jujutsu Kaisen Satoru Gojo Infinity Cursor Pack',
+      title: 'Satoru Gojo Infinity Cursor Pack',
       description: 'A collection of Satoru Gojo themed cursors featuring his Infinity technique from Jujutsu Kaisen.',
       image: '/crosshairs/preview/JJK_GojoInfinity/JJK_GojoInfinity.gif',
       def: '/crosshairs/preview/Jujutsu Kaisen Satoru Gojo Infinity Animated/GojoInfinity.cur',
       link: '/crosshairs/preview/Jujutsu Kaisen Satoru Gojo Infinity Animated/GojoInfinityLink.cur',
-      downloadUrl: '/crosshairs/zip/Jujutsu Kaisen Satoru Gojo Infinity Animated/gojo-infinity.zip',
+      downloadUrl: '/crosshairs/zip/JJK_GojoInfinity/Jujutsu Kaisen Satoru Gojo Infinity Animated.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -262,12 +262,12 @@ const crosshairs = [
     {
       id: 22,
       slug: 'minecraft-netherite',
-      title: 'Minecraft Enchanted Netherite Sword Cursor Pack',
+      title: 'Enchanted Netherite Sword Cursor Pack',
       description: 'A collection of animated Minecraft cursors featuring the enchanted Netherite Sword.',
       image: '/crosshairs/preview/MinecraftNetheriteSword/NetheriteSword.gif',
       def: '/crosshairs/preview/Minecraft Enchanted Netherite Sword Animated/NetheriteSword.cur',
       link: '/crosshairs/preview/Minecraft Enchanted Netherite Sword Animated/NetheriteSwordLink.cur',
-      downloadUrl: '/crosshairs/zip/Minecraft Enchanted Netherite Sword Animated/netherite-sword.zip',
+      downloadUrl: '/crosshairs/zip/MinecraftNetheriteSword/Minecraft Enchanted Netherite Sword Animated.zip',
       category: 'Games',
       tags: ['games', 'minecraft'],
       source: 'Sweezy'
@@ -275,12 +275,12 @@ const crosshairs = [
     {
       id: 23,
       slug: 'chainsaw-man-pochita',
-      title: 'Chainsaw Man Pochita Running Cursor Pack',
+      title: 'Pochita Running Cursor Pack',
       description: 'A collection of animated Pochita running cursors from Chainsaw Man.',
       image: '/crosshairs/preview/CM_PochitaRunning/PochitaRunning.gif',
       def: '/crosshairs/preview/Chainsaw Man Pochita Running Animated/PochitaRunning.cur',
       link: '/crosshairs/preview/Chainsaw Man Pochita Running Animated/PochitaRunningLink.cur',
-      downloadUrl: '/crosshairs/zip/Chainsaw Man Pochita Running Animated/pochita-running.zip',
+      downloadUrl: '/crosshairs/zip/CM_PochitaRunning/Chainsaw Man Pochita Running Animated.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -288,12 +288,12 @@ const crosshairs = [
     {
       id: 24,
       slug: 'jojo-jotaro',
-      title: "JoJo's Bizarre Adventure Jotaro Kujo & Star Platinum Cursor Pack",
+      title: "Jotaro Kujo & Star Platinum Cursor Pack",
       description: "A collection of Jotaro Kujo and Star Platinum themed cursors from JoJo's Bizarre Adventure.",
       image: '/crosshairs/preview/JJBA_JotaroStarPlatinum/JotaroStarPlatinum.png',
       def: "/crosshairs/preview/JoJo's Bizarre Adventure Jotaro Kujo & Star Platinum/JotaroNormal.cur",
       link: "/crosshairs/preview/JoJo's Bizarre Adventure Jotaro Kujo & Star Platinum/JotaroLink.cur",
-      downloadUrl: "/crosshairs/zip/JoJo's Bizarre Adventure Jotaro Kujo & Star Platinum/jotaro-star-platinum.zip",
+      downloadUrl: "/crosshairs/zip/JJBA_JotaroStarPlatinum/JoJo’s Bizarre Adventure Jotaro Kujo & Star Platinum.zip",
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -301,12 +301,12 @@ const crosshairs = [
     {
       id: 25,
       slug: 'dragon-ball-goku-ss4',
-      title: 'Dragon Ball Goku Super Saiyan 4 Pixel Cursor Pack',
+      title: 'Goku Super Saiyan 4 Pixel Cursor Pack',
       description: 'A collection of Goku Super Saiyan 4 themed pixel cursors from Dragon Ball.',
       image: '/crosshairs/preview/DBZ_GokuSSPixel/GokuSS.png',
       def: '/crosshairs/preview/Dragon Ball Goku Super Saiyan 4 Pixel/GokuSS4.cur',
       link: '/crosshairs/preview/Dragon Ball Goku Super Saiyan 4 Pixel/GokuSS4Link.cur',
-      downloadUrl: '/crosshairs/zip/Dragon Ball Goku Super Saiyan 4 Pixel/goku-ss4.zip',
+      downloadUrl: '/crosshairs/zip/DBZ_GokuSSPixel/Dragon Ball Goku Super Saiyan 4 Pixel.zip',
       category: 'Anime',
       tags: ['anime', 'pixel'],
       source: 'Sweezy'
@@ -314,12 +314,12 @@ const crosshairs = [
     {
       id: 26,
       slug: 'dragon-ball-vegeta',
-      title: 'Dragon Ball Vegeta Pixel Animated Cursor Pack',
+      title: 'Vegeta Pixel Cursor Pack',
       description: 'A collection of animated Vegeta themed pixel cursors from Dragon Ball.',
       image: '/crosshairs/preview/DBZ_VegetaPixel/VegetaPixel.gif',
       def: '/crosshairs/preview/Dragon Ball Vegeta Pixel Animated/VegetaNormal.cur',
       link: '/crosshairs/preview/Dragon Ball Vegeta Pixel Animated/VegetaLink.cur',
-      downloadUrl: '/crosshairs/zip/Dragon Ball Vegeta Pixel Animated/vegeta.zip',
+      downloadUrl: '/crosshairs/zip/DBZ_VegetaPixel/Dragon Ball Vegeta Pixel Animated.zip',
       category: 'Anime',
       tags: ['anime', 'pixel'],
       source: 'Sweezy'
@@ -327,12 +327,12 @@ const crosshairs = [
     {
       id: 27,
       slug: 'dragon-ball-beerus',
-      title: 'Dragon Ball Beerus Animated Cursor Pack',
+      title: 'Beerus Cursor Pack',
       description: 'A collection of animated Beerus themed cursors from Dragon Ball.',
       image: '/crosshairs/preview/DBZ_Beerus/Beerus.gif',
       def: '/crosshairs/preview/Dragon Ball Beerus Animated/BeerusNormal.cur',
       link: '/crosshairs/preview/Dragon Ball Beerus Animated/BeerusLink.cur',
-      downloadUrl: '/crosshairs/zip/Dragon Ball Beerus Animated/beerus.zip',
+      downloadUrl: '/crosshairs/zip/DBZ_Beerus/Dragon Ball Beerus Animated.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -340,12 +340,12 @@ const crosshairs = [
     {
       id: 28,
       slug: 'demon-slayer-zenitsu',
-      title: 'Demon Slayer Zenitsu Running Pixel Cursor Pack',
+      title: 'Zenitsu Running Pixel Cursor Pack',
       description: 'A collection of animated Zenitsu running pixel cursors from Demon Slayer.',
       image: '/crosshairs/preview/DS_ZenitsuRunning/ZenitsuRunning.gif',
       def: '/crosshairs/preview/Demon Slayer Zenitsu Agatsuma Running Pixel Animated/ZenitsuRunning.cur',
       link: '/crosshairs/preview/Demon Slayer Zenitsu Agatsuma Running Pixel Animated/ZenitsuRunningLink.cur',
-      downloadUrl: '/crosshairs/zip/Demon Slayer Zenitsu Agatsuma Running Pixel Animated/zenitsu-running.zip',
+      downloadUrl: '/crosshairs/zip/DS_ZenitsuRunning/Demon Slayer Zenitsu Agatsuma Running Pixel Animated.zip',
       category: 'Anime',
       tags: ['anime', 'pixel'],
       source: 'Sweezy'
@@ -353,12 +353,12 @@ const crosshairs = [
     {
       id: 29,
       slug: 'demon-slayer-rengoku',
-      title: 'Demon Slayer Kyojuro Rengoku Running Pixel Cursor Pack',
+      title: 'Kyojuro Rengoku Running Pixel Cursor Pack',
       description: 'A collection of animated Rengoku running pixel cursors from Demon Slayer.',
       image: '/crosshairs/preview/DS_RengokuRunning/RengokuRunning.gif',
       def: '/crosshairs/preview/Demon Slayer Kyojuro Rengoku Running Pixel Animated/RengokuRunning.cur',
       link: '/crosshairs/preview/Demon Slayer Kyojuro Rengoku Running Pixel Animated/RengokuRunningLink.cur',
-      downloadUrl: '/crosshairs/zip/Demon Slayer Kyojuro Rengoku Running Pixel Animated/rengoku-running.zip',
+      downloadUrl: '/crosshairs/zip/DS_RengokuRunning/Demon Slayer Kyojuro Rengoku Running Pixel Animated.zip',
       category: 'Anime',
       tags: ['anime', 'pixel'],
       source: 'Sweezy'
@@ -366,12 +366,12 @@ const crosshairs = [
     {
       id: 30,
       slug: 'demon-slayer-kokushibo',
-      title: 'Demon Slayer Kokushibo & Katana Animated Cursor Pack',
+      title: 'Kokushibo & Katana Cursor Pack',
       description: 'A collection of Kokushibo and katana themed animated cursors from Demon Slayer.',
       image: '/crosshairs/preview/DS_KokushiboKatana/KokushiboKatana.gif',
       def: '/crosshairs/preview/Demon Slayer Kokushibo & Katana Animated/KokushiboNormal.cur',
       link: '/crosshairs/preview/Demon Slayer Kokushibo & Katana Animated/KokushiboLink.cur',
-      downloadUrl: '/crosshairs/zip/Demon Slayer Kokushibo & Katana Animated/kokushibo.zip',
+      downloadUrl: '/crosshairs/zip/DS_KokushiboKatana/Demon Slayer Kokushibo & Katana Animated.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -379,12 +379,12 @@ const crosshairs = [
     {
       id: 31,
       slug: 'demon-slayer-inosuke',
-      title: 'Demon Slayer Inosuke Hashibira Animated Cursor Pack',
+      title: 'Inosuke Hashibira Cursor Pack',
       description: 'A collection of Inosuke themed animated cursors from Demon Slayer.',
       image: '/crosshairs/preview/DS_Inosuke/InosukeHashibira.gif',
       def: '/crosshairs/preview/Demon Slayer Inosuke Hashibira Animated/InosukeNormal.cur',
       link: '/crosshairs/preview/Demon Slayer Inosuke Hashibira Animated/InosukeLink.cur',
-      downloadUrl: '/crosshairs/zip/Demon Slayer Inosuke Hashibira Animated/inosuke.zip',
+      downloadUrl: '/crosshairs/zip/DS_Inosuke/Demon Slayer Inosuke Hashibira Animated.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -392,12 +392,12 @@ const crosshairs = [
     {
       id: 32,
       slug: 'demon-slayer-nezuko-bamboo',
-      title: 'Demon Slayer Nezuko & Bamboo Muzzle Cursor Pack',
+      title: 'Nezuko & Bamboo Muzzle Cursor Pack',
       description: 'A collection of Nezuko with bamboo muzzle themed cursors from Demon Slayer.',
       image: '/crosshairs/preview/DS_NezukoBamboo/NezukoBamboo.png',
       def: '/crosshairs/preview/Demon Slayer Nezuko & Bamboo Muzzle/NezukoBamboo.cur',
       link: '/crosshairs/preview/Demon Slayer Nezuko & Bamboo Muzzle/NezukoBambooLink.cur',
-      downloadUrl: '/crosshairs/zip/Demon Slayer Nezuko & Bamboo Muzzle/nezuko-bamboo.zip',
+      downloadUrl: '/crosshairs/zip/DS_NezukoBamboo/Demon Slayer Nezuko & Bamboo Muzzle.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -405,12 +405,12 @@ const crosshairs = [
     {
       id: 33,
       slug: 'hunter-killua',
-      title: 'Hunter x Hunter Killua Zoldyck & Lightning Cursor Pack',
+      title: 'Killua Zoldyck & Lightning Cursor Pack',
       description: 'A collection of Killua and lightning themed cursors from Hunter x Hunter.',
       image: '/crosshairs/preview/HxH_Killua/Killua.png',
       def: '/crosshairs/preview/Hunter x Hunter Killua Zoldyck & Lightning/KilluaNormal.cur',
       link: '/crosshairs/preview/Hunter x Hunter Killua Zoldyck & Lightning/KilluaLink.cur',
-      downloadUrl: '/crosshairs/zip/Hunter x Hunter Killua Zoldyck & Lightning/killua.zip',
+      downloadUrl: '/crosshairs/zip/HxH_Killua/Hunter x Hunter Killua Zoldyck & Lightning.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -418,12 +418,12 @@ const crosshairs = [
     {
       id: 34,
       slug: 'hunter-hisoka',
-      title: 'Hunter x Hunter Hisoka Morow & Bungee Gum Cursor Pack',
+      title: 'Hisoka Morow & Bungee Gum Cursor Pack',
       description: 'A collection of Hisoka and Bungee Gum themed cursors from Hunter x Hunter.',
       image: '/crosshairs/preview/HxH_Hisoka/Hisoka.png',
       def: '/crosshairs/preview/Hunter x Hunter Hisoka Morow & Bungee Gum/HisokaNormal.cur',
       link: '/crosshairs/preview/Hunter x Hunter Hisoka Morow & Bungee Gum/HisokaLink.cur',
-      downloadUrl: '/crosshairs/zip/Hunter x Hunter Hisoka Morow & Bungee Gum/hisoka.zip',
+      downloadUrl: '/crosshairs/zip/HxH_Hisoka/Hunter x Hunter Hisoka Morow & Bungee Gum.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -431,12 +431,12 @@ const crosshairs = [
     {
       id: 35,
       slug: 'jujutsu-kaisen-yuji',
-      title: 'Jujutsu Kaisen Yuji Itadori & Sukuna Cursor Pack',
+      title: 'Yuji Itadori & Sukuna Cursor Pack',
       description: 'A collection of Yuji Itadori and Sukuna themed cursors from Jujutsu Kaisen.',
       image: '/crosshairs/preview/JJK_YujiSukuna/SukunaItadori.png',
       def: '/crosshairs/preview/Jujutsu Kaisen Yuji Itadori & Sukuna/YujiNormal.cur',
       link: '/crosshairs/preview/Jujutsu Kaisen Yuji Itadori & Sukuna/YujiLink.cur',
-      downloadUrl: '/crosshairs/zip/Jujutsu Kaisen Yuji Itadori & Sukuna/yuji-sukuna.zip',
+      downloadUrl: '/crosshairs/zip/JJK_YujiSukuna/Jujutsu Kaisen Yuji Itadori & Sukuna.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -444,12 +444,12 @@ const crosshairs = [
     {
       id: 36,
       slug: 'jujutsu-kaisen-yuji-black-flash',
-      title: 'Jujutsu Kaisen Yuji Itadori Black Flash Animated Cursor Pack',
+      title: 'Yuji Itadori Black Flash Cursor Pack',
       description: 'A collection of Yuji Itadori Black Flash themed animated cursors from Jujutsu Kaisen.',
       image: '/crosshairs/preview/JJK_YujiBlackFlash/BlackFlash.gif',
       def: '/crosshairs/preview/Jujutsu Kaisen Yuji Itadori Black Flash Animated/YujiBlackFlash.cur',
       link: '/crosshairs/preview/Jujutsu Kaisen Yuji Itadori Black Flash Animated/YujiBlackFlashLink.cur',
-      downloadUrl: '/crosshairs/zip/Jujutsu Kaisen Yuji Itadori Black Flash Animated/yuji-black-flash.zip',
+      downloadUrl: '/crosshairs/zip/JJK_YujiBlackFlash/Jujutsu Kaisen Yuji Itadori Black Flash Animated.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -457,12 +457,12 @@ const crosshairs = [
     {
       id: 37,
       slug: 'jujutsu-kaisen-gojo-kawaii',
-      title: 'Jujutsu Kaisen Kawaii Satoru Gojo Animated Cursor Pack',
+      title: 'Kawaii Satoru Gojo Cursor Pack',
       description: 'A collection of kawaii Satoru Gojo themed animated cursors from Jujutsu Kaisen.',
       image: '/crosshairs/preview/JJK_KawaiGojo/Kawai-Satoru.gif',
       def: '/crosshairs/preview/Jujutsu Kaisen Kawaii Satoru Gojo Animated/GojoKawaii.cur',
       link: '/crosshairs/preview/Jujutsu Kaisen Kawaii Satoru Gojo Animated/GojoKawaiiLink.cur',
-      downloadUrl: '/crosshairs/zip/Jujutsu Kaisen Kawaii Satoru Gojo Animated/gojo-kawaii.zip',
+      downloadUrl: '/crosshairs/zip/JJK_KawaiGojo/Jujutsu Kaisen Kawaii Satoru Gojo Animated.zip',
       category: 'Anime',
       tags: ['anime', 'cute'],
       source: 'Sweezy'
@@ -470,12 +470,12 @@ const crosshairs = [
     {
       id: 38,
       slug: 'minecraft-golden-sword',
-      title: 'Minecraft Enchanted Golden Sword Animated Cursor Pack',
+      title: 'Enchanted Golden Sword Cursor Pack',
       description: 'A collection of animated Minecraft cursors featuring the enchanted Golden Sword.',
       image: '/crosshairs/preview/MinecraftEnchantedGoldenSword/GoldenSword.gif',
       def: '/crosshairs/preview/Minecraft Enchanted Golden Sword Animated/GoldenSword.cur',
       link: '/crosshairs/preview/Minecraft Enchanted Golden Sword Animated/GoldenSwordLink.cur',
-      downloadUrl: '/crosshairs/zip/Minecraft Enchanted Golden Sword Animated/golden-sword.zip',
+      downloadUrl: '/crosshairs/zip/MinecraftEnchantedGoldenSword/Minecraft Enchanted Golden Sword Animated.zip',
       category: 'Games',
       tags: ['games', 'minecraft'],
       source: 'Sweezy'
@@ -483,12 +483,12 @@ const crosshairs = [
     {
       id: 39,
       slug: 'minecraft-golden-shovel',
-      title: 'Minecraft Enchanted Golden Shovel Animated Cursor Pack',
+      title: 'Enchanted Golden Shovel Cursor Pack',
       description: 'A collection of animated Minecraft cursors featuring the enchanted Golden Shovel.',
       image: '/crosshairs/preview/MinecraftEnchantedGoldenShovel/GoldenShovel.gif',
       def: '/crosshairs/preview/Minecraft Enchanted Golden Shovel Animated/GoldenShovel.cur',
       link: '/crosshairs/preview/Minecraft Enchanted Golden Shovel Animated/GoldenShovelLink.cur',
-      downloadUrl: '/crosshairs/zip/Minecraft Enchanted Golden Shovel Animated/golden-shovel.zip',
+      downloadUrl: '/crosshairs/zip/MinecraftEnchantedGoldenShovel/Minecraft Enchanted Golden Shovel Animated.zip',
       category: 'Games',
       tags: ['games', 'minecraft'],
       source: 'Sweezy'
@@ -496,12 +496,12 @@ const crosshairs = [
     {
       id: 40,
       slug: 'minecraft-diamond-sword',
-      title: 'Minecraft Enchanted Diamond Sword Animated Cursor Pack',
+      title: 'Enchanted Diamond Sword Cursor Pack',
       description: 'A collection of animated Minecraft cursors featuring the enchanted Diamond Sword.',
       image: '/crosshairs/preview/MinecraftEnchantedDiamondSword/DiamondSword.gif',
       def: '/crosshairs/preview/Minecraft Enchanted Diamond Sword Animated/DiamondSword.cur',
       link: '/crosshairs/preview/Minecraft Enchanted Diamond Sword Animated/DiamondSwordLink.cur',
-      downloadUrl: '/crosshairs/zip/Minecraft Enchanted Diamond Sword Animated/diamond-sword.zip',
+      downloadUrl: '/crosshairs/zip/MinecraftEnchantedDiamondSword/Minecraft Enchanted Diamond Sword Animated.zip',
       category: 'Games',
       tags: ['games', 'minecraft'],
       source: 'Sweezy'
@@ -509,12 +509,12 @@ const crosshairs = [
     {
       id: 41,
       slug: 'mob-psycho-shigeo',
-      title: 'Mob Psycho 100 Shigeo Manga Animated Cursor Pack',
+      title: 'Shigeo Manga Cursor Pack',
       description: 'A collection of Shigeo themed manga-style animated cursors from Mob Psycho 100.',
       image: '/crosshairs/preview/MobPsycho100Shigeo/Shigeo.gif',
       def: '/crosshairs/preview/Mob Psycho 100 Shigeo Manga Animated/ShigeoNormal.cur',
       link: '/crosshairs/preview/Mob Psycho 100 Shigeo Manga Animated/ShigeoLink.cur',
-      downloadUrl: '/crosshairs/zip/Mob Psycho 100 Shigeo Manga Animated/shigeo.zip',
+      downloadUrl: '/crosshairs/zip/MobPsycho100Shigeo/Mob Psycho 100 Shigeo Manga Animated.zip',
       category: 'Anime',
       tags: ['anime', 'manga'],
       source: 'Sweezy'
@@ -522,12 +522,12 @@ const crosshairs = [
     {
       id: 42,
       slug: 'my-hero-tomura',
-      title: 'My Hero Academia Tomura Shigaraki Cursor Pack',
+      title: 'Tomura Shigaraki Cursor Pack',
       description: 'A collection of Tomura Shigaraki themed cursors from My Hero Academia.',
       image: '/crosshairs/preview/MHA_TomuraShigaraki/TomuraShigaraki.png',
       def: '/crosshairs/preview/My Hero Academia Tomura Shigaraki/TomuraNormal.cur',
       link: '/crosshairs/preview/My Hero Academia Tomura Shigaraki/TomuraLink.cur',
-      downloadUrl: '/crosshairs/zip/My Hero Academia Tomura Shigaraki/tomura.zip',
+      downloadUrl: '/crosshairs/zip/MHA_TomuraShigaraki/My Hero Academia Tomura Shigaraki.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -535,12 +535,12 @@ const crosshairs = [
     {
       id: 43,
       slug: 'my-hero-dabi',
-      title: 'My Hero Academia Dabi & Blueflame Animated Cursor Pack',
+      title: 'Dabi & Blueflame Cursor Pack',
       description: 'A collection of Dabi and Blueflame themed animated cursors from My Hero Academia.',
       image: '/crosshairs/preview/MHA_Dabi/Dabi.gif',
       def: '/crosshairs/preview/My Hero Academia Dabi & Blueflame Animated/DabiNormal.cur',
       link: '/crosshairs/preview/My Hero Academia Dabi & Blueflame Animated/DabiLink.cur',
-      downloadUrl: '/crosshairs/zip/My Hero Academia Dabi & Blueflame Animated/dabi.zip',
+      downloadUrl: '/crosshairs/zip/MHA_Dabi/My Hero Academia Dabi & Blueflame Animated.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -548,12 +548,12 @@ const crosshairs = [
     {
       id: 44,
       slug: 'naruto-arrow',
-      title: 'Naruto & Arrow Animated Cursor Pack',
+      title: 'Naruto & Arrow Cursor Pack',
       description: 'A collection of Naruto and arrow themed animated cursors.',
       image: '/crosshairs/preview/Naruto_Arrow/naruto&arrow.gif',
       def: '/crosshairs/preview/Naruto & Arrow Animated/NarutoArrow.cur',
       link: '/crosshairs/preview/Naruto & Arrow Animated/NarutoArrowLink.cur',
-      downloadUrl: '/crosshairs/zip/Naruto & Arrow Animated/naruto-arrow.zip',
+      downloadUrl: '/crosshairs/zip/Naruto_Arrow/Naruto & Arrow Animated.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -561,12 +561,12 @@ const crosshairs = [
     {
       id: 45,
       slug: 'naruto-itachi',
-      title: 'Naruto Itachi Sharingan Animated Cursor Pack',
+      title: 'Sharingan Cursor Pack',
       description: 'A collection of Itachi and Sharingan themed animated cursors from Naruto.',
       image: '/crosshairs/preview/Sharingan/Sharingan.gif',
       def: '/crosshairs/preview/Naruto Itachi Sharingan Animated/ItachiNormal.cur',
       link: '/crosshairs/preview/Naruto Itachi Sharingan Animated/ItachiLink.cur',
-      downloadUrl: '/crosshairs/zip/Naruto Itachi Sharingan Animated/itachi.zip',
+      downloadUrl: '/crosshairs/zip/Sharingan/Naruto Itachi Sharingan Animated.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -574,12 +574,12 @@ const crosshairs = [
     {
       id: 46,
       slug: 'one-punch-saitama-flying',
-      title: 'One-Punch Man Saitama Flying Animated Cursor Pack',
+      title: 'Saitama Flying Cursor Pack',
       description: 'A collection of flying Saitama themed animated cursors from One-Punch Man.',
       image: '/crosshairs/preview/OPM_SaitamaFlying/SaitamaFlying.gif',
       def: '/crosshairs/preview/One-Punch Man Saitama Flying Animated/SaitamaFlying.cur',
       link: '/crosshairs/preview/One-Punch Man Saitama Flying Animated/SaitamaFlyingLink.cur',
-      downloadUrl: '/crosshairs/zip/One-Punch Man Saitama Flying Animated/saitama-flying.zip',
+      downloadUrl: '/crosshairs/zip/OPM_SaitamaFlying/One-Punch Man Saitama Flying Animated.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -587,12 +587,12 @@ const crosshairs = [
     {
       id: 47,
       slug: 'one-punch-saitama-pixel',
-      title: 'One-Punch Man Saitama Pixel Animated Cursor Pack',
+      title: 'Saitama Pixel Cursor Pack',
       description: 'A collection of pixel art Saitama themed animated cursors from One-Punch Man.',
       image: '/crosshairs/preview/OPM_SaitamaPixel/SaitamaPixel.gif',
       def: '/crosshairs/preview/One-Punch Man Saitama Pixel Animated/SaitamaPixel.cur',
       link: '/crosshairs/preview/One-Punch Man Saitama Pixel Animated/SaitamaPixelLink.cur',
-      downloadUrl: '/crosshairs/zip/One-Punch Man Saitama Pixel Animated/saitama-pixel.zip',
+      downloadUrl: '/crosshairs/zip/OPM_SaitamaPixel/One-Punch Man Saitama Pixel Animated.zip',
       category: 'Anime',
       tags: ['anime', 'pixel'],
       source: 'Sweezy'
@@ -600,12 +600,12 @@ const crosshairs = [
     {
       id: 48,
       slug: 'this-is-fine',
-      title: 'This Is Fine Pixel Meme Animated Cursor Pack',
+      title: 'This Is Fine Pixel Cursor Pack',
       description: 'A collection of "This Is Fine" meme themed pixel animated cursors.',
       image: '/crosshairs/preview/ThisIsFinePixel/ThisIsFine.gif',
       def: '/crosshairs/preview/This Is Fine Pixel Meme Animated/ThisIsFine.cur',
       link: '/crosshairs/preview/This Is Fine Pixel Meme Animated/ThisIsFineLink.cur',
-      downloadUrl: '/crosshairs/zip/This Is Fine Pixel Meme Animated/this-is-fine.zip',
+      downloadUrl: '/crosshairs/zip/ThisIsFinePixel/This Is Fine Pixel Meme Animated.zip',
       category: 'Memes',
       tags: ['memes', 'pixel'],
       source: 'Sweezy'
@@ -613,12 +613,12 @@ const crosshairs = [
     {
       id: 49,
       slug: 'venom-pixel',
-      title: 'Venom Pixel Animated Cursor Pack',
+      title: 'Venom Pixel Cursor Pack',
       description: 'A collection of Venom themed pixel animated cursors.',
       image: '/crosshairs/preview/VenomPixel/VenomPixel.gif',
       def: '/crosshairs/preview/Venom Pixel Animated/VenomNormal.cur',
       link: '/crosshairs/preview/Venom Pixel Animated/VenomLink.cur',
-      downloadUrl: '/crosshairs/zip/Venom Pixel Animated/venom.zip',
+      downloadUrl: '/crosshairs/zip/VenomPixel/Venom Pixel Animated.zip',
       category: 'Superheroes',
       tags: ['superheroes', 'pixel'],
       source: 'Sweezy'
@@ -626,12 +626,12 @@ const crosshairs = [
     {
       id: 50,
       slug: 'ara-ara',
-      title: 'Ara Ara Text Animated Cursor Pack',
+      title: 'Ara Ara Cursor Pack',
       description: 'A collection of "Ara Ara" text themed animated cursors.',
       image: '/crosshairs/preview/AraAra/AraAra.gif',
       def: '/crosshairs/preview/AraAra/AraAraNormal.cur',
       link: '/crosshairs/preview/AraAra/AraAraLink.cur',
-      downloadUrl: '/crosshairs/zip/Ara Ara Text Animated/ara-ara.zip',
+      downloadUrl: '/crosshairs/zip/AraAra/Ara Ara Text Animated.zip',
       category: 'Text',
       tags: ['text'],
       source: 'Sweezy'
@@ -644,7 +644,7 @@ const crosshairs = [
       image: '/crosshairs/preview/BloodyPixel/BloodyPixel.png',
       def: '/crosshairs/preview/Bloody Pixel/BloodyNormal.cur',
       link: '/crosshairs/preview/Bloody Pixel/BloodyLink.cur',
-      downloadUrl: '/crosshairs/zip/Bloody Pixel/bloody.zip',
+      downloadUrl: '/crosshairs/zip/BloodyPixel/Bloody Pixel.zip',
       category: 'Horror',
       tags: ['horror', 'pixel'],
       source: 'Sweezy'
@@ -652,12 +652,12 @@ const crosshairs = [
     {
       id: 52,
       slug: 'bleach-zangetsu',
-      title: 'Bleach Zangetsu Animated Cursor Pack',
+      title: 'Bleach Zangetsu Cursor Pack',
       description: 'A collection of Zangetsu themed animated cursors from Bleach.',
       image: '/crosshairs/preview/BleachZangetsu/BleachZangetsu.gif',
       def: '/crosshairs/preview/Bleach Zangetsu Animated/ZangetsuNormal.cur',
       link: '/crosshairs/preview/Bleach Zangetsu Animated/ZangetsuLink.cur',
-      downloadUrl: '/crosshairs/zip/Bleach Zangetsu Animated/zangetsu.zip',
+      downloadUrl: '/crosshairs/zip/BleachZangetsu/Bleach Zangetsu Animated.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -665,12 +665,12 @@ const crosshairs = [
     {
       id: 53,
       slug: 'black-clover-grimoire',
-      title: 'Black Clover Grimoire & Demon-Dweller Sword Animated Cursor Pack',
+      title: 'Grimoire & Demon-Dweller Sword Cursor Pack',
       description: 'A collection of Grimoire and Demon-Dweller Sword themed animated cursors from Black Clover.',
       image: '/crosshairs/preview/BlackCloverGrimoire/Grimoire.gif',
       def: '/crosshairs/preview/Black Clover Grimoire & Demon-Dweller Sword Animated/GrimoireNormal.cur',
       link: '/crosshairs/preview/Black Clover Grimoire & Demon-Dweller Sword Animated/GrimoireLink.cur',
-      downloadUrl: '/crosshairs/zip/Black Clover Grimoire & Demon-Dweller Sword Animated/grimoire.zip',
+      downloadUrl: '/crosshairs/zip/BlackCloverGrimoire/Black Clover Grimoire & Demon-Dweller Sword Animated.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -678,12 +678,12 @@ const crosshairs = [
     {
       id: 54,
       slug: 'crayon-shinchan',
-      title: 'Crayon Shin-chan Shinnosuke Nohara Animated Cursor Pack',
+      title: 'Shinnosuke Nohara Cursor Pack',
       description: 'A collection of Shinnosuke Nohara themed animated cursors from Crayon Shin-chan.',
       image: '/crosshairs/preview/ShinChan/ShinChan.gif',
       def: '/crosshairs/preview/Crayon Shin-chan Shinnosuke Nohara Animated/ShinchanNormal.cur',
       link: '/crosshairs/preview/Crayon Shin-chan Shinnosuke Nohara Animated/ShinchanLink.cur',
-      downloadUrl: '/crosshairs/zip/Crayon Shin-chan Shinnosuke Nohara Animated/shinchan.zip',
+      downloadUrl: '/crosshairs/zip/ShinChan/Crayon Shin-chan Shinnosuke Nohara Animated.zip',
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -691,12 +691,12 @@ const crosshairs = [
     {
       id: 55,
       slug: 'fantastic-four-torch',
-      title: 'Fantastic Four Human Torch Pixel Animated Cursor Pack',
+      title: 'Human Torch Pixel Cursor Pack',
       description: 'A collection of Human Torch themed pixel animated cursors from Fantastic Four.',
       image: '/crosshairs/preview/Marvel_HumanTorch/HumanTorch.gif',
       def: '/crosshairs/preview/Fantastic Four Human Torch Pixel Animated/HumanTorch.cur',
       link: '/crosshairs/preview/Fantastic Four Human Torch Pixel Animated/HumanTorchLink.cur',
-      downloadUrl: '/crosshairs/zip/Fantastic Four Human Torch Pixel Animated/human-torch.zip',
+      downloadUrl: '/crosshairs/zip/Marvel_HumanTorch/Fantastic Four Human Torch Pixel Animated.zip',
       category: 'Superheroes',
       tags: ['superheroes', 'pixel'],
       source: 'Sweezy'
@@ -704,12 +704,12 @@ const crosshairs = [
     {
       id: 56,
       slug: 'jojo-to-be-continued',
-      title: "JoJo's Bizarre Adventure To be Continued & Menacing Animated Cursor Pack",
+      title: "To be Continued & Menacing Cursor Pack",
       description: "A collection of 'To be Continued' and 'Menacing' themed animated cursors from JoJo's Bizarre Adventure.",
       image: '/crosshairs/preview/JJBA_ToBeContinued/ToBeContinued.gif',
       def: "/crosshairs/preview/JoJo's Bizarre Adventure To be Continued & Menacing Animated/ToBeContinued.cur",
       link: "/crosshairs/preview/JoJo's Bizarre Adventure To be Continued & Menacing Animated/ToBeContinuedLink.cur",
-      downloadUrl: "/crosshairs/zip/JoJo's Bizarre Adventure To be Continued & Menacing Animated/to-be-continued.zip",
+      downloadUrl: "/crosshairs/zip/JJBA_ToBeContinued/JoJo’s Bizarre Adventure To be Continued & Menacing Animated.zip",
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
@@ -717,12 +717,12 @@ const crosshairs = [
     {
       id: 57,
       slug: 'jotaro-running',
-      title: 'Jotaro Kujo Running Pixel Animated Cursor Pack',
+      title: 'Jotaro Kujo Running Pixel Cursor Pack',
       description: "A collection of running Jotaro Kujo themed pixel animated cursors from JoJo's Bizarre Adventure.",
       image: '/crosshairs/preview/JotaroRunningPixel/JotaroRunning.gif',
       def: '/crosshairs/preview/Jotaro Kujo Running Pixel Animated/JotaroRunning.cur',
       link: '/crosshairs/preview/Jotaro Kujo Running Pixel Animated/JotaroRunningLink.cur',
-      downloadUrl: '/crosshairs/zip/Jotaro Kujo Running Pixel Animated/jotaro-running.zip',
+      downloadUrl: '/crosshairs/zip/JotaroRunningPixel/Jotaro Kujo Running Pixel Animated.zip',
       category: 'Anime',
       tags: ['anime', 'pixel'],
       source: 'Sweezy'
@@ -735,7 +735,7 @@ const crosshairs = [
       image: '/crosshairs/preview/Marceline/AdventureTimeMarceline.gif',
       def: '/crosshairs/preview/Marceline/MarcelineNormal.cur',
       link: '/crosshairs/preview/Marceline/MarcelineLink.cur',
-      downloadUrl: '/crosshairs/zip/Marceline/marceline.zip',
+      downloadUrl: '/crosshairs/zip/Marceline/AdventureTimeMarceline.zip',
       category: 'Cartoons',
       tags: ['cartoons'],
       source: 'Sweezy'
