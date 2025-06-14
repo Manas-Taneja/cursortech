@@ -27,7 +27,7 @@ export default function CookieConsent() {
         <div className="flex gap-4">
           <button
             onClick={acceptCookies}
-            className="px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 transition-colors text-sm"
+            className="px-4 py-2 bg-black text-orange-500 rounded-md hover:bg-orange-700 transition-colors text-sm"
             aria-label="Accept cookies and close this banner"
           >
             Accept

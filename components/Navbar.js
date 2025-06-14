@@ -140,6 +140,7 @@ export default function Navbar({ onSearch }) {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <Link href="/install" className="text-white hover:text-orange-500 text-base font-medium">How to install</Link>
+            <Link href="/about" className="text-white hover:text-orange-500 text-base font-medium">About</Link>
           </div>
         </div>
       </div>
@@ -157,6 +158,13 @@ export default function Navbar({ onSearch }) {
             onClick={() => setIsMobileMenuOpen(false)}
           >
             How to Install
+          </Link>
+          <Link
+            href="/about"
+            className="block text-white hover:text-orange-500 text-base font-medium py-2"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            About
           </Link>
         </div>
       </div>

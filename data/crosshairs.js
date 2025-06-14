@@ -1,7 +1,7 @@
 const crosshairs = [
     {
       id: 1,
-      slug: 'capybara-default',
+      slug: 'capybaracursorpack',
       title: 'Capybara Cursor Pack',
       description: 'A collection of fun capybara-themed cursors. Includes pointer, help, text, and more.',
       image: '/crosshairs/preview/Capybara/capybara.png',
@@ -14,7 +14,7 @@ const crosshairs = [
     },
     {
       id: 2,
-      slug: 'naruto-default',
+      slug: 'narutocursorpack',
       title: 'Naruto Cursor Pack',
       description: 'A collection of Naruto-themed cursors featuring iconic symbols and elements from the series. Includes pointer, help, text, and more.',
       image: '/crosshairs/preview/NarutoPixel/naruto-uzumaki-v2.png',
@@ -27,7 +27,7 @@ const crosshairs = [
     },
     {
       id: 3,
-      slug: 'chamber-valorant',
+      slug: 'chambercursorpack',
       title: 'Chamber Cursor Pack',
       description: 'A collection of Chamber-themed cursors from Valorant. Features the iconic Chamber design and animations.',
       image: '/crosshairs/preview/ChamberValorant/chamber-valorant.png',
@@ -40,7 +40,7 @@ const crosshairs = [
     },
     {
       id: 4,
-      slug: 'animated-minecraft',
+      slug: 'minecraftcursorpack',
       title: 'Minecraft Cursor Pack',
       description: 'A collection of animated Minecraft-themed cursors featuring iconic items like the Diamond Sword and Torch.',
       image: '/crosshairs/preview/MinecraftAnimated/animated-minecraft.png',
@@ -53,7 +53,7 @@ const crosshairs = [
     },
     {
       id: 5,
-      slug: 'yoru-valorant',
+      slug: 'yorucursorpack',
       title: 'Yoru Cursor Pack',
       description: 'A collection of Yoru-themed cursors from Valorant. Features the iconic Yoru design and animations.',
       image: '/crosshairs/preview/Yoru-Valorant/yoru-valorant.png',
@@ -66,7 +66,7 @@ const crosshairs = [
     },
     {
       id: 7,
-      slug: 'fortnite-dancing',
+      slug: 'fortnitedefaultdancingcursorpack',
       title: 'Fortnite Default Dancing Cursor Pack',
       description: 'Animated Fortnite cursor pack featuring the iconic default dance.',
       image: '/crosshairs/preview/FortniteDefaultDancing/default-dancing.png',
@@ -79,7 +79,7 @@ const crosshairs = [
     },
     {
       id: 8,
-      slug: 'garen',
+      slug: 'garencursorpack',
       title: 'Garen Cursor Pack',
       description: 'A collection of Garen-themed cursors from League of Legends.',
       image: '/crosshairs/preview/LOL_Garen/garen.png',
@@ -92,7 +92,7 @@ const crosshairs = [
     },
     {
       id: 9,
-      slug: 'hello-kitty',
+      slug: 'hellokittycursorpack',
       title: 'Hello Kitty Cursor Pack',
       description: 'A collection of cute Hello Kitty themed cursors.',
       image: '/crosshairs/preview/HelloKitty/hello-kitty.png',
@@ -105,7 +105,7 @@ const crosshairs = [
     },
     {
       id: 10,
-      slug: 'ichigo',
+      slug: 'ichigocursorpack',
       title: 'Ichigo Cursor Pack',
       description: 'A collection of Ichigo-themed cursors from Bleach.',
       image: '/crosshairs/preview/BleachIchigo/ichigo.png',
@@ -118,7 +118,7 @@ const crosshairs = [
     },
     {
       id: 11,
-      slug: 'jett-kunai-valorant',
+      slug: 'jettkunaicursorpack',
       title: 'Jett Kunai Cursor Pack',
       description: 'A collection of Jett-themed cursors from Valorant featuring her iconic kunai.',
       image: '/crosshairs/preview/JettKunaiValorant/jett-kunai-valorant.png',
@@ -131,7 +131,7 @@ const crosshairs = [
     },
     {
       id: 12,
-      slug: 'knife',
+      slug: 'knifecursorpack',
       title: 'Knife Cursor Pack',
       description: 'A collection of knife-themed cursors with sharp designs.',
       image: '/crosshairs/preview/BloodyKnife/knife.png',
@@ -144,7 +144,7 @@ const crosshairs = [
     },
     {
       id: 13,
-      slug: 'razer-chroma',
+      slug: 'razerchromacursorpack',
       title: 'Razer Chroma Cursor Pack',
       description: 'A collection of Razer Chroma themed cursors with RGB effects.',
       image: '/crosshairs/preview/RazerChroma/chroma.png',
@@ -157,7 +157,7 @@ const crosshairs = [
     },
     {
       id: 14,
-      slug: 'ruination-pack-valorant',
+      slug: 'ruinationcursorpack',
       title: 'Ruination Cursor Pack',
       description: 'A collection of Ruination-themed cursors from Valorant.',
       image: '/crosshairs/preview/RuinationPackValorant/ruination-pack-valorant.png',
@@ -170,7 +170,7 @@ const crosshairs = [
     },
     {
       id: 15,
-      slug: 'saitama-punter-v2',
+      slug: 'saitamacursorpack',
       title: 'Saitama Cursor Pack',
       description: 'A collection of Saitama-themed cursors from One Punch Man.',
       image: '/crosshairs/preview/SaitamaPixel/saitama-punter-v2.png',
@@ -183,7 +183,7 @@ const crosshairs = [
     },
     {
       id: 16,
-      slug: 'son-goku',
+      slug: 'songokucursorpack',
       title: 'Son Goku Cursor Pack',
       description: 'A collection of Goku-themed cursors from Dragon Ball.',
       image: '/crosshairs/preview/SonGoku/son-goku.png',
@@ -196,7 +196,7 @@ const crosshairs = [
     },
     {
       id: 17,
-      slug: 'soyjak-wojak',
+      slug: 'soyjakwojakcursorpack',
       title: 'Soyjak Wojak Cursor Pack',
       description: 'A collection of Soyjak and Wojak themed cursors.',
       image: '/crosshairs/preview/SoyjakWojak/soyjak-wojak.png',
@@ -209,7 +209,7 @@ const crosshairs = [
     },
     {
       id: 18,
-      slug: 'spider-man-punter',
+      slug: 'spidermancursorpack',
       title: 'Spider-Man Cursor Pack',
       description: 'A collection of Spider-Man themed cursors.',
       image: '/crosshairs/preview/SpidermanPixel/spider-man-punter.png',
@@ -222,7 +222,7 @@ const crosshairs = [
     },
     {
       id: 19,
-      slug: 'swiss-army-knife',
+      slug: 'swissarmyknifecursorpack',
       title: 'Swiss Army Knife Cursor Pack',
       description: 'A collection of Swiss Army Knife themed cursors.',
       image: '/crosshairs/preview/SwissArmyKnife/swiss-army-knife.png',
@@ -235,7 +235,7 @@ const crosshairs = [
     },
     {
       id: 20,
-      slug: 'demon-slayer-nezuko-running',
+      slug: 'nezukorunningcursorpack',
       title: 'Nezuko Running Cursor Pack',
       description: 'A collection of animated Nezuko running pixel cursors from Demon Slayer.',
       image: '/crosshairs/preview/DS_NezukoRunning/NezukoRunning.gif',
@@ -248,7 +248,7 @@ const crosshairs = [
     },
     {
       id: 21,
-      slug: 'jujutsu-kaisen-gojo',
+      slug: 'satorugojoinfinitycursorpack',
       title: 'Satoru Gojo Infinity Cursor Pack',
       description: 'A collection of Satoru Gojo themed cursors featuring his Infinity technique from Jujutsu Kaisen.',
       image: '/crosshairs/preview/JJK_GojoInfinity/JJK_GojoInfinity.gif',
@@ -261,7 +261,7 @@ const crosshairs = [
     },
     {
       id: 22,
-      slug: 'minecraft-netherite',
+      slug: 'enchantednetheriteswordcursorpack',
       title: 'Enchanted Netherite Sword Cursor Pack',
       description: 'A collection of animated Minecraft cursors featuring the enchanted Netherite Sword.',
       image: '/crosshairs/preview/MinecraftNetheriteSword/NetheriteSword.gif',
@@ -274,7 +274,7 @@ const crosshairs = [
     },
     {
       id: 23,
-      slug: 'chainsaw-man-pochita',
+      slug: 'pochitarunningcursorpack',
       title: 'Pochita Running Cursor Pack',
       description: 'A collection of animated Pochita running cursors from Chainsaw Man.',
       image: '/crosshairs/preview/CM_PochitaRunning/PochitaRunning.gif',
@@ -287,20 +287,20 @@ const crosshairs = [
     },
     {
       id: 24,
-      slug: 'jojo-jotaro',
+      slug: 'jotarokujostarplatinumcursorpack',
       title: "Jotaro Kujo & Star Platinum Cursor Pack",
       description: "A collection of Jotaro Kujo and Star Platinum themed cursors from JoJo's Bizarre Adventure.",
       image: '/crosshairs/preview/JJBA_JotaroStarPlatinum/JotaroStarPlatinum.png',
       def: "/crosshairs/preview/JoJo's Bizarre Adventure Jotaro Kujo & Star Platinum/JotaroNormal.cur",
       link: "/crosshairs/preview/JoJo's Bizarre Adventure Jotaro Kujo & Star Platinum/JotaroLink.cur",
-      downloadUrl: "/crosshairs/zip/JJBA_JotaroStarPlatinum/JoJo’s Bizarre Adventure Jotaro Kujo & Star Platinum.zip",
+      downloadUrl: "/crosshairs/zip/JJBA_JotaroStarPlatinum/JoJo's Bizarre Adventure Jotaro Kujo & Star Platinum.zip",
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
     },
     {
       id: 25,
-      slug: 'dragon-ball-goku-ss4',
+      slug: 'gokusupersaiyan4pixelcursorpack',
       title: 'Goku Super Saiyan 4 Pixel Cursor Pack',
       description: 'A collection of Goku Super Saiyan 4 themed pixel cursors from Dragon Ball.',
       image: '/crosshairs/preview/DBZ_GokuSSPixel/GokuSS.png',
@@ -313,7 +313,7 @@ const crosshairs = [
     },
     {
       id: 26,
-      slug: 'dragon-ball-vegeta',
+      slug: 'vegetapixelcursorpack',
       title: 'Vegeta Pixel Cursor Pack',
       description: 'A collection of animated Vegeta themed pixel cursors from Dragon Ball.',
       image: '/crosshairs/preview/DBZ_VegetaPixel/VegetaPixel.gif',
@@ -326,7 +326,7 @@ const crosshairs = [
     },
     {
       id: 27,
-      slug: 'dragon-ball-beerus',
+      slug: 'beeruscursorpack',
       title: 'Beerus Cursor Pack',
       description: 'A collection of animated Beerus themed cursors from Dragon Ball.',
       image: '/crosshairs/preview/DBZ_Beerus/Beerus.gif',
@@ -339,7 +339,7 @@ const crosshairs = [
     },
     {
       id: 28,
-      slug: 'demon-slayer-zenitsu',
+      slug: 'zenitsurunningpixelcursorpack',
       title: 'Zenitsu Running Pixel Cursor Pack',
       description: 'A collection of animated Zenitsu running pixel cursors from Demon Slayer.',
       image: '/crosshairs/preview/DS_ZenitsuRunning/ZenitsuRunning.gif',
@@ -352,7 +352,7 @@ const crosshairs = [
     },
     {
       id: 29,
-      slug: 'demon-slayer-rengoku',
+      slug: 'kyojurorengokurunningpixelcursorpack',
       title: 'Kyojuro Rengoku Running Pixel Cursor Pack',
       description: 'A collection of animated Rengoku running pixel cursors from Demon Slayer.',
       image: '/crosshairs/preview/DS_RengokuRunning/RengokuRunning.gif',
@@ -365,7 +365,7 @@ const crosshairs = [
     },
     {
       id: 30,
-      slug: 'demon-slayer-kokushibo',
+      slug: 'kokushibokatanacursorpack',
       title: 'Kokushibo & Katana Cursor Pack',
       description: 'A collection of Kokushibo and katana themed animated cursors from Demon Slayer.',
       image: '/crosshairs/preview/DS_KokushiboKatana/KokushiboKatana.gif',
@@ -378,7 +378,7 @@ const crosshairs = [
     },
     {
       id: 31,
-      slug: 'demon-slayer-inosuke',
+      slug: 'inosukehashibiracursorpack',
       title: 'Inosuke Hashibira Cursor Pack',
       description: 'A collection of Inosuke themed animated cursors from Demon Slayer.',
       image: '/crosshairs/preview/DS_Inosuke/InosukeHashibira.gif',
@@ -391,7 +391,7 @@ const crosshairs = [
     },
     {
       id: 32,
-      slug: 'demon-slayer-nezuko-bamboo',
+      slug: 'nezukobamboomuzzlecursorpack',
       title: 'Nezuko & Bamboo Muzzle Cursor Pack',
       description: 'A collection of Nezuko with bamboo muzzle themed cursors from Demon Slayer.',
       image: '/crosshairs/preview/DS_NezukoBamboo/NezukoBamboo.png',
@@ -404,7 +404,7 @@ const crosshairs = [
     },
     {
       id: 33,
-      slug: 'hunter-killua',
+      slug: 'killuazoldycklightningcursorpack',
       title: 'Killua Zoldyck & Lightning Cursor Pack',
       description: 'A collection of Killua and lightning themed cursors from Hunter x Hunter.',
       image: '/crosshairs/preview/HxH_Killua/Killua.png',
@@ -417,7 +417,7 @@ const crosshairs = [
     },
     {
       id: 34,
-      slug: 'hunter-hisoka',
+      slug: 'hisokamorowbungeegumcursorpack',
       title: 'Hisoka Morow & Bungee Gum Cursor Pack',
       description: 'A collection of Hisoka and Bungee Gum themed cursors from Hunter x Hunter.',
       image: '/crosshairs/preview/HxH_Hisoka/Hisoka.png',
@@ -430,7 +430,7 @@ const crosshairs = [
     },
     {
       id: 35,
-      slug: 'jujutsu-kaisen-yuji',
+      slug: 'yujiitadorisukunacursorpack',
       title: 'Yuji Itadori & Sukuna Cursor Pack',
       description: 'A collection of Yuji Itadori and Sukuna themed cursors from Jujutsu Kaisen.',
       image: '/crosshairs/preview/JJK_YujiSukuna/SukunaItadori.png',
@@ -443,7 +443,7 @@ const crosshairs = [
     },
     {
       id: 36,
-      slug: 'jujutsu-kaisen-yuji-black-flash',
+      slug: 'yujiitadoriblackflashcursorpack',
       title: 'Yuji Itadori Black Flash Cursor Pack',
       description: 'A collection of Yuji Itadori Black Flash themed animated cursors from Jujutsu Kaisen.',
       image: '/crosshairs/preview/JJK_YujiBlackFlash/BlackFlash.gif',
@@ -456,7 +456,7 @@ const crosshairs = [
     },
     {
       id: 37,
-      slug: 'jujutsu-kaisen-gojo-kawaii',
+      slug: 'kawaiisatorugojocursorpack',
       title: 'Kawaii Satoru Gojo Cursor Pack',
       description: 'A collection of kawaii Satoru Gojo themed animated cursors from Jujutsu Kaisen.',
       image: '/crosshairs/preview/JJK_KawaiGojo/Kawai-Satoru.gif',
@@ -469,7 +469,7 @@ const crosshairs = [
     },
     {
       id: 38,
-      slug: 'minecraft-golden-sword',
+      slug: 'enchantedgoldenswordcursorpack',
       title: 'Enchanted Golden Sword Cursor Pack',
       description: 'A collection of animated Minecraft cursors featuring the enchanted Golden Sword.',
       image: '/crosshairs/preview/MinecraftEnchantedGoldenSword/GoldenSword.gif',
@@ -482,7 +482,7 @@ const crosshairs = [
     },
     {
       id: 39,
-      slug: 'minecraft-golden-shovel',
+      slug: 'enchantedgoldenshovelcursorpack',
       title: 'Enchanted Golden Shovel Cursor Pack',
       description: 'A collection of animated Minecraft cursors featuring the enchanted Golden Shovel.',
       image: '/crosshairs/preview/MinecraftEnchantedGoldenShovel/GoldenShovel.gif',
@@ -495,7 +495,7 @@ const crosshairs = [
     },
     {
       id: 40,
-      slug: 'minecraft-diamond-sword',
+      slug: 'enchanteddiamondswordcursorpack',
       title: 'Enchanted Diamond Sword Cursor Pack',
       description: 'A collection of animated Minecraft cursors featuring the enchanted Diamond Sword.',
       image: '/crosshairs/preview/MinecraftEnchantedDiamondSword/DiamondSword.gif',
@@ -508,7 +508,7 @@ const crosshairs = [
     },
     {
       id: 41,
-      slug: 'mob-psycho-shigeo',
+      slug: 'shigeeomangacursorpack',
       title: 'Shigeo Manga Cursor Pack',
       description: 'A collection of Shigeo themed manga-style animated cursors from Mob Psycho 100.',
       image: '/crosshairs/preview/MobPsycho100Shigeo/Shigeo.gif',
@@ -521,7 +521,7 @@ const crosshairs = [
     },
     {
       id: 42,
-      slug: 'my-hero-tomura',
+      slug: 'tomurashigarakicursorpack',
       title: 'Tomura Shigaraki Cursor Pack',
       description: 'A collection of Tomura Shigaraki themed cursors from My Hero Academia.',
       image: '/crosshairs/preview/MHA_TomuraShigaraki/TomuraShigaraki.png',
@@ -534,7 +534,7 @@ const crosshairs = [
     },
     {
       id: 43,
-      slug: 'my-hero-dabi',
+      slug: 'dabiblueflamecursorpack',
       title: 'Dabi & Blueflame Cursor Pack',
       description: 'A collection of Dabi and Blueflame themed animated cursors from My Hero Academia.',
       image: '/crosshairs/preview/MHA_Dabi/Dabi.gif',
@@ -547,7 +547,7 @@ const crosshairs = [
     },
     {
       id: 44,
-      slug: 'naruto-arrow',
+      slug: 'narutoarrowcursorpack',
       title: 'Naruto & Arrow Cursor Pack',
       description: 'A collection of Naruto and arrow themed animated cursors.',
       image: '/crosshairs/preview/Naruto_Arrow/naruto&arrow.gif',
@@ -560,7 +560,7 @@ const crosshairs = [
     },
     {
       id: 45,
-      slug: 'naruto-itachi',
+      slug: 'sharinganursorpack',
       title: 'Sharingan Cursor Pack',
       description: 'A collection of Itachi and Sharingan themed animated cursors from Naruto.',
       image: '/crosshairs/preview/Sharingan/Sharingan.gif',
@@ -573,7 +573,7 @@ const crosshairs = [
     },
     {
       id: 46,
-      slug: 'one-punch-saitama-flying',
+      slug: 'saitamaflyingcursorpack',
       title: 'Saitama Flying Cursor Pack',
       description: 'A collection of flying Saitama themed animated cursors from One-Punch Man.',
       image: '/crosshairs/preview/OPM_SaitamaFlying/SaitamaFlying.gif',
@@ -586,7 +586,7 @@ const crosshairs = [
     },
     {
       id: 47,
-      slug: 'one-punch-saitama-pixel',
+      slug: 'saitamapixelcursorpack',
       title: 'Saitama Pixel Cursor Pack',
       description: 'A collection of pixel art Saitama themed animated cursors from One-Punch Man.',
       image: '/crosshairs/preview/OPM_SaitamaPixel/SaitamaPixel.gif',
@@ -599,7 +599,7 @@ const crosshairs = [
     },
     {
       id: 48,
-      slug: 'this-is-fine',
+      slug: 'thisisfinepixelcursorpack',
       title: 'This Is Fine Pixel Cursor Pack',
       description: 'A collection of "This Is Fine" meme themed pixel animated cursors.',
       image: '/crosshairs/preview/ThisIsFinePixel/ThisIsFine.gif',
@@ -612,7 +612,7 @@ const crosshairs = [
     },
     {
       id: 49,
-      slug: 'venom-pixel',
+      slug: 'venompixelcursorpack',
       title: 'Venom Pixel Cursor Pack',
       description: 'A collection of Venom themed pixel animated cursors.',
       image: '/crosshairs/preview/VenomPixel/VenomPixel.gif',
@@ -625,7 +625,7 @@ const crosshairs = [
     },
     {
       id: 50,
-      slug: 'ara-ara',
+      slug: 'araaracursorpack',
       title: 'Ara Ara Cursor Pack',
       description: 'A collection of "Ara Ara" text themed animated cursors.',
       image: '/crosshairs/preview/AraAra/AraAra.gif',
@@ -638,7 +638,7 @@ const crosshairs = [
     },
     {
       id: 51,
-      slug: 'bloody-pixel',
+      slug: 'bloodypixelcursorpack',
       title: 'Bloody Pixel Cursor Pack',
       description: 'A collection of bloody themed pixel cursors.',
       image: '/crosshairs/preview/BloodyPixel/BloodyPixel.png',
@@ -651,7 +651,7 @@ const crosshairs = [
     },
     {
       id: 52,
-      slug: 'bleach-zangetsu',
+      slug: 'bleachzangetsucursorpack',
       title: 'Bleach Zangetsu Cursor Pack',
       description: 'A collection of Zangetsu themed animated cursors from Bleach.',
       image: '/crosshairs/preview/BleachZangetsu/BleachZangetsu.gif',
@@ -664,7 +664,7 @@ const crosshairs = [
     },
     {
       id: 53,
-      slug: 'black-clover-grimoire',
+      slug: 'grimoiredemondwellerswordcursorpack',
       title: 'Grimoire & Demon-Dweller Sword Cursor Pack',
       description: 'A collection of Grimoire and Demon-Dweller Sword themed animated cursors from Black Clover.',
       image: '/crosshairs/preview/BlackCloverGrimoire/Grimoire.gif',
@@ -677,7 +677,7 @@ const crosshairs = [
     },
     {
       id: 54,
-      slug: 'crayon-shinchan',
+      slug: 'shinnosukenoharacursorpack',
       title: 'Shinnosuke Nohara Cursor Pack',
       description: 'A collection of Shinnosuke Nohara themed animated cursors from Crayon Shin-chan.',
       image: '/crosshairs/preview/ShinChan/ShinChan.gif',
@@ -690,7 +690,7 @@ const crosshairs = [
     },
     {
       id: 55,
-      slug: 'fantastic-four-torch',
+      slug: 'humantorchpixelcursorpack',
       title: 'Human Torch Pixel Cursor Pack',
       description: 'A collection of Human Torch themed pixel animated cursors from Fantastic Four.',
       image: '/crosshairs/preview/Marvel_HumanTorch/HumanTorch.gif',
@@ -703,20 +703,20 @@ const crosshairs = [
     },
     {
       id: 56,
-      slug: 'jojo-to-be-continued',
+      slug: 'tobecontinuedmenacingcursorpack',
       title: "To be Continued & Menacing Cursor Pack",
       description: "A collection of 'To be Continued' and 'Menacing' themed animated cursors from JoJo's Bizarre Adventure.",
       image: '/crosshairs/preview/JJBA_ToBeContinued/ToBeContinued.gif',
       def: "/crosshairs/preview/JoJo's Bizarre Adventure To be Continued & Menacing Animated/ToBeContinued.cur",
       link: "/crosshairs/preview/JoJo's Bizarre Adventure To be Continued & Menacing Animated/ToBeContinuedLink.cur",
-      downloadUrl: "/crosshairs/zip/JJBA_ToBeContinued/JoJo’s Bizarre Adventure To be Continued & Menacing Animated.zip",
+      downloadUrl: "/crosshairs/zip/JJBA_ToBeContinued/JoJo's Bizarre Adventure To be Continued & Menacing Animated.zip",
       category: 'Anime',
       tags: ['anime'],
       source: 'Sweezy'
     },
     {
       id: 57,
-      slug: 'jotaro-running',
+      slug: 'jotarokujorunningpixelcursorpack',
       title: 'Jotaro Kujo Running Pixel Cursor Pack',
       description: "A collection of running Jotaro Kujo themed pixel animated cursors from JoJo's Bizarre Adventure.",
       image: '/crosshairs/preview/JotaroRunningPixel/JotaroRunning.gif',
@@ -729,7 +729,7 @@ const crosshairs = [
     },
     {
       id: 58,
-      slug: 'marceline',
+      slug: 'marcelinecursorpack',
       title: 'Marceline Cursor Pack',
       description: 'A collection of Marceline themed cursors from Adventure Time.',
       image: '/crosshairs/preview/Marceline/AdventureTimeMarceline.gif',

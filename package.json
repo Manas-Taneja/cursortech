@@ -6,6 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
+    "postbuild": "node scripts/generate-sitemap.js",
     "lint": "next lint"
   },
   "dependencies": {
