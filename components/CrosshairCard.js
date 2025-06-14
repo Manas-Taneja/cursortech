@@ -1,9 +1,32 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import { logDownload } from '../utils/analytics';
 
-export default function CrosshairCard({ crosshair }) {
+export default function CrosshairCard({ 
+  crosshair, 
+  cursorPreview = { activeCursor: '', previewGif: '' }, 
+  setCursorPreview = () => {} 
+}) {
   const [isLoading, setIsLoading] = useState(true);
+
+  const handlePreviewClick = (e) => {
+    e.stopPropagation();
+    // Toggle logic: if the same cursor is clicked again, clear states
+    if (cursorPreview.activeCursor === crosshair.link && cursorPreview.previewGif === crosshair.def) {
+      setCursorPreview({ activeCursor: '', previewGif: '' });
+    } else {
+      // Always clear both states first
+      setCursorPreview({ activeCursor: '', previewGif: '' });
+      if (crosshair.def && crosshair.link) {
+        setCursorPreview({ previewGif: crosshair.def, activeCursor: crosshair.link });
+      } else if (crosshair.link) {
+        setCursorPreview({ activeCursor: crosshair.link, previewGif: '' });
+      } else if (crosshair.def) {
+        setCursorPreview({ previewGif: crosshair.def, activeCursor: '' });
+      }
+    }
+  };
 
   return (
     <div className="group relative bg-white dark:bg-black rounded-lg shadow-lg overflow-hidden hover:shadow-xl hover:shadow-orange-500 transition-all">
@@ -46,15 +69,22 @@ export default function CrosshairCard({ crosshair }) {
               </span>
             ))}
           </div>
-          <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-            {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-1">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-            </svg> */}
-            {/* <span>{crosshair.downloadCount} downloads</span> */}
-          </div>
         </div>
       </Link>
       <div className="flex gap-2 px-4 pb-4">
+        {crosshair.source === 'RW-Designer' && (
+          <button
+            type="button"
+            onClick={handlePreviewClick}
+            className={`flex-1 inline-flex items-center justify-center px-4 py-2 border ${
+              cursorPreview.activeCursor === crosshair.link || cursorPreview.previewGif === crosshair.def
+                ? 'border-orange-700 text-orange-700'
+                : 'border-orange-600 text-orange-600'
+            } text-sm font-medium rounded-md bg-white dark:bg-gray-900 hover:bg-orange-50 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors`}
+          >
+            Preview
+          </button>
+        )}
         <a
           href={crosshair.downloadUrl}
           download
@@ -63,7 +93,9 @@ export default function CrosshairCard({ crosshair }) {
             logDownload(crosshair.slug, crosshair.title);
             window.location.href = crosshair.downloadUrl;
           }}
-          className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
+          className={`inline-flex items-center justify-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors ${
+            crosshair.source !== 'RW-Designer' ? 'flex-1' : ''
+          }`}
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4 mr-1">
             <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />

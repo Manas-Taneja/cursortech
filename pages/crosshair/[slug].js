@@ -7,6 +7,7 @@ import { Geist } from 'next/font/google';
 import { crosshairs } from '../../data/crosshairs';
 import { logDownload } from '../../utils/analytics';
 import CookieConsent from '../../components/CookieConsent';
+import AnimatedCursor from '../../components/AnimatedCursor';
 
 const geist = Geist({
   subsets: ['latin'],
@@ -54,6 +55,87 @@ export default function CrosshairDetail({ crosshair, relatedCrosshairs }) {
       });
   }, [crosshair.downloadUrl]);
 
+  const handlePreviewClick = (e) => {
+    e.stopPropagation();
+    // Toggle logic: if the same cursor is clicked again, clear states
+    if (cursorPreview.activeCursor === crosshair.link && cursorPreview.previewGif === crosshair.def) {
+      setCursorPreview({ activeCursor: '', previewGif: '' });
+    } else {
+      // Always clear both states first
+      setCursorPreview({ activeCursor: '', previewGif: '' });
+      if (crosshair.def && crosshair.link) {
+        setCursorPreview({ previewGif: crosshair.def, activeCursor: crosshair.link });
+      } else if (crosshair.link) {
+        setCursorPreview({ activeCursor: crosshair.link, previewGif: '' });
+      } else if (crosshair.def) {
+        setCursorPreview({ previewGif: crosshair.def, activeCursor: '' });
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (cursorPreview.activeCursor && !cursorPreview.previewGif) {
+      document.body.style.cursor = `url(${cursorPreview.activeCursor}), auto`;
+      const all = document.querySelectorAll('*');
+      all.forEach(el => {
+        el.style.cursor = `url(${cursorPreview.activeCursor}), auto`;
+      });
+      // Inject style for all cursor types
+      let style = document.getElementById('custom-cursor-style');
+      if (!style) {
+        style = document.createElement('style');
+        style.id = 'custom-cursor-style';
+        document.head.appendChild(style);
+      }
+      style.innerHTML = `
+        * { cursor: url(${cursorPreview.activeCursor}), auto !important; }
+        input, textarea, [contenteditable] { cursor: url(${cursorPreview.activeCursor}), auto !important; }
+      `;
+    } else if (!cursorPreview.previewGif) {
+      document.body.style.cursor = '';
+      const all = document.querySelectorAll('*');
+      all.forEach(el => {
+        el.style.cursor = '';
+      });
+      // Remove the custom style
+      const style = document.getElementById('custom-cursor-style');
+      if (style) style.remove();
+    }
+  }, [cursorPreview.activeCursor, cursorPreview.previewGif]);
+
+  useEffect(() => {
+    if (cursorPreview.previewGif && cursorPreview.activeCursor) {
+      // Hide native cursor only on body
+      document.body.style.cursor = 'none';
+      // Set .cur file for interactive elements
+      let style = document.getElementById('custom-cursor-style');
+      if (!style) {
+        style = document.createElement('style');
+        style.id = 'custom-cursor-style';
+        document.head.appendChild(style);
+      }
+      style.innerHTML = `
+        button, a, input, textarea, select, [role="button"], [tabindex]:not([tabindex="-1"]) {
+          cursor: url(${cursorPreview.activeCursor}), auto !important;
+        }
+      `;
+    } else {
+      document.body.style.cursor = '';
+      const style = document.getElementById('custom-cursor-style');
+      if (style) style.remove();
+    }
+  }, [cursorPreview.previewGif, cursorPreview.activeCursor]);
+
+  useEffect(() => {
+    // Cleanup cursor state on unmount
+    return () => {
+      setCursorPreview({ activeCursor: '', previewGif: '' });
+      document.body.style.cursor = '';
+      const style = document.getElementById('custom-cursor-style');
+      if (style) style.remove();
+    };
+  }, []);
+
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
@@ -83,6 +165,12 @@ export default function CrosshairDetail({ crosshair, relatedCrosshairs }) {
       </Head>
 
       <div className={`${geist.className} min-h-screen bg-white dark:bg-black`}>
+        {(cursorPreview.activeCursor || cursorPreview.previewGif) && (
+          <AnimatedCursor 
+            gifUrl={cursorPreview.previewGif} 
+            cursorUrl={cursorPreview.activeCursor}
+          />
+        )}
         <main className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
             {/* Back Button */}
@@ -139,6 +227,19 @@ export default function CrosshairDetail({ crosshair, relatedCrosshairs }) {
                 </div>
 
                 <div className="flex gap-4">
+                  {crosshair.source === 'RW-Designer' && (
+                    <button
+                      type="button"
+                      onClick={handlePreviewClick}
+                      className={`inline-flex items-center justify-center px-6 py-3 border ${
+                        cursorPreview.activeCursor === crosshair.link || cursorPreview.previewGif === crosshair.def
+                          ? 'border-orange-700 text-orange-700'
+                          : 'border-orange-600 text-orange-600'
+                      } text-base font-medium rounded-md bg-white dark:bg-gray-900 hover:bg-orange-50 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors`}
+                    >
+                      Preview
+                    </button>
+                  )}
                   <a
                     href={crosshair.downloadUrl}
                     download
@@ -147,8 +248,13 @@ export default function CrosshairDetail({ crosshair, relatedCrosshairs }) {
                       logDownload(crosshair.slug, crosshair.title);
                       window.location.href = crosshair.downloadUrl;
                     }}
-                    className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
+                    className={`inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors ${
+                      crosshair.source !== 'RW-Designer' ? 'flex-1' : ''
+                    }`}
                   >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 mr-2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                    </svg>
                     Download
                   </a>
                 </div>

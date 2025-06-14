@@ -2,11 +2,40 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 export default function PrivacyPolicy() {
+  // Format date in a consistent way for both server and client
+  const formattedDate = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
   return (
     <div className="min-h-screen bg-white dark:bg-black">
       <Head>
-        <title>Privacy Policy - CursorTech</title>
-        <meta name="description" content="Privacy Policy for CursorTech - Your trusted source for custom mouse cursors" />
+        <title>Privacy Policy - CursorTech | Your Trusted Source for Custom Cursors</title>
+        <meta 
+          name="description" 
+          content="Read CursorTech's privacy policy. Learn how we protect your data and ensure your privacy while using our custom cursor download service."
+        />
+        <meta name="keywords" content="cursortech privacy policy, cursor privacy, data protection, cursor download privacy" />
+        <link rel="canonical" href="https://cursortech.vercel.app/privacy" />
+        
+        {/* Open Graph / Social Media Meta Tags */}
+        <meta property="og:title" content="Privacy Policy - CursorTech | Your Trusted Source for Custom Cursors" />
+        <meta property="og:description" content="Read CursorTech's privacy policy. Learn how we protect your data and ensure your privacy while using our custom cursor download service." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://cursortech.vercel.app/privacy" />
+        <meta property="og:site_name" content="CursorTech" />
+        
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@cursortech" />
+        <meta name="twitter:title" content="Privacy Policy - CursorTech" />
+        <meta name="twitter:description" content="Read CursorTech's privacy policy. Learn how we protect your data and ensure your privacy." />
+        
+        {/* Additional Meta Tags */}
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
       </Head>
 
       <main className="max-w-4xl mx-auto px-4 py-12">
@@ -15,7 +44,7 @@ export default function PrivacyPolicy() {
           
           <div className="prose prose-lg dark:prose-invert max-w-none">
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              Last updated: {new Date().toLocaleDateString()}
+              Last updated: {formattedDate}
             </p>
 
             <section className="mb-8">

@@ -239,17 +239,30 @@ export default function Home({ searchQuery: initialSearchQuery = '', cursors = [
   return (
     <>
       <Head>
-        <title>Free Windows Cursor Crosshairs - Download Animated Cursors</title>
-        <meta name="google-site-verification" content="o9k6uoj3gtFBoqrKCXxCPfRjbVT27kV_3vjDxsQ8DBU" />
-        <meta name="description" content="Download free animated cursors for Windows. Choose from a variety of styles including neon, classic, and tech-inspired designs." />
-        <meta name="keywords" content="windows cursor, crosshair, animated cursor, free cursor, custom cursor" />
+        <title>CursorTech - Free Windows Cursors & Custom Mouse Pointers</title>
+        <meta name="description" content="Download free animated cursors for Windows. Choose from a variety of styles including anime, gaming, and tech-inspired designs. Easy installation guide included." />
+        <meta name="keywords" content="windows cursor, crosshair, animated cursor, free cursor, custom cursor, gaming cursor, anime cursor, tech cursor" />
         <link rel="canonical" href="https://cursortech.vercel.app" />
         
         {/* Open Graph / Social Media Meta Tags */}
-        <meta property="og:title" content="Free Windows Cursor Crosshairs - Download Animated Cursors" />
-        <meta property="og:description" content="Download free animated cursor crosshairs for Windows. Choose from a variety of styles including neon, classic, and tech-inspired designs." />
+        <meta property="og:title" content="CursorTech - Free Windows Cursors & Custom Mouse Pointers" />
+        <meta property="og:description" content="Download free animated cursors for Windows. Choose from a variety of styles including anime, gaming, and tech-inspired designs. Easy installation guide included." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://cursortech.vercel.app" />
+        <meta property="og:image" content="https://cursortech.vercel.app/og-image.jpg" />
+        <meta property="og:site_name" content="CursorTech" />
+        
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@cursortech" />
+        <meta name="twitter:title" content="CursorTech - Free Windows Cursors & Custom Mouse Pointers" />
+        <meta name="twitter:description" content="Download free animated cursors for Windows. Choose from a variety of styles including anime, gaming, and tech-inspired designs." />
+        <meta name="twitter:image" content="https://cursortech.vercel.app/og-image.jpg" />
+        
+        {/* Additional Meta Tags */}
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="google-site-verification" content="o9k6uoj3gtFBoqrKCXxCPfRjbVT27kV_3vjDxsQ8DBU" />
       </Head>
 
       <div className={`${quicksand.className} min-h-screen bg-white dark:bg-black`}>
@@ -321,7 +334,11 @@ export default function Home({ searchQuery: initialSearchQuery = '', cursors = [
                   key={crosshair.id}
                   id={index === paginatedCrosshairs.length - 1 ? 'last-element' : undefined}
                 >
-                  <CrosshairCard crosshair={crosshair} />
+                  <CrosshairCard 
+                    crosshair={crosshair} 
+                    cursorPreview={cursorPreview}
+                    setCursorPreview={setCursorPreview}
+                  />
                 </div>
               ))}
             </div>

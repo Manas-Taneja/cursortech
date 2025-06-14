@@ -5,11 +5,32 @@ export default function InstallGuide() {
   return (
     <div className="min-h-screen bg-white dark:bg-black">
       <Head>
-        <title>How to Install Custom Cursors on Windows – CursorTech</title>
+        <title>How to Install Custom Cursors on Windows - Step by Step Guide | CursorTech</title>
         <meta 
           name="description" 
-          content="Step-by-step guide to installing .cur and .ani cursor files on Windows from CursorTech."
+          content="Learn how to install custom cursors on Windows with our step-by-step guide. Easy instructions for installing .cur and .ani cursor files from CursorTech."
         />
+        <meta name="keywords" content="install windows cursor, custom cursor installation, .cur file installation, .ani file installation, cursor setup guide" />
+        <link rel="canonical" href="https://cursortech.vercel.app/install" />
+        
+        {/* Open Graph / Social Media Meta Tags */}
+        <meta property="og:title" content="How to Install Custom Cursors on Windows - Step by Step Guide | CursorTech" />
+        <meta property="og:description" content="Learn how to install custom cursors on Windows with our step-by-step guide. Easy instructions for installing .cur and .ani cursor files from CursorTech." />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://cursortech.vercel.app/install" />
+        <meta property="og:image" content="https://cursortech.vercel.app/install-guide.jpg" />
+        <meta property="og:site_name" content="CursorTech" />
+        
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@cursortech" />
+        <meta name="twitter:title" content="How to Install Custom Cursors on Windows - Step by Step Guide" />
+        <meta name="twitter:description" content="Learn how to install custom cursors on Windows with our step-by-step guide. Easy instructions for installing .cur and .ani cursor files." />
+        <meta name="twitter:image" content="https://cursortech.vercel.app/install-guide.jpg" />
+        
+        {/* Additional Meta Tags */}
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
       </Head>
 
       <main className="max-w-4xl mx-auto px-4 py-12">
@@ -27,22 +48,22 @@ export default function InstallGuide() {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold mb-4">Step 2: Access Personalization Settings</h2>
-            <p>Right-click on your desktop and select "Personalize" from the context menu.</p>
+            <h2 className="text-2xl font-semibold mb-4 text-white">Step 2: Access Personalization Settings</h2>
+            <p className="text-white">Right-click on your desktop and select "Personalize" from the context menu.</p>
             <div className="bg-gray-100 p-4 rounded-lg my-4 dark:bg-black border border-orange-500 border-2">
-              <p className="text-sm text-white">Alternative: Press Windows key + I to open Settings, then search for "Mouse cursor"</p>
+              <p className="text-sm text-white">⚙️ Alternative: Press Windows key + I to open Settings, then search for "Mouse cursor"</p>
             </div>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold mb-4">Step 3: Navigate to Cursor Settings</h2>
-            <p>In the Personalization window, click on "Themes" in the left sidebar, then select "Mouse cursor" under Related Settings.</p>
+            <h2 className="text-2xl font-semibold mb-4 text-white">Step 3: Navigate to Cursor Settings</h2>
+            <p className="text-white">In the Personalization window, click on "Themes" in the left sidebar, then select "Mouse cursor" under Related Settings.</p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold mb-4">Step 4: Apply Your Custom Cursor</h2>
-            <p>For each cursor type (Normal, Busy, etc.):</p>
-            <ol className="list-decimal pl-6 mt-2">
+            <h2 className="text-2xl font-semibold mb-4 text-white">Step 4: Apply Your Custom Cursor</h2>
+            <p className="text-white">For each cursor type (Normal, Busy, etc.):</p>
+            <ol className="list-decimal pl-6 mt-2 text-white">
               <li>Click on the cursor type you want to customize</li>
               <li>Click "Browse"</li>
               <li>Navigate to and select your downloaded .cur or .ani file</li>
