@@ -239,7 +239,7 @@ export default function Home({ searchQuery: initialSearchQuery = '', cursors = [
   return (
     <>
       <Head>
-        <title>CursorTech - Free Windows Cursors & Custom Mouse Pointers</title>
+        <title>CursorTech</title>
         <meta name="description" content="Download free animated cursors for Windows. Choose from a variety of styles including anime, gaming, and tech-inspired designs. Easy installation guide included." />
         <meta name="keywords" content="windows cursor, crosshair, animated cursor, free cursor, custom cursor, gaming cursor, anime cursor, tech cursor" />
         <link rel="canonical" href="https://cursortech.vercel.app" />
