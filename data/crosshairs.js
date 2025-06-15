@@ -744,7 +744,7 @@ const crosshairs = [
       id: 58,
       slug: 'cricketsportpack',
       title: 'Bat Ball Cursor Pack',
-      description: 'A collection of Marceline themed cursors from Adventure Time.',
+      description: 'A collection of cricket bat and ball themed animated cursors for sports enthusiasts.',
       image: '/crosshairs/preview/CricketSport/BatBall.gif',
       def: '/crosshairs/preview/CricketSport/RedBat.cur',
       link: '/crosshairs/preview/CricketSport/CricketBall.gif',
