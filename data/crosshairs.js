@@ -739,6 +739,19 @@ const crosshairs = [
       category: 'Cartoons',
       tags: ['cartoons'],
       source: 'Sweezy'
+    },
+    {
+      id: 58,
+      slug: 'cricketsportpack',
+      title: 'Bat Ball Cursor Pack',
+      description: 'A collection of Marceline themed cursors from Adventure Time.',
+      image: '/crosshairs/preview/CricketSport/BatBall.gif',
+      def: '/crosshairs/preview/CricketSport/RedBat.cur',
+      link: '/crosshairs/preview/CricketSport/CricketBall.gif',
+      downloadUrl: '/crosshairs/zip/CricketSport/CricketSport.zip',
+      category: 'Sports',
+      tags: ['sports'],
+      source: 'RW-Designer'
     }
   ];
 
