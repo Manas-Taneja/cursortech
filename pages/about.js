@@ -1,48 +1,56 @@
 import React from 'react';
+import Link from 'next/link';
 
 const About = () => (
   <div className="max-w-2xl mx-auto px-4 py-10 text-gray-200">
     <h1 className="text-3xl font-bold mb-8 text-center text-orange-300">About CursorTech</h1>
 
-    <section className="mb-10">
-      <h2 className="text-xl font-semibold text-orange-200 mb-2">Why I Built This</h2>
-      <p className="mb-2">
-        I tried finding cool cursors online, but most sites provided cursors for your browser, not many options for customizing your windows cursors. So instead of complaining, I decided to make my own.
-      </p>
-      <ul className="list-disc list-inside mb-2 space-y-1">
-        <li>Fast and mobile-friendly</li>
-        <li>Organized with previews and categories</li>
-        <li>A place to rediscover and enjoy cursor packs that feel good</li>
-      </ul>
-      <p>
-        It's all built from scratch — no templates, no bloat. Just a clean experience.
-      </p>
-    </section>
+    <p className="mb-6">
+      Hey there! I'm Manas — a student, developer, and design enthusiast who decided to make something fun and useful for anyone who's ever been bored of the same old system cursor.
+    </p>
+
+    <p className="mb-6">
+      <strong>CursorTech</strong> started as a weekend project. I wanted to blend creativity, animation, and utility into something quirky: <strong>a giant library of animated and pixel-art cursors</strong>. Think capybaras, anime swords, pixel knives, dancing stick figures — anything that turns a click into a vibe.
+    </p>
+
+    <p className="mb-8">
+      What began as a single animated crosshair turned into this entire site.
+    </p>
 
     <section className="mb-10">
-      <h2 className="text-xl font-semibold text-orange-200 mb-2">What's Next?</h2>
-      <p className="mb-2">
-        I'm constantly adding new cursor packs, fixing bugs, and thinking of new features-
-      </p>
-      <ul className="list-disc list-inside space-y-1">
-        <li>Download counters and community favorites</li>
-        <li>Maybe even allowing creators to submit their own packs</li>
+      <h2 className="text-xl font-semibold text-orange-200 mb-4">→ Why I Built This</h2>
+      <ul className="list-disc list-inside space-y-2">
+        <li>I was curious about <strong>how to rank on Google</strong>, how to make something people actually download, and how to design a fast, modern experience.</li>
+        <li>I wanted to explore <strong>SEO, GitHub Actions, Vercel Serverless</strong>, and experiment with <strong>cursor formats</strong> (.cur, .ani).</li>
+        <li>I wanted to <strong>ship</strong> something — not just build it.</li>
       </ul>
     </section>
 
     <section className="mb-10">
-      <h2 className="text-xl font-semibold text-orange-200 mb-2">Want to Say Hi?</h2>
-      <p className="mb-2">
-        If you've got feedback, ideas, or just found a cursor you love — shoot me a message!
-      </p>
-      <p className="mb-2">
-        I'd love to hear from you: <a href="mailto:cursortech.site@gmail.com" className="text-orange-300 underline">cursortech.site@gmail.com</a>
-      </p>
-      <p className="mb-2">
-        Check out my GitHub: <a href="https://github.com/Manas-Taneja" className="text-orange-300 underline" target="_blank" rel="noopener noreferrer">github.com/Manas-Taneja</a>
-      </p>
-      <p className="italic mt-6">Thanks for stopping by,<br />– Manas</p>
+      <h2 className="text-xl font-semibold text-orange-200 mb-4">→ How It Works</h2>
+      <ul className="list-disc list-inside space-y-2">
+        <li>The site is powered by <strong>Next.js + TailwindCSS</strong>.</li>
+        <li>Previews are done in-browser with cursor replacements on hover.</li>
+              </ul>
     </section>
+  <section className="mb-10">
+      <h2 className="text-xl font-semibold text-orange-200 mb-4">→ Thanks for visiting</h2>
+      <p className="mb-4">
+        If you liked the site, shared it, or even downloaded a cursor. You made my day.
+      </p>
+      <blockquote className="border-l-4 border-orange-300 pl-4 italic">
+        Built with 💻, 🎨, and a lot of 🍵 by <a href="https://github.com/Manas-Taneja" className="text-orange-300 underline" target="_blank" rel="noopener noreferrer">Manas Taneja</a>
+      </blockquote>
+    </section>
+
+    <div className="mt-12 text-center">
+          <Link 
+            href="/"
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700"
+          >
+            ← Back to Home
+          </Link>
+        </div>
   </div>
 );
 
