@@ -16,7 +16,7 @@ export default function Navbar({ onSearch }) {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-black border-b border-orange-500 py-2 px-4">
+    <nav className="sticky top-0 z-50 w-full bg-white dark:bg-black border-b border-orange-500 py-2 px-4">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
@@ -63,7 +63,7 @@ export default function Navbar({ onSearch }) {
           {/* Dark Mode Toggle */}
           <button
             onClick={toggleTheme}
-            className="text-white hover:text-orange-500 transition-colors p-2 -m-2"
+            className="text-gray-900 dark:text-white hover:text-orange-500 dark:hover:text-orange-500 transition-colors p-2 -m-2"
             aria-label="Toggle dark mode"
           >
             {theme === 'dark' ? (
@@ -98,7 +98,7 @@ export default function Navbar({ onSearch }) {
                 }, 300);
               }
             }}
-            className="text-white hover:text-orange-500 transition-colors p-2 -m-2"
+            className="text-gray-900 dark:text-white hover:text-orange-500 dark:hover:text-orange-500 transition-colors p-2 -m-2"
             aria-label="Toggle search"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -110,7 +110,7 @@ export default function Navbar({ onSearch }) {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white hover:text-orange-500 transition-colors p-2 -m-2"
+            className="md:hidden text-gray-900 dark:text-white hover:text-orange-500 dark:hover:text-orange-500 transition-colors p-2 -m-2"
             aria-label="Toggle mobile menu"
           >
             <svg
@@ -139,8 +139,8 @@ export default function Navbar({ onSearch }) {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <Link href="/install" className="text-white hover:text-orange-500 text-base font-medium">How to install</Link>
-            <Link href="/about" className="text-white hover:text-orange-500 text-base font-medium">About</Link>
+            <Link href="/install" className="text-gray-900 dark:text-white hover:text-orange-500 dark:hover:text-orange-500 text-base font-medium">How to install</Link>
+            <Link href="/about" className="text-gray-900 dark:text-white hover:text-orange-500 dark:hover:text-orange-500 text-base font-medium">About</Link>
           </div>
         </div>
       </div>
@@ -154,14 +154,14 @@ export default function Navbar({ onSearch }) {
         <div className="px-4 py-2 space-y-2">
           <Link
             href="/install"
-            className="block text-white hover:text-orange-500 text-base font-medium py-2"
+            className="block text-gray-900 dark:text-white hover:text-orange-500 dark:hover:text-orange-500 text-base font-medium py-2"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             How to Install
           </Link>
           <Link
             href="/about"
-            className="block text-white hover:text-orange-500 text-base font-medium py-2"
+            className="block text-gray-900 dark:text-white hover:text-orange-500 dark:hover:text-orange-500 text-base font-medium py-2"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             About
